@@ -1,5 +1,6 @@
 package kr.co.bttf.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -301,6 +302,34 @@ public class BoardController {
 		}
 	}
 	
+	
+	//2-7. 게시글 북마크
+//	@RequestMapping (value = "/bookmark", method = RequestMethod.GET)
+//	public void bookmark(@RequestParam("post_id") int post_id, HttpServletResponse res) {
+//		
+//
+//		cssService.bookmark(post_id);
+//		
+//		try {
+//			ScriptUtils.alertAndMovePage(res, "게시글이 북마크에 추가되었습니다. ", "http://localhost:9090/board/cssview?post_id=" + post_id);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+		 
+//		 try {
+//			 if(update==1) {
+//				 
+//				 
+//			 } else {
+//				 
+//				 ScriptUtils.alertAndMovePage(res, "회원정보 수정을 실패했습니다. ", "http://localhost:9090/member/mypage_edit");
+//				 
+//			 }
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 	/* --------------------------------
 			03. JAVASCRIPT
