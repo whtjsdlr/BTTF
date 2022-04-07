@@ -47,9 +47,9 @@ public class OracleReplyServiceImpl implements OracleReplyService {
 	}
 
 
-	@Override
-	public int oracleCount(int post_id) throws Exception {
-		return dao.oracleCount(post_id);
-	}
+//	@Override
+//	public int oracleCount(int post_id) throws Exception {
+//		return dao.oracleCount(post_id);
+//	}
 
 }

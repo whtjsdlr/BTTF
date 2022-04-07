@@ -31,10 +31,10 @@ public class OracleReplyDAOImpl implements OracleReplyDAO {
 	}
 	
 	// 댓글 개수
-	@Override
-	public int oracleCount(int post_id) throws Exception {
-		return sql.selectOne(namespace + ".oracleCount", post_id);
-	}
+//	@Override
+//	public int oracleCount(int post_id) throws Exception {
+//		return sql.selectOne(namespace + ".oracleCount", post_id);
+//	}
 
 	// 댓글 작성
 	@Override

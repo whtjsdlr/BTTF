@@ -40,6 +40,8 @@
 
     <!-- c3 chart -->
     <link href="../../../resources/vendor/c3-0.7.20/c3.css" rel="stylesheet">
+    
+   
     <style type="text/css">
        .remove{
           display : none;
@@ -51,6 +53,7 @@
        		padding-bottom : 200px;
        }
     </style>
+     
 </head>
 <!-- END HEAD -->
 <!-- BODY -->
@@ -110,11 +113,11 @@
 							<div class="card" id="result ">
 	                            <div class="card-body">
 	                                <!-- Comment form-->
-	                                <form name="replyForm" method="post" class="mb-4 d-flex">
-	                                	<textarea id="reply_contents" name="reply_contents" class="form-control mr-5" rows="2" placeholder="댓글을 작성하세요"></textarea>
-	                                	<a href="/reply/oracleReplyWrite" id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;">작성하기</a>
+	                                <form id="replyForm" name="replyForm" method="post" class="mb-4 d-flex">
+	                                	<input type="hidden" id="reply_nickname" name="re_nickname" value="${member.user_nickname}">
+	                                	<textarea id="reply_contents" name="re_contents" class="form-control mr-5" rows="2" placeholder="댓글을 작성하세요"></textarea>
 	                                </form>
-
+									<a id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;">작성하기</a>
 	                               	<!-- Comment with nested comments-->
 	                                
 	                                <c:forEach var="row" items="${oraclereplylist}">
@@ -186,10 +189,13 @@
 
     <!-- JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
     <!-- CORE PLUGINS -->
-    <script src="../../../resources/vendor/jquery.min.js" type="text/javascript"></script>
+<!--     <script src="../../../resources/vendor/jquery.min.js" type="text/javascript"></script> -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" type="text/javascript"></script>
     <script src="../../../resources/vendor/jquery-migrate.min.js" type="text/javascript"></script>
     <script src="../../../resources/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-
+	
+	
+	 <script type="text/javascript" src="../../../resources/js/oraclereplylist.js"></script>
     <!-- PAGE LEVEL PLUGINS -->
     <script src="../../../resources/vendor/jquery.easing.js" type="text/javascript"></script>
     <script src="../../../resources/vendor/jquery.back-to-top.js" type="text/javascript"></script>
@@ -214,13 +220,23 @@
 	
 	
 	<!-- REPLY AJAX -->
-	<script type="text/javascript" src="../../../resources/js/oraclereplylist.js"></script>
-	
 	
 	<!-- ALERT SECTION -->
     <script src="../../../resources/js/confirm.js"></script>
-	
-	
+	<script type="text/javascript">
+    	$("#btnReply").click(function(){
+    		var oracleReply = {};
+    		oracleReply.reply_nickname = $("#reply_nickname").val();
+    		oracleReply.reply_contents = $("#reply_contents").val();
+    		
+    		alert(JSON.stringify(oracleReply));
+    		oracleReplyService.add(
+    			JSON.stringify(oracleReply), 
+    				function(){
+    					alert("test");
+    			});
+    	});
+    </script>
     <script>
         ClassicEditor
             .create( document.querySelector( '#classic' ))
@@ -228,26 +244,7 @@
                 console.error( error );
             } );
     </script>
-<script>	
-	// [댓글 수정하기] function
-	cnost updateFn = function(){
-		function updateReadonlyReply( reply_id ){
-			document.getElementById( 'reply' + reply_id ).readOnly = false;
-
-		}
-		
-	}
- 	
-// 	// [댓글 수정] function
-// 	function updateReply( reply_id ){
-// 			document.replyForm.action = "/reply/oracle_reply_modify?reply_id="+reply_id;
-// 			document.replyForm.submit();
-// 			// 수정하기 버튼 block, 수정완료(펑션) none
-// 		}
-// 	}
-
-	
-</script>
+   
 </body>
 <!-- END BODY -->
 </html>

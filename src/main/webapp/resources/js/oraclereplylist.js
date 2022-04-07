@@ -2,42 +2,53 @@
  * oracleReplyList
  */
 
-$(document).ready(function(){
+console.log("댓글 모듈 진행...시작");
+var oracleReplyService = (
 	
-	oracleReplyList("1");
-	//oracleReplyList("2");
-	$("#btnReply").click(function(){
-		var reply_contents = $("#reply_contents").val();
-		var post_id="${oracleview.post_id}"
-		var param="reply_contents="+reply_contents+"&post_id="+post_id;
-		$.ajax({
-			type: "post",
-			url: "${path}/reply/oracleReplyWrite",
-			data: param,
-			success: function(){
-				alert("댓글이 등록되었습니다.");
-				oracleReplyList("1");
-				//oracleReplyList("2");
-			}
-		});
-	});
-});
-
-
-		function oracleReplyList(num){
+	function(){
+		function add(oracleReply, callback){
+			alert("댓글 쓰기 처리 진행중...");
 			$.ajax({
-				type: "get",
-				url: "${path}/reply/oracleReplyList?post_id=${oracleview.post_id}$curPage="+num,
-				success: function(result){
-				
-	//			$("#oracleReplyWrite").append("<a class=''btn btn-info''>dkdkdkdkd</a>");
-				$("#oracleReplyWrite").html(result);
-				
+				url : '/reply/oracleReplyWrite',
+				type : 'post',
+				data : oracleReply,
+				contentType : 'application/json; charset=utf-8',
+				success : function(result, status, xhr){
+					if(callback){
+						callback();			
+					}
+					alert(result);
+					alert(status);					
+					
+				},
+				error : function(xhr, status, er){
+					alert(status);
+					alert(er);
+				}
+			
+			});			
 		}
-		
-		
+	} 
 	
-		
-	});
-}
+	
+	
+	
+	
+)();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

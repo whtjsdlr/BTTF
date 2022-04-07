@@ -22,7 +22,7 @@ public interface OracleReplyDAO {
 	public List<OracleReplyVO> oracleReplyList(int post_id, int start, int end, HttpSession session) throws Exception;
 
 	// 댓글 갯수
-	public int oracleCount(int post_id) throws Exception;
+//	public int oracleCount(int post_id) throws Exception;
 
 //	public void oracleReplyDelete(int reply_id, int post_id);
 	

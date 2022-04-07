@@ -6,21 +6,31 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import jdk.internal.org.jline.utils.Log;
 import kr.co.bttf.domain.MemberVO;
 import kr.co.bttf.domain.OracleBoardVO;
 import kr.co.bttf.domain.OracleReplyVO;
 import kr.co.bttf.service.MemberService;
 import kr.co.bttf.service.OracleBoardService;
 import kr.co.bttf.service.OracleReplyService;
+import lombok.extern.log4j.Log4j;
 
+
+@RestController
 @Controller
 @RequestMapping("/reply/*")
 public class ReplyController {
@@ -58,33 +68,35 @@ public class ReplyController {
 	-------------------------------- */
 	
 	// 6-1. 댓글 작성
-	@RequestMapping(value = "/oracleReplyWrite", method = RequestMethod.POST)
-	public String oracleReplyWrite(OracleReplyVO vo , HttpServletRequest request) throws Exception {
-		HttpSession session = request.getSession();
-		MemberVO member = (MemberVO) session.getAttribute("member");
-		vo.setUser_nickname(member.getUser_nickname());
-		OracleReplyService.oracleReplyWrite(vo);
-	  return "redirect:/board/oracleview?post_id=" + vo.getPost_id();
+	@PostMapping(value = "/oracleReplyWrite",
+			consumes = "application/json",
+			produces = MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity<String> oracleReplyWrite (@RequestBody OracleReplyVO vo) throws Exception {
+		
+		Log.info(vo);
+		Log.info(HttpStatus.OK);
+		
+		return new ResponseEntity<String>("success.writer", HttpStatus.OK);
 	}
 	
 	// 6.2 댓글 목록
-	@RequestMapping(value = "/oracleReplyList", method = RequestMethod.GET)
-	public ModelAndView oracleReplyList(@RequestParam("post_id") int post_id, @RequestParam(defaultValue="1") int curPage, ModelAndView mav, HttpSession session) throws Exception {
-		
-		//페이징 처리
-		int count = OracleReplyService.oracleCount(post_id);
-		ReplyPager replyPager = new ReplyPager(count, curPage);
-		int start = replyPager.getPageBegin();
-		int end = replyPager.getPageEnd();
-		List<OracleReplyVO> list = OracleReplyService.oracleReplyList(post_id, start, end, session);
-		mav.setViewName("/board/oracleview");
-		mav.addObject("list", list);
-		mav.addObject("replyPager", replyPager);
-		return mav;
-		
-	}
-	
-	
+//	@RequestMapping(value = "/oracleReplyList", method = RequestMethod.GET)
+//	public ModelAndView oracleReplyList(@RequestParam("post_id") int post_id, @RequestParam(defaultValue="1") int curPage, ModelAndView mav, HttpSession session) throws Exception {
+//		
+//		//페이징 처리
+//		int count = OracleReplyService.oracleCount(post_id);
+//		ReplyPager replyPager = new ReplyPager(count, curPage);
+//		int start = replyPager.getPageBegin();
+//		int end = replyPager.getPageEnd();
+//		List<OracleReplyVO> list = OracleReplyService.oracleReplyList(post_id, start, end, session);
+//		mav.setViewName("/board/oracleview");
+//		mav.addObject("list", list);
+//		mav.addObject("replyPager", replyPager);
+//		return mav;
+//		
+//	}
+//	
+//	
 	
 	
 	
