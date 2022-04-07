@@ -99,7 +99,7 @@
 									</c:if> 
 	                        		<a href="/board/csslist" class="btn btn-default mt-4" id="edit" type="submit">글 목록</a>
 									<c:if test="${member.user_nickname != cssview.user_nickname && member != null && cssview.user_nickname != 'admin'}">
-										<a href="/board/bookmark" class="btn btn-default mt-4">북마크</a>
+										<a href="/board/bookmark?post_id=${cssview.post_id }" class="btn btn-default mt-4">북마크</a>
 										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#memberreport" data-whatever="@getbootstrap" style="float: right;" >작성자 신고</button>
 									</c:if>
 <!-- 	                        		<p style="transform: translate(0%,62%); color: #000 !important;">댓글 개수 : </p> -->
