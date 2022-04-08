@@ -1,5 +1,6 @@
 package kr.co.bttf.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -51,5 +52,17 @@ public class CssBoardDAOImpl implements CssBoardDAO {
 	public void csscategory2(int post_id) throws Exception {
 		sql.update(namespace + ".csscategory2", post_id);
 		
+	}
+	
+	@Override
+	public int cssbookmarklist(HashMap<String, Integer> postid_useridx) throws Exception {
+
+		return sql.selectOne(namespace +".cssbookmarklist", postid_useridx);
+	}
+
+	@Override
+	public void cssbookmark(HashMap<String, Integer> postid_useridx) {
+		
+		sql.insert(namespace + ".cssbookmark", postid_useridx);
 	}
 }

@@ -1,5 +1,6 @@
 package kr.co.bttf.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -51,5 +52,17 @@ public class JspBoardDAOImpl implements JspBoardDAO {
 	public void jspcategory2(int post_id) throws Exception {
 		sql.update(namespace + ".jspcategory2", post_id);
 		
+	}
+	
+	@Override
+	public int jspbookmarklist(HashMap<String, Integer> postid_useridx) throws Exception {
+
+		return sql.selectOne(namespace +".jspbookmarklist", postid_useridx);
+	}
+
+	@Override
+	public void jspbookmark(HashMap<String, Integer> postid_useridx) {
+		
+		sql.insert(namespace + ".jspbookmark", postid_useridx);
 	}
 }

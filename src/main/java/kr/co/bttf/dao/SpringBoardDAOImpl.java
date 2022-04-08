@@ -1,5 +1,6 @@
 package kr.co.bttf.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -53,4 +54,15 @@ public class SpringBoardDAOImpl implements SpringBoardDAO {
 		
 	}
 	
+	@Override
+	public int springbookmarklist(HashMap<String, Integer> postid_useridx) throws Exception {
+
+		return sql.selectOne(namespace +".springbookmarklist", postid_useridx);
+	}
+
+	@Override
+	public void springbookmark(HashMap<String, Integer> postid_useridx) {
+		
+		sql.insert(namespace + ".springbookmark", postid_useridx);
+	}
 }

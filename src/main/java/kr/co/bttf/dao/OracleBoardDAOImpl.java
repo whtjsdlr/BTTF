@@ -1,5 +1,6 @@
 package kr.co.bttf.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -51,5 +52,17 @@ public class OracleBoardDAOImpl implements OracleBoardDAO {
 	public void oraclecategory2(int post_id) throws Exception {
 		sql.update(namespace + ".oraclecategory2", post_id);
 		
+	}
+	
+	@Override
+	public int oraclebookmarklist(HashMap<String, Integer> postid_useridx) throws Exception {
+
+		return sql.selectOne(namespace +".oraclebookmarklist", postid_useridx);
+	}
+
+	@Override
+	public void oraclebookmark(HashMap<String, Integer> postid_useridx) {
+		
+		sql.insert(namespace + ".oraclebookmark", postid_useridx);
 	}
 }

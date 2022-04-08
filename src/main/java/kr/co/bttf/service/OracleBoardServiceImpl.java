@@ -1,5 +1,6 @@
 package kr.co.bttf.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -50,6 +51,21 @@ public class OracleBoardServiceImpl implements OracleBoardService {
 	public void oraclecategory2(int post_id) throws Exception {
 		dao.oraclecategory2(post_id);
 		
+	}
+	
+	// 게시글 북마크 유무 확인
+	@Override
+	public int oraclebookmarklist(HashMap<String, Integer> postid_useridx) throws Exception {
+		
+		return dao.oraclebookmarklist(postid_useridx);
+		
+	}
+
+	// 게시글 북마크 설정
+	@Override
+	public void oraclebookmark(HashMap<String, Integer> postid_useridx) throws Exception {
+
+		dao.oraclebookmark(postid_useridx);
 	}
 
 }
