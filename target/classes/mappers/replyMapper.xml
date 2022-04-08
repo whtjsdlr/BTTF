@@ -88,7 +88,8 @@
 		avaliability_category_id = 4
 		where post_id = #{post_id} and reply_id = #{reply_id}
 	</update>
- 
+ 	
+ 	
 
 </mapper>
 
