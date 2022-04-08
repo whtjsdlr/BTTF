@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import kr.co.bttf.controller.Criteria;
 import kr.co.bttf.domain.OracleReplyVO;
 
 public interface OracleReplyService {
@@ -18,9 +19,12 @@ public interface OracleReplyService {
 	public int oracleReplyDelete(OracleReplyVO vo) throws Exception;
 
 	// 댓글 목록
-	public List<OracleReplyVO> oracleReplyList(int post_id, int start, int end, HttpSession session) throws Exception;
+//	public List<OracleReplyVO> oracleReplyList(int post_id, int start, int end, HttpSession session) throws Exception;
+
+	public List<OracleReplyVO> oracleReplyList(Criteria cri, int post_id) throws Exception;
+
 
 	// 댓글 갯수
-//	public int oracleCount(int post_id) throws Exception;
+	public int oracleCount(int post_id) throws Exception;
 
 }

@@ -2,11 +2,10 @@ package kr.co.bttf.domain;
 
 import java.util.Date;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter @Setter
-public class OracleReplyVO {
+@Data
+public class ReplyVO {
 
 	private int reply_id;
 	private int reply_depth;

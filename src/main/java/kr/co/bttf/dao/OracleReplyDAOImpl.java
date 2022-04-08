@@ -7,9 +7,11 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import kr.co.bttf.controller.Criteria;
 import kr.co.bttf.domain.OracleReplyVO;
 
 @Repository
@@ -22,19 +24,16 @@ public class OracleReplyDAOImpl implements OracleReplyDAO {
 	
 	// 댓글 목록
 	@Override
-	public List<OracleReplyVO> oracleReplyList(int post_id, int start, int end, HttpSession session) throws Exception {
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("post_id", post_id);
-		map.put("start", start);
-		map.put("end", end);
-		return sql.selectList(namespace + ".oracleReplyList", map);
+	public List<OracleReplyVO> oracleReplyList(@Param ("cri")Criteria cri, @Param ("post_id") int post_id) {
+
+		return sql.selectList(namespace + ".oracleReplyList");
 	}
 	
 	// 댓글 개수
-//	@Override
-//	public int oracleCount(int post_id) throws Exception {
-//		return sql.selectOne(namespace + ".oracleCount", post_id);
-//	}
+	@Override
+	public int oracleCount(int post_id) throws Exception {
+		return sql.selectOne(namespace + ".oracleCount", post_id);
+	}
 
 	// 댓글 작성
 	@Override
@@ -54,6 +53,12 @@ public class OracleReplyDAOImpl implements OracleReplyDAO {
 	public int oracleReplyDelete(OracleReplyVO vo) throws Exception {
 		return sql.update(namespace + ".oracleReplyDelete", vo);
 	}
+
+//	@Override
+//	public int oracleCount(int post_id) throws Exception {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
 
 
 

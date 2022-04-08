@@ -60,22 +60,50 @@
 		
 <!-- 	</select> -->
 	
-<!-- 	<select id="oracleCount" resultType="_int"> -->
-<!-- 	 	select count(*) from reply_oracle where post_id = #{post_id} -->
+	<select id="oracleCount" resultType="_int">
+	 	select count(*) from reply_oracle where post_id = #{post_id}
+	</select>
+<!-- 	<select id="oracleReplyList" resultType="kr.co.bttf.domain.OracleReplyVO"> -->
+<!-- 		select * from reply_oracle where post_id = #{post_ id}	 -->
 <!-- 	</select> -->
-
 	<!-- 2. 댓글 작성 --> 
-	<insert id="oracleReplyWrite" parameterType="kr.co.bttf.domain.OracleReplyVO">
-		insert into reply_oracle(post_id, reply_id, user_nickname, reply_contents) 
-		values(#{post_id}, #{reply_id}, #{user_nickname}, #{reply_contents})
+<!-- 	<insert id="oracleReplyWrite" parameterType="kr.co.bttf.domain.OracleReplyVO"> -->
+<!-- 		insert into reply_oracle(post_id, reply_id, user_nickname, reply_contents)  -->
+<!-- 		values(#{post_id}, #{reply_id}, #{user_nickname}, #{reply_contents}) -->
+<!-- 	</insert> -->
+	<insert id="insert">
+		insert into reply_oracle(post_id, user_nickname, reply_contents) 
+		values(#{post_id}, #{user_nickname}, #{reply_contents})
 	</insert>
-
+	
+	<!-- 2. 댓글 가져오기--> 
+	<select id="read" resultType="kr.co.bttf.domain.ReplyVO">
+		select * from reply_oracle where reply_id = #{reply_id}	
+	</select>
+	
+	
 	<!-- 3. 댓글 수정 --> 
-	<update id="oracleReplyModify" parameterType="kr.co.bttf.domain.OracleReplyVO">
+	<update id="update" parameterType="kr.co.bttf.domain.ReplyVO">
 		update reply_oracle set
 		reply_contents = #{reply_contents}
-		where post_id = #{post_id} and reply_id = #{reply_id}
+		where reply_id = #{reply_id}
 	</update>
+	
+	<update id="delete" parameterType="kr.co.bttf.domain.ReplyVO">
+		update reply_oracle set
+		avaliability_category_id = 4
+		where reply_id = #{reply_id}
+	</update>
+	
+	<select id="getListWithPaging" resultType="kr.co.bttf.domain.ReplyVO">
+		select * from reply_oracle where post_id =#{post_id} order by reply_id asc	
+	</select>
+	
+<!-- 	<update id="oracleReplyModify" parameterType="kr.co.bttf.domain.OracleReplyVO"> -->
+<!-- 		update reply_oracle set -->
+<!-- 		reply_contents = #{reply_contents} -->
+<!-- 		where post_id = #{post_id} and reply_id = #{reply_id} -->
+<!-- 	</update> -->
 
 	<!-- 4. 댓글 삭제 --> 
 <!--  	<delete id="oracle_reply_delete" parameterType="kr.co.bttf.domain.OracleReplyVO"> -->
@@ -83,11 +111,11 @@
 <!-- 		where post_id = #{post_id} and reply_id = #{reply_id} -->
 <!-- 	</delete> -->
 
-	<update id="oracleReplyDelete" parameterType="kr.co.bttf.domain.OracleReplyVO">
-		update reply_oracle set
-		avaliability_category_id = 4
-		where post_id = #{post_id} and reply_id = #{reply_id}
-	</update>
+<!-- 	<update id="oracleReplyDelete" parameterType="kr.co.bttf.domain.OracleReplyVO"> -->
+<!-- 		update reply_oracle set -->
+<!-- 		avaliability_category_id = 4 -->
+<!-- 		where post_id = #{post_id} and reply_id = #{reply_id} -->
+<!-- 	</update> -->
  	
  	
 
