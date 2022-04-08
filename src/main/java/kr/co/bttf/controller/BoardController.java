@@ -182,6 +182,40 @@ public class BoardController {
 	}	
 
 	
+	//1-7. 게시글 북마크 설정
+	@RequestMapping (value = "/htmlbookmark", method = RequestMethod.GET)
+	public void bookmark(@RequestParam("post_id") int post_id, @RequestParam("user_index") int user_index, HttpServletResponse res) throws Exception{
+		
+		HashMap<String, Integer> postid_useridx = new HashMap<>();
+				
+		postid_useridx.put("post_id", post_id);
+		postid_useridx.put("user_index", user_index);
+		
+		// 게시글 북마크 유무 확인
+		int result = htmlService.htmlbookmarklist(postid_useridx);
+		
+		try {
+			
+			if(result==1) {
+				
+				ScriptUtils.alertAndMovePage(res, "이미 북마크에 추가된 게시글입니다. ", "http://localhost:9090/board/htmlview?post_id=" + post_id);
+			
+			} else {
+				
+				//게시글 북마크에추가
+				htmlService.htmlbookmark(postid_useridx);
+				ScriptUtils.alertAndMovePage(res, "게시글이 북마크에 추가되었습니다. ", "http://localhost:9090/board/htmlview?post_id=" + post_id);
+				
+			}
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		 
+
+	}
+	
 	/* --------------------------------
 	 			02. CSS
 	-------------------------------- */
@@ -303,33 +337,39 @@ public class BoardController {
 	}
 	
 	
-	//2-7. 게시글 북마크
-//	@RequestMapping (value = "/bookmark", method = RequestMethod.GET)
-//	public void bookmark(@RequestParam("post_id") int post_id, HttpServletResponse res) {
-//		
-//
-//		cssService.bookmark(post_id);
-//		
-//		try {
-//			ScriptUtils.alertAndMovePage(res, "게시글이 북마크에 추가되었습니다. ", "http://localhost:9090/board/cssview?post_id=" + post_id);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+	//2-7. 게시글 북마크 설정
+	@RequestMapping (value = "/cssbookmark", method = RequestMethod.GET)
+	public void cssbookmark(@RequestParam("post_id") int post_id, @RequestParam("user_index") int user_index, HttpServletResponse res) throws Exception{
+		
+		HashMap<String, Integer> postid_useridx = new HashMap<>();
+				
+		postid_useridx.put("post_id", post_id);
+		postid_useridx.put("user_index", user_index);
+		
+		// 게시글 북마크 유무 확인
+		int result = cssService.cssbookmarklist(postid_useridx);
+		
+		try {
+			
+			if(result==1) {
+				
+				ScriptUtils.alertAndMovePage(res, "이미 북마크에 추가된 게시글입니다. ", "http://localhost:9090/board/cssview?post_id=" + post_id);
+			
+			} else {
+				
+				//게시글 북마크에추가
+				cssService.cssbookmark(postid_useridx);
+				ScriptUtils.alertAndMovePage(res, "게시글이 북마크에 추가되었습니다. ", "http://localhost:9090/board/cssview?post_id=" + post_id);
+				
+			}
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		 
-//		 try {
-//			 if(update==1) {
-//				 
-//				 
-//			 } else {
-//				 
-//				 ScriptUtils.alertAndMovePage(res, "회원정보 수정을 실패했습니다. ", "http://localhost:9090/member/mypage_edit");
-//				 
-//			 }
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
+
+	}
 	
 	/* --------------------------------
 			03. JAVASCRIPT
@@ -449,6 +489,40 @@ public class BoardController {
 				}
 			}
 		}
+		
+		//3-7. 게시글 북마크 설정
+		@RequestMapping (value = "/jsbookmark", method = RequestMethod.GET)
+		public void jsbookmark(@RequestParam("post_id") int post_id, @RequestParam("user_index") int user_index, HttpServletResponse res) throws Exception{
+			
+			HashMap<String, Integer> postid_useridx = new HashMap<>();
+					
+			postid_useridx.put("post_id", post_id);
+			postid_useridx.put("user_index", user_index);
+			
+			// 게시글 북마크 유무 확인
+			int result = jsService.jsbookmarklist(postid_useridx);
+			
+			try {
+				
+				if(result==1) {
+					
+					ScriptUtils.alertAndMovePage(res, "이미 북마크에 추가된 게시글입니다. ", "http://localhost:9090/board/jsview?post_id=" + post_id);
+				
+				} else {
+					
+					//게시글 북마크에추가
+					jsService.jsbookmark(postid_useridx);
+					ScriptUtils.alertAndMovePage(res, "게시글이 북마크에 추가되었습니다. ", "http://localhost:9090/board/jsview?post_id=" + post_id);
+					
+				}
+				
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			 
+
+		}
 	
 	
 	/* --------------------------------
@@ -566,6 +640,40 @@ public class BoardController {
 		}
 	}
 	
+	//4-7. 게시글 북마크 설정
+	@RequestMapping (value = "/jspbookmark", method = RequestMethod.GET)
+	public void jspbookmark(@RequestParam("post_id") int post_id, @RequestParam("user_index") int user_index, HttpServletResponse res) throws Exception{
+		
+		HashMap<String, Integer> postid_useridx = new HashMap<>();
+				
+		postid_useridx.put("post_id", post_id);
+		postid_useridx.put("user_index", user_index);
+		
+		// 게시글 북마크 유무 확인
+		int result = jspService.jspbookmarklist(postid_useridx);
+		
+		try {
+			
+			if(result==1) {
+				
+				ScriptUtils.alertAndMovePage(res, "이미 북마크에 추가된 게시글입니다. ", "http://localhost:9090/board/jspview?post_id=" + post_id);
+			
+			} else {
+				
+				//게시글 북마크에추가
+				jspService.jspbookmark(postid_useridx);
+				ScriptUtils.alertAndMovePage(res, "게시글이 북마크에 추가되었습니다. ", "http://localhost:9090/board/jspview?post_id=" + post_id);
+				
+			}
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		 
+
+	}
+	
 	/* --------------------------------
 				05. JAVA
 	-------------------------------- */
@@ -679,6 +787,40 @@ public class BoardController {
 		}
 	}
 	
+	//5-7. 게시글 북마크 설정
+	@RequestMapping (value = "/javabookmark", method = RequestMethod.GET)
+	public void javabookmark(@RequestParam("post_id") int post_id, @RequestParam("user_index") int user_index, HttpServletResponse res) throws Exception{
+		
+		HashMap<String, Integer> postid_useridx = new HashMap<>();
+				
+		postid_useridx.put("post_id", post_id);
+		postid_useridx.put("user_index", user_index);
+		
+		// 게시글 북마크 유무 확인
+		int result = javaService.javabookmarklist(postid_useridx);
+		
+		try {
+			
+			if(result==1) {
+				
+				ScriptUtils.alertAndMovePage(res, "이미 북마크에 추가된 게시글입니다. ", "http://localhost:9090/board/javaview?post_id=" + post_id);
+			
+			} else {
+				
+				//게시글 북마크에추가
+				javaService.javabookmark(postid_useridx);
+				ScriptUtils.alertAndMovePage(res, "게시글이 북마크에 추가되었습니다. ", "http://localhost:9090/board/javaview?post_id=" + post_id);
+				
+			}
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		 
+
+	}
+
 	
 	/* --------------------------------
 				06. ORACLE
@@ -807,12 +949,45 @@ public class BoardController {
 	}
 		
 		
+	//6-7. 게시글 북마크 설정
+	@RequestMapping (value = "/oraclebookmark", method = RequestMethod.GET)
+	public void oraclebookmark(@RequestParam("post_id") int post_id, @RequestParam("user_index") int user_index, HttpServletResponse res) throws Exception{
+		
+		HashMap<String, Integer> postid_useridx = new HashMap<>();
+				
+		postid_useridx.put("post_id", post_id);
+		postid_useridx.put("user_index", user_index);
+		
+		// 게시글 북마크 유무 확인
+		int result = oracleService.oraclebookmarklist(postid_useridx);
+		
+		try {
+			
+			if(result==1) {
+				
+				ScriptUtils.alertAndMovePage(res, "이미 북마크에 추가된 게시글입니다. ", "http://localhost:9090/board/oracleview?post_id=" + post_id);
+			
+			} else {
+				
+				//게시글 북마크에추가
+				oracleService.oraclebookmark(postid_useridx);
+				ScriptUtils.alertAndMovePage(res, "게시글이 북마크에 추가되었습니다. ", "http://localhost:9090/board/oracleview?post_id=" + post_id);
+				
+			}
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		 
+
+	}
 	
 	
 	/* --------------------------------
 				07. SPRING
 	-------------------------------- */
-	// 1-1 [GET] 게시물 목록
+	// 7-1 [GET] 게시물 목록
 	@RequestMapping(value = "/springlist", method = RequestMethod.GET)
 	public void springList(Model model) throws Exception {
 	
@@ -821,13 +996,13 @@ public class BoardController {
 	model.addAttribute("springlist", springlist);
 	}
 	
-	// 1-2. write페이지이동
+	// 7-2. write페이지이동
 	@RequestMapping(value = "/springwrite", method = RequestMethod.GET)
 	public void springWrite() throws Exception {
 	
 	}
 	
-	// 1-2-1. 게시물 작성
+	// 7-2-1. 게시물 작성
 	@RequestMapping(value = "/springwrite", method = RequestMethod.POST)
 	public String springWrite(SpringBoardVO vo, HttpServletRequest request) throws Exception {
 	HttpSession session = request.getSession();
@@ -837,7 +1012,7 @@ public class BoardController {
 	return "redirect:/board/springlist";
 	}
 	
-	// 1-3. 게시물 상세보기 페이지 이동
+	// 7-3. 게시물 상세보기 페이지 이동
 	@RequestMapping(value = "/springview", method = RequestMethod.GET)
 	public void springView(@RequestParam("post_id") int post_id, Model model) throws Exception {
 	
@@ -850,7 +1025,7 @@ public class BoardController {
 	model.addAttribute("springview", vo);
 	}
 	
-	// 1-4. 게시물 수정 페이지 이동
+	// 7-4. 게시물 수정 페이지 이동
 	@RequestMapping(value = "/springmodify", method = RequestMethod.GET)
 	public void springModify(@RequestParam("post_id") int post_id, Model model) throws Exception {
 	
@@ -866,7 +1041,7 @@ public class BoardController {
 	return "redirect:/board/springview?post_id=" + vo.getPost_id();
 	}
 	
-	// 1-5. vo가 없으니 get방식 삭제
+	// 7-5. vo가 없으니 get방식 삭제
 	@RequestMapping(value = "/springdelete", method = RequestMethod.GET)
 	public String springDelete(HttpServletRequest req, @RequestParam("post_id") int post_id, @RequestParam("mypage") String mypage) throws Exception {
 	
@@ -892,7 +1067,7 @@ public class BoardController {
 	return result;
 	}
 	
-	// 1-6. 게시글 신고(가용성 카테고리 변경)
+	// 7-6. 게시글 신고(가용성 카테고리 변경)
 	@RequestMapping(value = "/springreport", method = RequestMethod.GET)
 	public void springmemberreport(@RequestParam List<Integer> checkbox, 
 	
@@ -925,6 +1100,39 @@ public class BoardController {
 	}	
 	
 
+	//7-7. 게시글 북마크 설정
+	@RequestMapping (value = "/springbookmark", method = RequestMethod.GET)
+	public void springbookmark(@RequestParam("post_id") int post_id, @RequestParam("user_index") int user_index, HttpServletResponse res) throws Exception{
+		
+		HashMap<String, Integer> postid_useridx = new HashMap<>();
+				
+		postid_useridx.put("post_id", post_id);
+		postid_useridx.put("user_index", user_index);
+		
+		// 게시글 북마크 유무 확인
+		int result = springService.springbookmarklist(postid_useridx);
+		
+		try {
+			
+			if(result==1) {
+				
+				ScriptUtils.alertAndMovePage(res, "이미 북마크에 추가된 게시글입니다. ", "http://localhost:9090/board/springview?post_id=" + post_id);
+			
+			} else {
+				
+				//게시글 북마크에추가
+				springService.springbookmark(postid_useridx);
+				ScriptUtils.alertAndMovePage(res, "게시글이 북마크에 추가되었습니다. ", "http://localhost:9090/board/springview?post_id=" + post_id);
+				
+			}
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		 
+
+	}
 	
 
 	

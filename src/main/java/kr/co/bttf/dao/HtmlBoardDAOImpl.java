@@ -1,5 +1,6 @@
 package kr.co.bttf.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -52,4 +53,15 @@ public class HtmlBoardDAOImpl implements HtmlBoardDAO {
 		sql.update(namespace + ".htmlcategory2", post_id);
 	}
 	
+	@Override
+	public int htmlbookmarklist(HashMap<String, Integer> postid_useridx) throws Exception {
+
+		return sql.selectOne(namespace +".htmlbookmarklist", postid_useridx);
+	}
+
+	@Override
+	public void htmlbookmark(HashMap<String, Integer> postid_useridx) {
+		
+		sql.insert(namespace + ".htmlbookmark", postid_useridx);
+	}
 }

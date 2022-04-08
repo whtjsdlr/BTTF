@@ -100,7 +100,7 @@
 									</c:if> 
 	                        		<a href="/board/jsplist" class="btn btn-default mt-4" id="edit" type="submit">글 목록</a>
 									<c:if test="${member.user_nickname != jspview.user_nickname && member != null && jspview.user_nickname != 'admin'}">
-										<a href="#" class="btn btn-default mt-4">북마크</a>
+										<a href="/board/jspbookmark?post_id=${jspview.post_id }&user_index=${member.user_index }" class="btn btn-default mt-4">북마크</a>
 										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#memberreport" data-whatever="@getbootstrap" style="float: right;" >작성자 신고</button>
 									</c:if>
                               	 </div>

@@ -1,5 +1,6 @@
 package kr.co.bttf.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -56,6 +57,21 @@ public class SpringBoardServiceImpl implements SpringBoardService {
 	public void springcategory2(int post_id) throws Exception {
 		dao.springcategory2(post_id);
 		
+	}
+	
+	// 게시글 북마크 유무 확인
+	@Override
+	public int springbookmarklist(HashMap<String, Integer> postid_useridx) throws Exception {
+		
+		return dao.springbookmarklist(postid_useridx);
+		
+	}
+
+	// 게시글 북마크 설정
+	@Override
+	public void springbookmark(HashMap<String, Integer> postid_useridx) throws Exception {
+
+		dao.springbookmark(postid_useridx);
 	}
 
 }

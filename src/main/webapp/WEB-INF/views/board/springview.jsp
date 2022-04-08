@@ -100,7 +100,7 @@
 									</c:if> 
 	                        		<a href="/board/springlist" class="btn btn-default mt-4" id="edit" type="submit">글 목록</a>
 									<c:if test="${member.user_nickname != springview.user_nickname && member != null && springview.user_nickname != 'admin'}">
-										<a href="#" class="btn btn-default mt-4">북마크</a>
+										<a href="/board/springbookmark?post_id=${springview.post_id }&user_index=${member.user_index }" class="btn btn-default mt-4">북마크</a>
 										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#memberreport" data-whatever="@getbootstrap" style="float: right;" >작성자 신고</button>
 									</c:if>
                               	 </div>

@@ -1,5 +1,6 @@
 package kr.co.bttf.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -60,6 +61,21 @@ public class CssBoardServiceImpl implements CssBoardService {
 	public void csscategory2(int post_id) throws Exception {
 		dao.csscategory2(post_id);
 		
+	}
+	
+	// 게시글 북마크 유무 확인
+	@Override
+	public int cssbookmarklist(HashMap<String, Integer> postid_useridx) throws Exception {
+		
+		return dao.cssbookmarklist(postid_useridx);
+		
+	}
+
+	// 게시글 북마크 설정
+	@Override
+	public void cssbookmark(HashMap<String, Integer> postid_useridx) throws Exception {
+
+		dao.cssbookmark(postid_useridx);
 	}
 
 }

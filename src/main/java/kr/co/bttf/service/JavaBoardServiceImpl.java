@@ -1,5 +1,6 @@
 package kr.co.bttf.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -58,4 +59,18 @@ public class JavaBoardServiceImpl implements JavaBoardService {
 		
 	}
 
+	// 게시글 북마크 유무 확인
+	@Override
+	public int javabookmarklist(HashMap<String, Integer> postid_useridx) throws Exception {
+		
+		return dao.javabookmarklist(postid_useridx);
+		
+	}
+
+	// 게시글 북마크 설정
+	@Override
+	public void javabookmark(HashMap<String, Integer> postid_useridx) throws Exception {
+
+		dao.javabookmark(postid_useridx);
+	}
 }
