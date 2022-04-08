@@ -228,7 +228,14 @@
 	<!-- ALERT SECTION -->
     <script src="../../../resources/js/confirm.js"></script>
 	<script>
-   		
+    $("#btnReply").click(function(){
+		var oracleReply = {};
+		oracleReply.user_nickname = $("#user_nickname").val();
+		oracleReply.post_id = $("#post_id").val();
+		oracleReply.reply_contents = $("#reply_contents").val();
+		alert(JSON.stringify(oracleReply));
+		oracleReplyService.add(JSON.stringify(oracleReply), function(){alert("test");});
+	});
     </script>
     <script>
         ClassicEditor

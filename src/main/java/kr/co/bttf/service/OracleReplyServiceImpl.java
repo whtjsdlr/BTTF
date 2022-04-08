@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.bttf.controller.Criteria;
 import kr.co.bttf.dao.OracleReplyDAO;
 import kr.co.bttf.domain.MemberVO;
 import kr.co.bttf.domain.OracleReplyVO;
@@ -22,9 +23,9 @@ public class OracleReplyServiceImpl implements OracleReplyService {
 
 	// 댓글 목록
 	@Override
-	public List<OracleReplyVO> oracleReplyList(int post_id, int start, int end, HttpSession session) throws Exception {
-		List<OracleReplyVO> oracleReplyList = dao.oracleReplyList(post_id, start, end, session);
-		return oracleReplyList;
+	public List<OracleReplyVO> oracleReplyList(Criteria cri, int post_id) throws Exception {
+//		List<OracleReplyVO> oracleReplyList =
+		return  dao.oracleReplyList(cri, post_id);
 	}
 
 	// 댓글 작성
@@ -48,9 +49,9 @@ public class OracleReplyServiceImpl implements OracleReplyService {
 	}
 
 
-//	@Override
-//	public int oracleCount(int post_id) throws Exception {
-//		return dao.oracleCount(post_id);
-//	}
+	@Override
+	public int oracleCount(int post_id) throws Exception {
+		return dao.oracleCount(post_id);
+	}
 
 }
