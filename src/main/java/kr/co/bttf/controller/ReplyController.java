@@ -28,7 +28,7 @@ import kr.co.bttf.service.MemberService;
 import kr.co.bttf.service.OracleBoardService;
 import kr.co.bttf.service.OracleReplyService;
 import lombok.extern.log4j.Log4j;
-
+import lombok.extern.log4j.Log4j2;
 
 @RestController
 @Controller
@@ -68,15 +68,18 @@ public class ReplyController {
 	-------------------------------- */
 	
 	// 6-1. 댓글 작성
-	@PostMapping(value = "/oracleReplyWrite",
-			consumes = "application/json",
-			produces = MediaType.TEXT_PLAIN_VALUE)
+	@PostMapping(value = "/oracleReplyWrite", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> oracleReplyWrite (@RequestBody OracleReplyVO vo) throws Exception {
 		
-		Log.info(vo);
-		Log.info(HttpStatus.OK);
+		int insertCount = OracleReplyService.oracleReplyWrite(vo);
 		
-		return new ResponseEntity<String>("success.writer", HttpStatus.OK);
+		System.out.println(vo.getPost_id());
+		System.out.println(vo.getUser_nickname());
+		System.out.println(vo.getReply_contents());
+		
+		return insertCount==1
+	                ? new ResponseEntity<String>("success.writer", HttpStatus.OK)
+	                : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	// 6.2 댓글 목록

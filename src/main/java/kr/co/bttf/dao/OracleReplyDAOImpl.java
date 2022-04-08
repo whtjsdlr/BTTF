@@ -38,21 +38,21 @@ public class OracleReplyDAOImpl implements OracleReplyDAO {
 
 	// 댓글 작성
 	@Override
-	public void oracleReplyWrite(OracleReplyVO vo) throws Exception {
-		sql.insert(namespace + ".oracleReplyWrite", vo);
+	public int oracleReplyWrite(OracleReplyVO vo) throws Exception {
+		return sql.insert(namespace + ".oracleReplyWrite", vo);
 	}
 
 	// 댓글 수정
 	@Override
-	public void oracleReplyModify(OracleReplyVO vo) throws Exception {
-		sql.update(namespace + ".oracleReplyModify", vo);
+	public int oracleReplyModify(OracleReplyVO vo) throws Exception {
+		return sql.update(namespace + ".oracleReplyModify", vo);
 
 	}
 
 	// 댓글 삭제
 	@Override
-	public void oracleReplyDelete(OracleReplyVO vo) {
-		sql.update(namespace + ".oracleReplyDelete", vo);
+	public int oracleReplyDelete(OracleReplyVO vo) throws Exception {
+		return sql.update(namespace + ".oracleReplyDelete", vo);
 	}
 
 

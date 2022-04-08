@@ -29,20 +29,21 @@ public class OracleReplyServiceImpl implements OracleReplyService {
 
 	// 댓글 작성
 	@Override
-	public void oracleReplyWrite(OracleReplyVO vo) throws Exception {
-		dao.oracleReplyWrite(vo);
+	public int oracleReplyWrite(OracleReplyVO vo) throws Exception {
+		
+		return dao.oracleReplyWrite(vo);
 	}
 
 	// 댓글 수정
 	@Override
-	public void oracleReplyModify(OracleReplyVO vo) throws Exception {
-		dao.oracleReplyModify(vo);
+	public int oracleReplyModify(OracleReplyVO vo) throws Exception {
+		return dao.oracleReplyModify(vo);
 	}
 
 	// 댓글 삭제
 	@Override
-	public void oracleReplyDelete(OracleReplyVO vo) throws Exception {
-		dao.oracleReplyDelete(vo);
+	public int oracleReplyDelete(OracleReplyVO vo) throws Exception {
+		return dao.oracleReplyDelete(vo);
 		
 	}
 

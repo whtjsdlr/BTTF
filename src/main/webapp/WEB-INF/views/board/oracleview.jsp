@@ -53,7 +53,7 @@
        		padding-bottom : 200px;
        }
     </style>
-     
+  
 </head>
 <!-- END HEAD -->
 <!-- BODY -->
@@ -114,8 +114,9 @@
 	                            <div class="card-body">
 	                                <!-- Comment form-->
 	                                <form id="replyForm" name="replyForm" method="post" class="mb-4 d-flex">
-	                                	<input type="hidden" id="reply_nickname" name="re_nickname" value="${member.user_nickname}">
-	                                	<textarea id="reply_contents" name="re_contents" class="form-control mr-5" rows="2" placeholder="댓글을 작성하세요"></textarea>
+	                                	<input type="hidden" id="user_nickname" name="user_nickname" value="${member.user_nickname}">
+	                                	<input type="hidden" id="post_id" name="post_id" value="${oracleview.post_id}">
+	                                	<textarea id="reply_contents" name="reply_contents" class="form-control mr-5" rows="2" placeholder="댓글을 작성하세요"></textarea>
 	                                </form>
 									<a id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;">작성하기</a>
 	                               	<!-- Comment with nested comments-->
@@ -195,7 +196,6 @@
     <script src="../../../resources/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 	
 	
-	 <script type="text/javascript" src="../../../resources/js/oraclereplylist.js"></script>
     <!-- PAGE LEVEL PLUGINS -->
     <script src="../../../resources/vendor/jquery.easing.js" type="text/javascript"></script>
     <script src="../../../resources/vendor/jquery.back-to-top.js" type="text/javascript"></script>
@@ -220,29 +220,26 @@
 	
 	
 	<!-- REPLY AJAX -->
+	<script type="text/javascript" src="../../../resources/js/oraclereplylist.js"></script>
 	
 	<!-- ALERT SECTION -->
     <script src="../../../resources/js/confirm.js"></script>
-	<script type="text/javascript">
-    	$("#btnReply").click(function(){
-    		var oracleReply = {};
-    		oracleReply.reply_nickname = $("#reply_nickname").val();
-    		oracleReply.reply_contents = $("#reply_contents").val();
-    		
-    		alert(JSON.stringify(oracleReply));
-    		oracleReplyService.add(
-    			JSON.stringify(oracleReply), 
-    				function(){
-    					alert("test");
-    			});
-    	});
+	<script>
+    $("#btnReply").click(function(){
+		var oracleReply = {};
+		oracleReply.user_nickname = $("#user_nickname").val();
+		oracleReply.post_id = $("#post_id").val();
+		oracleReply.reply_contents = $("#reply_contents").val();
+		alert(JSON.stringify(oracleReply));
+		oracleReplyService.add(JSON.stringify(oracleReply), function(){alert("test");});
+	});
     </script>
     <script>
         ClassicEditor
             .create( document.querySelector( '#classic' ))
             .catch( error => {
                 console.error( error );
-            } );
+    });
     </script>
    
 </body>
