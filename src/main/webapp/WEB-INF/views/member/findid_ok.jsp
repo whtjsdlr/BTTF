@@ -78,9 +78,9 @@
                                 <i class="my_box_my_page_icon fas fa-id-card"></i>
                             </div>
                             <div class="my_box_my_page_info">
-                                <h3>아이디 찾기가 완료되었습니다.</h3>
+                                <h3>이메일 찾기가 완료되었습니다.</h3>
                             <c:forEach var="members" items="${members}">
-                                <p>회원님의 아이디는 ${members.user_email }입니다.</p>
+                                <p>회원님의 이메일은 ${members.user_email }입니다.</p>
                             </c:forEach>
                             </div>
                         </div>
