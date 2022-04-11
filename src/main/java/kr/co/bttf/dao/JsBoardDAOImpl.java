@@ -17,6 +17,7 @@ public class JsBoardDAOImpl implements JsBoardDAO {
 	private SqlSession sql;
 	private static String namespace = "kr.co.bttf.mappers.boardMapper";
 	
+	
 	@Override
 	public List<JsBoardVO> jsList() throws Exception {
 		return sql.selectList(namespace + ".jslist");
