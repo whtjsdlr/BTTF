@@ -1,4 +1,4 @@
-package kr.co.bttf.service;
+package kr.co.bttf.mapper;
 
 import java.util.List;
 

@@ -7,18 +7,18 @@ import org.springframework.stereotype.Service;
 
 import kr.co.bttf.controller.Criteria;
 import kr.co.bttf.domain.ReplyVO;
+import kr.co.bttf.mapper.BoardMapper;
 import kr.co.bttf.mapper.ReplyMapper;
 import lombok.Setter;
-
+	
 @Service
-
 public class ReplyServiceImpl implements ReplyService{
 	
-	@Setter(onMethod_= @Autowired)
+	@Setter(onMethod_= {@Autowired})
 	private ReplyMapper mapper;
 	
 
-	@Setter(onMethod_= @Autowired)
+	@Setter(onMethod_= {@Autowired})
 	private BoardMapper boardMapper;
 	
 	

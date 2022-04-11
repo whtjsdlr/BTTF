@@ -35,18 +35,19 @@ import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
 
 import kr.co.bttf.controller.Criteria;
-@RestController
+//@RestController
 @Controller
-@AllArgsConstructor
+//@AllArgsConstructor
 @RequestMapping("/reply/*")
 public class ReplyController {
 	
+	@Inject
 	private ReplyService service;
 	
 	@PostMapping(value = "new",
 				consumes = "application/json",
 				produces = {MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String>create(@RequestBody ReplyVO vo){
+	public ResponseEntity<? extends Object> create(@RequestBody ReplyVO vo){
 		
 		int inserCount = service.register(vo);
 		
