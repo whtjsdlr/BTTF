@@ -24,7 +24,8 @@ import org.springframework.web.servlet.ModelAndView;
 import jdk.internal.org.jline.utils.Log;
 import kr.co.bttf.domain.MemberVO;
 import kr.co.bttf.domain.OracleBoardVO;
-import kr.co.bttf.domain.OracleReplyVO;
+//import kr.co.bttf.domain.OracleReplyVO;
+import kr.co.bttf.domain.ReplyVO;
 import kr.co.bttf.service.MemberService;
 import kr.co.bttf.service.OracleBoardService;
 import kr.co.bttf.service.OracleReplyService;
@@ -71,7 +72,7 @@ public class OracleReplyController {
 	
 	// 6-1. 댓글 작성
 	@PostMapping(value = "/oracleReplyWrite", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> oracleReplyWrite (@RequestBody OracleReplyVO vo) throws Exception {
+	public ResponseEntity<String> oracleReplyWrite (@RequestBody ReplyVO vo) throws Exception {
 		
 		int insertCount = OracleReplyService.oracleReplyWrite(vo);
 		
@@ -87,7 +88,7 @@ public class OracleReplyController {
 	
 	@PostMapping(value = "/oracleReplyList/{post_id}/{page}",
 				produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<List<OracleReplyVO>> oracleReplyList (@PathVariable("page") int page, @PathVariable("post_id")int post_id, Criteria cri) throws Exception {
+	public ResponseEntity<List<ReplyVO>> oracleReplyList (@PathVariable("page") int page, @PathVariable("post_id")int post_id, Criteria cri) throws Exception {
 		
 		
 		return new ResponseEntity<>(OracleReplyService.oracleReplyList(cri,post_id), HttpStatus.OK );
@@ -118,7 +119,7 @@ public class OracleReplyController {
 	
 	// 6-3. 댓글 수정
 	@RequestMapping(value = "/oracleReplyModify", method = RequestMethod.POST)
-	public String oracleReplyModify(OracleReplyVO vo) throws Exception {
+	public String oracleReplyModify(ReplyVO vo) throws Exception {
 		System.out.println("post reply modify controller");
 		System.out.println(vo.getReply_contents());
 		
@@ -147,7 +148,7 @@ public class OracleReplyController {
 	
 	// 6-4. 댓글 삭제 // 댓글삭제 경로 수정 확인
 	@RequestMapping(value = "/oracleReplyDelete", method = RequestMethod.GET)
-	public String oracleReplyDelete(@RequestParam("post_id") int post_id, OracleReplyVO vo, Model model) throws Exception {
+	public String oracleReplyDelete(@RequestParam("post_id") int post_id, ReplyVO vo, Model model) throws Exception {
 		OracleReplyService.oracleReplyDelete(vo);
 		
 		//List<OracleReplyVO> oraclereplylist = OracleReplyService.oracleReplyList(post_id);

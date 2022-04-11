@@ -12,7 +12,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import kr.co.bttf.controller.Criteria;
-import kr.co.bttf.domain.OracleReplyVO;
+//import kr.co.bttf.domain.OracleReplyVO;
+import kr.co.bttf.domain.ReplyVO;
 
 @Repository
 public class OracleReplyDAOImpl implements OracleReplyDAO {
@@ -24,7 +25,7 @@ public class OracleReplyDAOImpl implements OracleReplyDAO {
 	
 	// 댓글 목록
 	@Override
-	public List<OracleReplyVO> oracleReplyList(@Param ("cri")Criteria cri, @Param ("post_id") int post_id) {
+	public List<ReplyVO> oracleReplyList(@Param ("cri")Criteria cri, @Param ("post_id") int post_id) {
 
 		return sql.selectList(namespace + ".oracleReplyList");
 	}
@@ -37,20 +38,20 @@ public class OracleReplyDAOImpl implements OracleReplyDAO {
 
 	// 댓글 작성
 	@Override
-	public int oracleReplyWrite(OracleReplyVO vo) throws Exception {
+	public int oracleReplyWrite(ReplyVO vo) throws Exception {
 		return sql.insert(namespace + ".oracleReplyWrite", vo);
 	}
 
 	// 댓글 수정
 	@Override
-	public int oracleReplyModify(OracleReplyVO vo) throws Exception {
+	public int oracleReplyModify(ReplyVO vo) throws Exception {
 		return sql.update(namespace + ".oracleReplyModify", vo);
 
 	}
 
 	// 댓글 삭제
 	@Override
-	public int oracleReplyDelete(OracleReplyVO vo) throws Exception {
+	public int oracleReplyDelete(ReplyVO vo) throws Exception {
 		return sql.update(namespace + ".oracleReplyDelete", vo);
 	}
 
