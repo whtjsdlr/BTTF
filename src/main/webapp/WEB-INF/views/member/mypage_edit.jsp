@@ -60,7 +60,7 @@
 
     <!--========== PAGE LAYOUT ==========-->
     <!-- Service -->
-    <div class="bg-color-sky-light fixed_container" data-auto-height="true">
+    <div class="bg-color-sky-light" data-auto-height="true">
         <div class="content-lg container" style="margin-top : 50px;">
             <h1 class="pt-4">
                 <i class="fas fa-users title_subject_icon"></i> 내 정보 수정
@@ -132,7 +132,7 @@
     <!--========== END PAGE LAYOUT ==========-->
 
     <!--========== FOOTER ==========-->
-    <footer class="footer fixed_footer">
+    <footer class="footer ">
 
         <!-- Copyright -->
 		<%@ include file="../include/footer_control.jsp" %>

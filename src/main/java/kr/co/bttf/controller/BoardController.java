@@ -687,13 +687,13 @@ public class BoardController {
 		oracleService.oraclevcnt(post_id);
 		model.addAttribute("oraclevcnt", oraclevcnt);
 		
-		// 상세보기 시 댓글 조회 및 댓글페이징
-		int count = oracleReplyService.oracleCount(post_id);
-		ReplyPager replyPager = new ReplyPager(count, curPage);
-		int start = replyPager.getPageBegin();
-		int end = replyPager.getPageEnd();
-		List<OracleReplyVO> oraclereplylist = oracleReplyService.oracleReplyList(post_id, start, end, session);
-		model.addAttribute("oraclereplylist", oraclereplylist);
+//		// 상세보기 시 댓글 조회 및 댓글페이징
+//		int count = oracleReplyService.oracleCount(post_id);
+//		ReplyPager replyPager = new ReplyPager(count, curPage);
+//		int start = replyPager.getPageBegin();
+//		int end = replyPager.getPageEnd();
+//		List<OracleReplyVO> oraclereplylist = oracleReplyService.oracleReplyList(post_id, start, end, session);
+//		model.addAttribute("oraclereplylist", oraclereplylist);
 		
 		OracleBoardVO vo = oracleService.oracleView(post_id);
 		model.addAttribute("oracleview", vo);

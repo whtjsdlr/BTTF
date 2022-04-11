@@ -111,41 +111,21 @@ public class MemberController {
 	public void termsOfUse() throws Exception{
 		
 	}
+	
 	// 아이디 찾기 페이지 이동
 	@RequestMapping(value = "/findid", method = RequestMethod.GET)
 	public void findid() throws Exception{
 		logger.info("get findid");
 	}
-	// 아이디 찾기 페이지 이동
-	@RequestMapping(value = "/findid", method = RequestMethod.POST)
-	public void findid(MemberVO vo, HttpServletResponse res) throws Exception{
-		logger.info("post findid");
-		res.setContentType("text/html;charset=utf-8");
-		List<MemberVO> members = service.findid(vo);
-		if(members.isEmpty()) {
-			ScriptUtils.alertAndBackPage(res, "입력하신 정보로 이메일을 찾을 수 없습니다.");
-		}else {
-			ScriptUtils.alertAndMovePage(res, "이메일찾기가 완료되었습니다.", "http://localhost:9090/member/findid_ok");
-		}
-	}
+	
 	// 아이디 찾기후
-	@RequestMapping(value = "/findid_ok", method = RequestMethod.GET)
-	public void findid_ok(MemberVO vo, Model model) throws Exception{
-		logger.info("get findid_ok");
-		List<MemberVO> members = service.findid(vo);
-		model.addAttribute("members", members);
-	}
-	// HttpServletResponse를 파라미터 받아올때(얼럿띄위기 위해) 화면을 불러오지 못함
-//	@RequestMapping(value = "/findid_ok", method = RequestMethod.POST)
-//	public void findid_ok(MemberVO vo, Model model, HttpServletResponse res) throws Exception{
-//		logger.info("post findid_ok");
-//		res.setContentType("text/html;charset=utf-8");
-//		List<MemberVO> members = service.findid(vo);
-//		model.addAttribute("members", members);
-//		if(members.isEmpty()) {
-//			ScriptUtils.alertAndBackPage(res, "입력하신 정보로 이메일을 찾을 수 없습니다.");
-//		}
-//	}
+   @RequestMapping(value = "/findid_ok", method = RequestMethod.POST)
+   public void findid_ok(MemberVO vo, Model model) throws Exception{
+	logger.info("POST findid_ok");
+      List<MemberVO> members = service.findid(vo);
+      model.addAttribute("members", members);
+   }
+	
 	// 비밀번호 찾기
 	@RequestMapping(value = "/findpw", method = RequestMethod.GET)
 	public void findpw() throws Exception{
