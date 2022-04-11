@@ -1,4 +1,4 @@
-package kr.co.bttf.controller;
+ package kr.co.bttf.controller;
 
 public class PageMaker {
 	private int displayPageCnt = 10; // 화면에 보여질 페이지 번호 수
