@@ -258,6 +258,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public List<BoardVO> mybookmarks(int user_index) throws Exception {
+
+		return dao.mybookmarks(user_index);
+	}
+	
+	@Override
 	public MemberVO mypage_view(int user_index) {
 
 		return dao.mypage_view(user_index);

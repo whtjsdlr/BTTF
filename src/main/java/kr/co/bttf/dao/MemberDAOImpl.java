@@ -146,14 +146,46 @@ public class MemberDAOImpl implements MemberDAO {
 			for(int j = 0; j<eachlist.size(); j++) {
 				
 				BoardVO board = eachlist.get(j);
-								
+				System.out.println(board.getBoard_category_name()+ " board");
+				
 				mypostlist.add(board);
+				
 			}
 		}
 		
 
 		
 		return mypostlist;
+	}
+	
+	@Override
+	public List<BoardVO> mybookmarks(int user_index) {
+			
+		// 전체 게시글 목록
+		List<BoardVO> mybookmarks = new ArrayList<BoardVO>();
+
+		// 각각의 게시글 목록
+		List<BoardVO> bookmark = new ArrayList<BoardVO>();			
+		
+		
+		for (int i = 0; i < 7; i++) {
+			bookmark = sql.selectList(namespace + ".mybookmarks"+i, user_index );
+			
+			if(bookmark==null) {
+				continue;				
+			}
+			
+			for(int j = 0; j<bookmark.size(); j++) {
+				
+				BoardVO bm = bookmark.get(j);
+								
+				mybookmarks.add(bm);
+			}
+		}
+		
+
+		
+		return mybookmarks;
 	}
 
 	@Override

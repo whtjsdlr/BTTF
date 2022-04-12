@@ -175,7 +175,8 @@ public class MemberController {
 		//받은 추천 수
 		
 		//북마크한 글 list
-//		List<BoardVO> mybookmarks = service.mybookmarks(user_index);
+		List<BoardVO> mybookmarks = service.mybookmarks(user_index);
+		model.addAttribute("mybookmarks", mybookmarks);
 		
 		//내가 작성한 글 list
 		List<BoardVO> mypostlist = service.mypostlist(user_index);
