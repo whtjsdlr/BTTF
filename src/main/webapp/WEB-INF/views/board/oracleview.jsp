@@ -120,49 +120,52 @@
 	                                </form>
 									<a id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;">작성하기</a>
 	                               	<!-- Comment with nested comments-->
-	                                
-	                                <c:forEach var="row" items="${oraclereplylist}">
-	                                <div class="d-flex mb-4 mt-10">
-	                                    <!-- Parent comment-->
-	                                    <div class="flex-shrink-0 mr-4">
-<!-- 	                                    	<img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /> -->
-	                                    </div>
-		                                    <div class="ms-3" style="width : 100%;">
-		                                        <div class="fw-bold">
-		                                        	<div class="d-flex">
-					                                    <h3>${row.user_nickname}</h3>
-					                                    <p style="transform : translate(16% 20%);">
-					                                    	<fmt:formatDate value="${row.post_regdate}" pattern="yyyy-MM-dd HH:mm" />
-					                                    </p>		                                        	
-		                                        	</div>
-		                                        	<div style=" clear: both; float: right; position: relative; top: 0; left: 4px;">
-			                                        	<a href="/reply/oracleReplyModify" id="btnUpdate" class="btn btn-info btn-sm">수정</a>
-			                                        	<a href="/reply/oracleReplyDelete" class="btn btn-danger btn-sm">삭제</a>
-		                                        	</div>
-		                                        </div>
-		                                        <p>${row.reply_contents }</p>
+	                                <div id="getReplyList">
+	                                		
+	                                </div>
+	                                	
+<%-- 	                                <c:forEach var="row" items="${oraclereplylist}"> --%>
+<!-- 	                                <div class="d-flex mb-4 mt-10"> -->
+<!-- 	                                    Parent comment -->
+<!-- 	                                    <div class="flex-shrink-0 mr-4"> -->
+<!-- <!-- 	                                    	<img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /> -->
+<!-- 	                                    </div> -->
+<!-- 		                                    <div class="ms-3" style="width : 100%;"> -->
+<!-- 		                                        <div class="fw-bold"> -->
+<!-- 		                                        	<div class="d-flex"> -->
+<%-- 					                                    <h3>${row.user_nickname}</h3> --%>
+<!-- 					                                    <p style="transform : translate(16% 20%);"> -->
+<%-- 					                                    	<fmt:formatDate value="${row.post_regdate}" pattern="yyyy-MM-dd HH:mm" /> --%>
+<!-- 					                                    </p>		                                        	 -->
+<!-- 		                                        	</div> -->
+<!-- 		                                        	<div style=" clear: both; float: right; position: relative; top: 0; left: 4px;"> -->
+<!-- 			                                        	<a href="/reply/oracleReplyModify" id="btnUpdate" class="btn btn-info btn-sm">수정</a> -->
+<!-- 			                                        	<a href="/reply/oracleReplyDelete" class="btn btn-danger btn-sm">삭제</a> -->
+<!-- 		                                        	</div> -->
+<!-- 		                                        </div> -->
+<%-- 		                                        <p>${row.reply_contents }</p> --%>
 		                                       
-		                                        <!-- Child comment 1-->
-				                                <c:otherwise>
-			                                        <div class="d-flex mt-4">
-			                                            <div class="flex-shrink-0 mr-4 col-sm-offset-1">
-														<!--<img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /> -->
-			                                            </div>
-			                                            <div class="ms-3" style="width : 100%;">
-			                                                <div class="fw-bold">
-					                                        	<h3>${row.user_nickname}</h3>
-			                                                	<div style=" clear: both; float: right; position: relative; top: 0; left: 4px;">
-						                                        	<a href="/reply/oracleReplyModify" class="btn btn-info btn-sm">수정</a>
-						                                        	<a href="/reply/oracleReplyDelete" class="btn btn-danger btn-sm">삭제</a>
-					                                        	</div>
-			                                                </div>
-			                                                <p>${row.reply_contents }</p>
-			                                            </div>
-			                                        </div>
-				                                </c:otherwise>
-		                                    </div>
-	                                	</div>
-	                                </c:forEach>	                               
+<!-- 		                                        Child comment 1 -->
+<%-- 				                                <c:otherwise> --%>
+<!-- 			                                        <div class="d-flex mt-4"> -->
+<!-- 			                                            <div class="flex-shrink-0 mr-4 col-sm-offset-1"> -->
+<!-- 														<img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /> -->
+<!-- 			                                            </div> -->
+<!-- 			                                            <div class="ms-3" style="width : 100%;"> -->
+<!-- 			                                                <div class="fw-bold"> -->
+<%-- 					                                        	<h3>${row.user_nickname}</h3> --%>
+<!-- 			                                                	<div style=" clear: both; float: right; position: relative; top: 0; left: 4px;"> -->
+<!-- 						                                        	<a href="/reply/oracleReplyModify" class="btn btn-info btn-sm">수정</a> -->
+<!-- 						                                        	<a href="/reply/oracleReplyDelete" class="btn btn-danger btn-sm">삭제</a> -->
+<!-- 					                                        	</div> -->
+<!-- 			                                                </div> -->
+<%-- 			                                                <p>${row.reply_contents }</p> --%>
+<!-- 			                                            </div> -->
+<!-- 			                                        </div> -->
+<%-- 				                                </c:otherwise> --%>
+<!-- 		                                    </div> -->
+<!-- 	                                	</div> -->
+<%-- 	                                </c:forEach>	                                --%>
 	                            </div>
 	                        </div>                             
                         </div>
@@ -225,14 +228,7 @@
 	<!-- ALERT SECTION -->
     <script src="../../../resources/js/confirm.js"></script>
 	<script>
-    $("#btnReply").click(function(){
-		var oracleReply = {};
-		oracleReply.user_nickname = $("#user_nickname").val();
-		oracleReply.post_id = $("#post_id").val();
-		oracleReply.reply_contents = $("#reply_contents").val();
-		alert(JSON.stringify(oracleReply));
-		oracleReplyService.add(JSON.stringify(oracleReply), function(){alert("test");});
-	});
+   		
     </script>
     <script>
         ClassicEditor
