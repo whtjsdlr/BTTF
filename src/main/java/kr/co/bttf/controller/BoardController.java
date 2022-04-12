@@ -32,7 +32,7 @@ import kr.co.bttf.service.JsBoardService;
 import kr.co.bttf.service.JspBoardService;
 import kr.co.bttf.service.MemberService;
 import kr.co.bttf.service.OracleBoardService;
-import kr.co.bttf.service.OracleReplyService;
+//import kr.co.bttf.service.OracleReplyService;
 import kr.co.bttf.service.SpringBoardService;
 
 @Controller
@@ -60,9 +60,9 @@ public class BoardController {
 	@Inject
 	private OracleBoardService oracleService;
 	
-	@Inject
-	private OracleReplyService oracleReplyService;
-	
+//	@Inject
+//	private OracleReplyService oracleReplyService;
+//	
 	@Inject
 	private SpringBoardService springService;
 	

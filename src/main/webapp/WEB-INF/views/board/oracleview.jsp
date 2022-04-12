@@ -113,15 +113,27 @@
 							<div class="card" id="result ">
 	                            <div class="card-body">
 	                                <!-- Comment form-->
+<!-- 	                                <form action="/reply/new" id="replyForm" name="replyForm" method="post" class="mb-4 d-flex"> -->
 	                                <form id="replyForm" name="replyForm" method="post" class="mb-4 d-flex">
 	                                	<input type="hidden" id="user_nickname" name="user_nickname" value="${member.user_nickname}">
 	                                	<input type="hidden" id="post_id" name="post_id" value="${oracleview.post_id}">
-	                                	<textarea id="reply_contents" name="reply_contents" class="form-control mr-5" rows="2" placeholder="댓글을 작성하세요"></textarea>
+	                                	<input id="reply_contents" type="text" name="reply_contents" class="form-control mr-5" placeholder="댓글을 작성하세요" value="">
 	                                </form>
-									<a id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;">작성하기</a>
+									<input id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;" value="댓글쓰기" type="submit">
 	                               	<!-- Comment with nested comments-->
-	                                <div id="getReplyList">
-	                                		
+	                                <div id="getReplyList" class="chat">
+	                                	<c:choose>
+	                                		<c:when test="${reply != null and fn:length(reply) > 0 }">
+			                                	<c:forEach items="${reply }" var="reply">
+			                                		<input type="text" value="${reply.reply_id }" name = "replyid">
+			                                		<input type="text" value="${reply.reply_contents }" name = "replycontents">
+			                                		<input type="text" value="${reply.user_nickname }" name = "replynickname">
+												</c:forEach>
+	                                		</c:when>
+	                                		<c:otherwise>													                                		
+													<c:out value="댓글이 없습니다." />
+	                                		</c:otherwise>
+	                                	</c:choose>
 	                                </div>
 	                                	
 <%-- 	                                <c:forEach var="row" items="${oraclereplylist}"> --%>
@@ -221,7 +233,6 @@
     <script src="../../../resources/vendor/ckeditor5-build-classic/translations/ko.js"></script>
 	<script src="../../../resources/vendor/ckeditor5-build-classic/ckeditor.js"></script>
 	
-	
 	<!-- REPLY AJAX -->
 	<script type="text/javascript" src="../../../resources/js/oraclereplylist.js"></script>
 	
@@ -237,7 +248,106 @@
                 console.error( error );
     });
     </script>
-   
+   	<script>
+	$(document).ready(function() {
+		var replyForm = $("#replyForm");
+		var user_nickname = replyForm.find("input[name='user_nickname']");
+		var reply_contents = replyForm.find("input[name='reply_contents']");
+				
+		$("#btnReply").on("click", function(e){
+			
+			var reply = {
+					user_nickname : user_nickname.val(),					
+					reply_contents : reply_contents.val(),
+					post_id : postValue
+			};
+			alert(JSON.stringify(reply));
+			console.log(reply);
+			replyService.add(reply, function(result){
+				alert(result);
+				showList(-1);
+				
+			});
+			
+		});
+		
+		
+		var postValue = '<c:out value="${oracleview.post_id }"/>'
+		var replyUL = $(".chat");
+		showList(1);
+		function showList(page) {
+			replyService.getList({post_id : postValue,page : page || 1},function(list) {
+				
+				
+				var str = "";
+				if (list == null || list.length == 0) {
+					replyUL.html("댓글이없습니다");
+					return; 
+				}
+				for (var i = 0, len = list.length || 0; i < len; i++) {
+					str += "<li class='left clearfix' data-rno='" + list[i].reply_id + "'>";
+					str += "<div>"+ "<div class='header'>"+ "<strong class='primary-font'>"
+								+ list[i].user_nickname+ "</strong>";
+					str += "<small class='pull-right text-muted'>" + replyService.displayTime(list[i].reply_regdate) + "</small></div>"
+					str += "<p>" + list[i].reply_contents + "</p></div></li>";
+				}
+				replyUL.html(str);
+			}); //end getlsit function
+		} // end showlist
+
+		console.log("=============================================");
+		console.log("JS TEST");
+
+		replyService.getList({post_id : postValue,page : 1},function(list) {
+			for (var i = 0, len = list.length || 0; i < len; i++) {
+				console.log(list[i]);
+			}
+		}); 
+						//reply add test 용
+		replyService.add({reply_contents: "JS TEST", user_nickname: "tester", post_id : postValue},
+			function(result) {
+								alert("결과는: " +result);
+						}); 
+
+						replyService.remove(36, function(count) {
+							console.log(count);
+							if(count === "success"){
+								alert("삭제됨");
+								}
+							}, function(err) {
+								alert("Error...");
+						}); 
+
+						replyService.update({
+							reply_id : 19,
+							post_id : postValue,
+							reply_contents : "1120댓글수정"
+						}, function(result) {
+							alert("수정완료");
+						}, function(err) {
+							alert("수정Error...");
+						}); // 19번 댓글 수정 
+
+						replyService.get(10, function(data) {
+							console.log(data);
+						}, function(err) {
+							alert("get Error...");
+						}); 
+
+						var operForm = $("#operForm");
+						$("button[data-oper='modify']").on(
+								"click",
+								function(e) {
+									operForm.attr("action", "/board/modify")
+											.submit();
+								});
+						$("button[data-oper='list']").on("click", function(e) {
+							operForm.find("#bno").remove();
+							operForm.attr("action", "/board/list").submit();
+						});
+
+					});
+</script>
 </body>
 <!-- END BODY -->
 </html>
