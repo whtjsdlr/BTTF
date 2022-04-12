@@ -59,6 +59,9 @@ public interface MemberService {
 	// 마이페이지 작성한 글 목록 조회
 	public List<BoardVO> mypostlist(int user_index) throws Exception;
 	
+	// 마이페이지 북마크한 글 목록 조회
+	public List<BoardVO> mybookmarks(int user_index) throws Exception;
+	
 	// 마이페이지 - 수정하기 화면
 	public MemberVO mypage_view(int user_index);
 	
