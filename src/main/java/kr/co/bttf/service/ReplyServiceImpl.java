@@ -21,6 +21,7 @@ public class ReplyServiceImpl implements ReplyService {
 
 	@Override
 	public int register(ReplyVO vo) {
+		System.out.println("service 들어옴");
 		return mapper.insert(vo);
 	}
 

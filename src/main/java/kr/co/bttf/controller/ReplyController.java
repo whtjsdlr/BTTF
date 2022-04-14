@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import jdk.internal.org.jline.utils.Log;
 import kr.co.bttf.domain.MemberVO;
 import kr.co.bttf.domain.OracleBoardVO;
 import kr.co.bttf.domain.ReplyVO;
@@ -48,13 +47,14 @@ public class ReplyController {
 	@PostMapping(value = "/new", consumes = "application/json;charset=utf-8", produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> create(@RequestBody ReplyVO reply){
 		System.out.println(reply.getReply_contents());
-		
 		System.out.println("리플라이컨트롤러에서 댓글 vo: " + reply);
-		System.out.println("댓글입력 갯수: " + service.register(reply));
-		return service.register(reply) == 1?
-				new ResponseEntity<>("success", HttpStatus.OK) : 
-					new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-	}
+//		System.out.println("댓글입력 갯수: " + service.register(reply)); syso에 담긴것이라고 해도 유효한 코드이기 때문에 콘솔에 보이는 것과 같이 service가 두번 호출되는 원인이 됨!!!!!!
+		if (service.register(reply) == 1) {
+			return new ResponseEntity<>("success", HttpStatus.OK);
+			
+		}else
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	
 	@GetMapping(value = "/page/{reply_id}/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<ReplyVO>> getList(
