@@ -96,7 +96,7 @@
 	                        	<div class="mb-5">
 									<c:if test="${member.user_nickname eq jsview.user_nickname}">
 		 		                    	<a href="/board/jsmodify?post_id=${jsview.post_id }" class="btn btn-primary mt-4" id="list" type="submit">글수정</a>                          
-				                		<a href="/board/jsdelete?post_id=${jsview.post_id }&mypage=" class="btn btn-danger mt-4" id="list" type="submit">글삭제</a>
+				                		<a href="/board/javascriptdelete?post_id=${jsview.post_id }&mypage=" class="btn btn-danger mt-4" id="list" type="submit">글삭제</a>
 									</c:if> 
 	                        		<a href="/board/jslist" class="btn btn-default mt-4" id="edit" type="submit">글 목록</a>
 									<c:if test="${member.user_nickname != jsview.user_nickname && member != null && jsview.user_nickname != 'admin'}">

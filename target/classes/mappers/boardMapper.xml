@@ -137,8 +137,8 @@
 	
 	<!-- 3-2. 게시물 작성 -->
 	<insert id="jswrite" parameterType="kr.co.bttf.domain.JsBoardVO">
-		insert into javascript (post_subject, post_contents, user_nickname)
-		values(#{post_subject}, #{post_contents}, #{user_nickname})
+		insert into javascript (post_subject, post_contents, user_nickname, user_index)
+		values(#{post_subject}, #{post_contents}, #{user_nickname},#{user_index})
 	</insert>
 	
 	
@@ -193,8 +193,8 @@
 	
 	<!-- 4-2. 게시물 작성 -->
 	<insert id="jspwrite" parameterType="kr.co.bttf.domain.JspBoardVO">
-		insert into jsp (post_subject, post_contents, user_nickname)
-		values(#{post_subject}, #{post_contents}, #{user_nickname})
+		insert into jsp (post_subject, post_contents, user_nickname, user_index)
+		values(#{post_subject}, #{post_contents}, #{user_nickname},#{user_index})
 	</insert>
 	
 	
