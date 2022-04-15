@@ -166,11 +166,11 @@
 			                    <c:forEach var="mybookmarks" items="${mybookmarks}">
 			                    	<tr>
 										<td>${mybookmarks.board_category_name }</td>
-			                    		<td><a href="/board/cssview?post_id=${bookmark.post_id}">${mybookmarks.post_subject}</a></td>
+			                    		<td><a href="/board/cssview?post_id=${mybookmarks.post_id}">${mybookmarks.post_subject}</a></td>
 			                    		<td>${mybookmarks.post_rec}</td>
 			                    		<td>${mybookmarks.user_nickname}</td>
 			                    		<td><fmt:formatDate value="${mybookmarks.post_regdate}" pattern="yyyy-MM-dd" /></td>
-			                    		<td><a class="btn btn-danger" href="#">삭제</a></td>
+			                    		<td><a class="btn btn-danger" href="/board/${mybookmarks.board_category_name }delete?post_id=${mybookmarks.post_id }&mypage=right">삭제</a></td>
 			                    	</tr>
 			                    </c:forEach>
 	                    	</c:when>
