@@ -244,6 +244,7 @@ public class BoardController {
 	  return "redirect:/board/csslist";
 	}
 	
+	
 
 	// 2-3. 게시물 상세보기 페이지 이동
 	@RequestMapping(value = "/cssview", method = RequestMethod.GET)
@@ -429,7 +430,7 @@ public class BoardController {
 		}
 
 		// 3-5. vo가 없으니 get방식 삭제
-		@RequestMapping(value = "/jsdelete", method = RequestMethod.GET)
+		@RequestMapping(value = "/javascriptdelete", method = RequestMethod.GET)
 		public String jsDelete(HttpServletRequest req, @RequestParam("post_id") int post_id, @RequestParam("mypage") String mypage) throws Exception {
 
 			String result = "";
