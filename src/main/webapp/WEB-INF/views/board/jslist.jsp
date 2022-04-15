@@ -80,7 +80,7 @@
 					                        <tr>
 					                            <td>${board.post_id }</td>
 					                            <td>
-					                            <a href="/board/jsview?post_id=${board.post_id }">${board.post_subject }</a>
+					                            <a href="/board/javascriptview?post_id=${board.post_id }">${board.post_subject }</a>
 					                            </td>
 					                            <td>${board.user_nickname }</td>
 					                            <td>${board.post_vcount }</td>

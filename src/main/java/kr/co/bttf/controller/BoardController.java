@@ -402,7 +402,7 @@ public class BoardController {
 		
 
 		// 3-3. 게시물 상세보기 페이지 이동
-		@RequestMapping(value = "/jsview", method = RequestMethod.GET)
+		@RequestMapping(value = "/javascriptview", method = RequestMethod.GET)
 		public void jsView(@RequestParam("post_id") int post_id, Model model) throws Exception {
 			
 			// 상세보기 시 조회수 갱신
@@ -426,7 +426,7 @@ public class BoardController {
 		public String jsModify(JsBoardVO vo) throws Exception {
 
 			jsService.jsModify(vo);
-			return "redirect:/board/jsview?post_id=" + vo.getPost_id();
+			return "redirect:/board/javascriptview?post_id=" + vo.getPost_id();
 		}
 
 		// 3-5. vo가 없으니 get방식 삭제
@@ -507,13 +507,13 @@ public class BoardController {
 				
 				if(result==1) {
 					
-					ScriptUtils.alertAndMovePage(res, "이미 북마크에 추가된 게시글입니다. ", "http://localhost:9090/board/jsview?post_id=" + post_id);
+					ScriptUtils.alertAndMovePage(res, "이미 북마크에 추가된 게시글입니다. ", "http://localhost:9090/board/javascriptview?post_id=" + post_id);
 				
 				} else {
 					
 					//게시글 북마크에추가
 					jsService.jsbookmark(postid_useridx);
-					ScriptUtils.alertAndMovePage(res, "게시글이 북마크에 추가되었습니다. ", "http://localhost:9090/board/jsview?post_id=" + post_id);
+					ScriptUtils.alertAndMovePage(res, "게시글이 북마크에 추가되었습니다. ", "http://localhost:9090/board/javascriptview?post_id=" + post_id);
 					
 				}
 				

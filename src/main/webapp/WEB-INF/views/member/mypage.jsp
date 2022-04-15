@@ -166,7 +166,7 @@
 			                    <c:forEach var="mybookmarks" items="${mybookmarks}">
 			                    	<tr>
 										<td>${mybookmarks.board_category_name }</td>
-			                    		<td><a href="/board/cssview?post_id=${mybookmarks.post_id}">${mybookmarks.post_subject}</a></td>
+			                    		<td><a href="/board/${mybookmarks.board_category_name }view?post_id=${mybookmarks.post_id}">${mybookmarks.post_subject}</a></td>
 			                    		<td>${mybookmarks.post_rec}</td>
 			                    		<td>${mybookmarks.user_nickname}</td>
 			                    		<td><fmt:formatDate value="${mybookmarks.post_regdate}" pattern="yyyy-MM-dd" /></td>
