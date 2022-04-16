@@ -97,73 +97,52 @@
 			+ (select count(*) from reply_spring where user_nickname = #{user_nickname})
 	</select>
 	
-	<select id="mypostlist0" parameterType="_int" resultType="kr.co.bttf.domain.HtmlBoardVO">
+	<select id="mypostlist" parameterType="_int" resultType="kr.co.bttf.domain.HtmlBoardVO">
 		select board_category_name, post_subject, post_rec ,user_nickname ,post_regdate ,post_id
 			from html h
 			left join board_category bc 
 			on h.board_category_id = bc.board_category_id  
 		where user_index = #{user_index}
-		order by post_regdate desc
-	</select>
-	
-	<select id="mypostlist1" parameterType="_int" resultType="kr.co.bttf.domain.CssBoardVO">
+		union
 		select board_category_name, post_subject, post_rec ,user_nickname ,post_regdate ,post_id
 			from css h
 			left join board_category bc 
 			on h.board_category_id = bc.board_category_id  
 		where user_index = #{user_index}
-		order by post_regdate desc
-	</select>
-	
-	<select id="mypostlist2" parameterType="_int" resultType="kr.co.bttf.domain.JsBoardVO">
+		union
 		select board_category_name, post_subject, post_rec ,user_nickname ,post_regdate ,post_id
 			from javascript h
 			left join board_category bc 
 			on h.board_category_id = bc.board_category_id  
 		where user_index = #{user_index}
-		order by post_regdate desc
-	</select>
-	
-	
-	<select id="mypostlist3" parameterType="_int" resultType="kr.co.bttf.domain.JspBoardVO">
+		union
 		select board_category_name, post_subject, post_rec ,user_nickname ,post_regdate ,post_id
 			from jsp h
 			left join board_category bc 
 			on h.board_category_id = bc.board_category_id  
 		where user_index = #{user_index}
-		order by post_regdate desc
-	</select>
-	
-	
-	<select id="mypostlist4" parameterType="_int" resultType="kr.co.bttf.domain.JavaBoardVO">
+		union 
 		select board_category_name, post_subject, post_rec ,user_nickname ,post_regdate ,post_id
 			from java h
 			left join board_category bc 
 			on h.board_category_id = bc.board_category_id  
 		where user_index = #{user_index}
-		order by post_regdate desc
-	</select>
-	
-	
-	<select id="mypostlist5" parameterType="_int" resultType="kr.co.bttf.domain.OracleBoardVO">
+		union 
 		select board_category_name, post_subject, post_rec ,user_nickname ,post_regdate ,post_id
 			from oracle h
 			left join board_category bc 
 			on h.board_category_id = bc.board_category_id  
 		where user_index = #{user_index}
-		order by post_regdate desc
-	</select>
-	
-	<select id="mypostlist6" parameterType="_int" resultType="kr.co.bttf.domain.SpringBoardVO">
+		union
 		select board_category_name, post_subject, post_rec ,user_nickname ,post_regdate,post_id
 			from spring h
 			left join board_category bc 
 			on h.board_category_id = bc.board_category_id  
-		where user_index = #{user_index}
-		order by post_regdate desc
+		where user_index = #{user_index} order by post_regdate desc ;
 	</select>
 	
-	<select id = "mybookmarks0" parameterType="_int" resultType="kr.co.bttf.domain.HtmlBoardVO">
+	
+	<select id = "mybookmarks" parameterType="_int" resultType="kr.co.bttf.domain.HtmlBoardVO">
 		select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index
 			from html h
 			inner join post_bookmark pb 
@@ -171,79 +150,55 @@
 			inner join board_category bc 
 			on bc.board_category_id = pb.board_category_id  
 			having pb.user_index = #{user_index}
-			order by post_regdate desc
-	</select>
-	
-	
-	<select id = "mybookmarks1" parameterType="_int" resultType="kr.co.bttf.domain.CssBoardVO">
-		select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index
+		union 
+			select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index
 			from css h
 			inner join post_bookmark pb 
 			on h.post_id  = pb.post_id_css
 			inner join board_category bc 
 			on bc.board_category_id = pb.board_category_id  
 			having pb.user_index = #{user_index}
-			order by post_regdate desc
-	</select>
-	
-	
-	<select id = "mybookmarks2" parameterType="_int" resultType="kr.co.bttf.domain.JsBoardVO">
-		select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index
+		union
+			select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index
 			from javascript h
 			inner join post_bookmark pb 
 			on h.post_id  = pb.post_id_javascript
 			inner join board_category bc 
 			on bc.board_category_id = pb.board_category_id  
 			having pb.user_index = #{user_index}
-			order by post_regdate desc
-	</select>
-	
-	
-	<select id = "mybookmarks3" parameterType="_int" resultType="kr.co.bttf.domain.JspBoardVO">
-		select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index
+		union 
+			select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index
 			from jsp h
 			inner join post_bookmark pb 
 			on h.post_id  = pb.post_id_jsp
 			inner join board_category bc 
 			on bc.board_category_id = pb.board_category_id  
 			having pb.user_index = #{user_index}
-			order by post_regdate desc
-	</select>
-	
-	
-	<select id = "mybookmarks4" parameterType="_int" resultType="kr.co.bttf.domain.JavaBoardVO">
-		select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index
+		union 
+			select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index
 			from java h
 			inner join post_bookmark pb 
 			on h.post_id  = pb.post_id_java
 			inner join board_category bc 
 			on bc.board_category_id = pb.board_category_id  
 			having pb.user_index = #{user_index}
-			order by post_regdate desc
-	</select>
-	
-	
-	<select id = "mybookmarks5" parameterType="_int" resultType="kr.co.bttf.domain.OracleBoardVO">
-		select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index
+		union
+			select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index
 			from oracle h
 			inner join post_bookmark pb 
 			on h.post_id  = pb.post_id_oracle
 			inner join board_category bc 
 			on bc.board_category_id = pb.board_category_id  
 			having pb.user_index = #{user_index}
-			order by post_regdate desc
-	</select>
-	
-	
-	<select id = "mybookmarks6" parameterType="_int" resultType="kr.co.bttf.domain.SpringBoardVO">
-		select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index
+		union 
+			select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index
 			from spring h
 			inner join post_bookmark pb 
 			on h.post_id  = pb.post_id_spring
 			inner join board_category bc 
 			on bc.board_category_id = pb.board_category_id  
 			having pb.user_index = #{user_index}
-			order by post_regdate desc
+			order by post_regdate desc;
 	</select>
 	
 	

@@ -257,6 +257,7 @@ public class MemberServiceImpl implements MemberService {
 		return dao.mypostlist(user_index) ;
 	}
 	
+	
 	@Override
 	public List<BoardVO> mybookmarks(int user_index) throws Exception {
 

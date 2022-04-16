@@ -280,17 +280,17 @@
 	<script type="text/javascript" src="../../../resources/vendor/DataTables/DataTables-1.11.5/js/dataTables.bootstrap.js"></script>
 
 	<script>
- 	$(document).ready(function() {
+//  	$(document).ready(function() {
  	    $('#foo-table').DataTable( {
  	    	bInfo : false,
-// 	    	bSortable : true,
+	    	bSortable : true,
  	       	bPaginate : true,
  	        displayLength : 10
  	    } );
  	    
  	   $('#foo-table1').DataTable( {
 	    	bInfo : false,
-// 	    	bSortable : true,
+	    	bSortable : true,
 	       	bPaginate : true,
 	        displayLength : 10
 	    } );
