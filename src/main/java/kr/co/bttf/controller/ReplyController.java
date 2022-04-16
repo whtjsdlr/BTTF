@@ -56,15 +56,15 @@ public class ReplyController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	
-	@GetMapping(value = "/page/{reply_id}/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+	@GetMapping(value = "/page/{post_id}/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<ReplyVO>> getList(
 			@PathVariable("page") int page,
-			@PathVariable("reply_id") Long reply_id
+			@PathVariable("post_id") Long post_id
 			){
 		System.out.println("리플라이컨트롤러에서 전체 목록 조회...........................");
 		Criteria crit = new Criteria(page, 10);
 		System.out.println(crit);
-		return new ResponseEntity<>(service.getList(crit, reply_id), HttpStatus.OK);
+		return new ResponseEntity<>(service.getList(crit, post_id), HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/{reply_id}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
