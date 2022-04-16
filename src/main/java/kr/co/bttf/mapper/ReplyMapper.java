@@ -15,7 +15,7 @@ public interface ReplyMapper {
 	
 	public int delete (Long reply_id); // 댓글을 삭제한다.
 	
-	public int update (ReplyVO reply_content); // 댓글을 수정 한다.
+	public int update (ReplyVO vo); // 댓글을 수정 한다.
 	
 	public List<ReplyVO> getListWithPaging(
 			@Param("cri") Criteria cri, 

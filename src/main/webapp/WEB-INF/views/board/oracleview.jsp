@@ -123,60 +123,23 @@
 										<input id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;" value="댓글쓰기" type="submit">
 									</div>
 	                               	<!-- Comment with nested comments-->
-	                                <div id="getReplyList" class="chat">
-	                                	<c:choose>
-	                                		<c:when test="${reply != null and fn:length(reply) > 0 }">
-			                                 	<p>${reply.reply_id}</p>
-			                                	<c:forEach items="${reply }" var="reply">
-			                                		<input type="text" value="${reply.reply_id }" name = "replyid">
-			                                		<input type="text" value="${reply.reply_contents }" name = "replycontents">
-			                                		<input type="text" value="${reply.user_nickname }" name = "replynickname">
-												</c:forEach>
-	                                		</c:when>
-	                                		<c:otherwise>													                                		
-													<c:out value="댓글이 없습니다." />
-	                                		</c:otherwise>
-	                                	</c:choose>
-	                                </div>
-	                                	
-<%-- 	                                <c:forEach var="row" items="${oraclereplylist}"> --%>
-<!-- 	                                <div class="d-flex mb-4 mt-10"> -->
-<!-- 	                                    Parent comment -->
-<!-- 	                                    <div class="flex-shrink-0 mr-4"> -->
-<!-- <!-- 	                                    	<img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /> -->
-<!-- 	                                    </div> -->
-<!-- 		                                    <div class="ms-3" style="width : 100%;"> -->
-<!-- 		                                        <div class="fw-bold"> -->
-<!-- 		                                        	<div class="d-flex"> -->
-<%-- 					                                    <h3>${row.user_nickname}</h3> --%>
-<!-- 					                                    <p style="transform : translate(16% 20%);"> -->
-<%-- 					                                    	<fmt:formatDate value="${row.post_regdate}" pattern="yyyy-MM-dd HH:mm" /> --%>
-<!-- 					                                    </p>		                                        	 -->
-<!-- 		                                        	</div> -->
-<!-- 		                                        </div> -->
-<%-- 		                                        <p>${row.reply_contents }</p> --%>
-		                                       
-<!-- 		                                        Child comment 1 -->
-<%-- 				                                <c:otherwise> --%>
-<!-- 			                                        <div class="d-flex mt-4"> -->
-<!-- 			                                            <div class="flex-shrink-0 mr-4 col-sm-offset-1"> -->
-<!-- 														<img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /> -->
-<!-- 			                                            </div> -->
-<!-- 			                                            <div class="ms-3" style="width : 100%;"> -->
-<!-- 			                                                <div class="fw-bold"> -->
-<%-- 					                                        	<h3>${row.user_nickname}</h3> --%>
-<!-- 			                                                	<div style=" clear: both; float: right; position: relative; top: 0; left: 4px;"> -->
-<!-- 						                                        	<a href="/reply/oracleReplyModify" class="btn btn-info btn-sm">수정</a> -->
-<!-- 						                                        	<a href="/reply/oracleReplyDelete" class="btn btn-danger btn-sm">삭제</a> -->
-<!-- 					                                        	</div> -->
-<!-- 			                                                </div> -->
-<%-- 			                                                <p>${row.reply_contents }</p> --%>
-<!-- 			                                            </div> -->
-<!-- 			                                        </div> -->
-<%-- 				                                </c:otherwise> --%>
-<!-- 		                                    </div> -->
-<!-- 	                                	</div> -->
-<%-- 	                                </c:forEach>	                                --%>
+	                               	<form id="operForm" >
+		                                <div id="getReplyList" class="chat">
+		                                	<c:choose>
+		                                		<c:when test="${reply != null and fn:length(reply) > 0 }">
+				                                 	<p>${reply.reply_id}</p>
+				                                	<c:forEach items="${reply }" var="reply">
+				                                		<input type="text" value="${reply.reply_id }" name = "replyid" >
+				                                		<input type="text" value="${reply.reply_contents }" name = "replycontents">
+				                                		<input type="text" value="${reply.user_nickname }" name = "replynickname">
+													</c:forEach>
+		                                		</c:when>
+		                                		<c:otherwise>													                                		
+														<c:out value="댓글이 없습니다." />
+		                                		</c:otherwise>
+		                                	</c:choose>
+		                                </div>
+	                                </form>
 	                            </div>
 	                        </div>                             
                         </div>
@@ -255,6 +218,7 @@
 		var replyForm = $("#replyForm");
 		var user_nickname = replyForm.find("input[name='user_nickname']");
 		var reply_contents = replyForm.find("input[name='reply_contents']");
+		var reply_id = replyForm.find("input[name='replyid']");
 				
 		$("#btnReply").on("click", function(e){			
 			var reply = {
@@ -281,9 +245,11 @@
 				
 				var str = "";
 				if (list == null || list.length == 0) {
-					replyUL.html("댓글이없습니다");
-					return; 
+					str +=	"<p class='text-center' style='font-size : 20px;'>댓글이 없습니다</p>"				
+					
+					return replyUL.html(str); 
 				}
+				
 				for (var i = 0, len = list.length || 0; i < len; i++) {
 					str += "<div class='left clearfix' data-rno='" + list[i].reply_id + "'>";
 					str += "<div>"+ "<div class='header'>"+ "<strong class='primary-font'>"
@@ -298,17 +264,13 @@
 					str += "</button>"
 					str += "</div>"
 					str += "</div>"
-// 					str += "</p>"
 					str += "</c:if>"
 					str += "<p style='font-size : 16px;'>" + list[i].reply_contents + "</p>"
 					str += "</div>"
-					
 					str += "<p style='border : 1px solid #d9d9d9; margin-top : 40px;'>"
 					str += "</div>";
 				}
 				replyUL.html(str);
-				
-				
 			}); //end getlsit function
 		} // end showlist
 
@@ -351,14 +313,15 @@
 // 							alert("get Error...");
 // 						}); 
 
-						var operForm = $("#replyForm");
-						$("button[data-oper='modify']").on("click",function(e) {
-							operForm.attr("action", "/board/modify").submit();
+						var operForm = $("#operForm");
+						$("button[data/='modify']").on("click",function(e) {
+							var reply_id = replyForm.find("input[name='replyid']");
+							operForm.attr("action", "/reply/reply_id").submit();
 						});
 						
 						$("button[data-oper='list']").on("click", function(e) {
 							operForm.find("#post_id").remove();
-							operForm.attr("action", "/board/list").submit();
+							operForm.attr("action", "/reply/list").submit();
 						});
 
 					});
