@@ -168,7 +168,6 @@
 	                                <!-- Single comment-->
 	                                <div class="d-flex">
 	                                    <div class="flex-shrink-0 mr-4">
-<!-- 	                                    	<img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /> -->
 	                                    </div>
 	                                    <div class="ms-3" style="width : 100%;">
 	                                        <div class="fw-bold">

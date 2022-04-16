@@ -114,12 +114,14 @@
 	                            <div class="card-body">
 	                                <!-- Comment form-->
 <!-- 	                                <form action="/reply/new" id="replyForm" name="replyForm" method="post" class="mb-4 d-flex"> -->
-	                                <form id="replyForm" name="replyForm" method="post" class="mb-4 d-flex" target=detail onsubmit="all_reset();">
-	                                	<input type="hidden" id="user_nickname" name="user_nickname" value="${member.user_nickname}">
-	                                	<input type="hidden" id="post_id" name="post_id" value="${oracleview.post_id}">
-	                                	<input id="reply_contents" type="text" name="reply_contents" class="form-control mr-5" placeholder="댓글을 작성하세요" value="">
-	                                </form>
-									<input id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;" value="댓글쓰기" type="submit">
+									<div class="d-flex col-md-12 p-0" style="margin-bottom : 40px;">
+		                                <form id="replyForm" name="replyForm" method="post" class="mb-4 d-flex col-md-12 p-0" target=detail onsubmit="all_reset();">
+		                                	<input type="hidden" id="user_nickname" name="user_nickname" value="${member.user_nickname}">
+		                                	<input type="hidden" id="post_id" name="post_id" value="${oracleview.post_id}">
+		                                	<input id="reply_contents" type="text" name="reply_contents" class="form-control mr-5" placeholder="댓글을 작성하세요" value="">
+		                                </form>
+										<input id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;" value="댓글쓰기" type="submit">
+									</div>
 	                               	<!-- Comment with nested comments-->
 	                                <div id="getReplyList" class="chat">
 	                                	<c:choose>
@@ -129,12 +131,6 @@
 			                                		<input type="text" value="${reply.reply_id }" name = "replyid">
 			                                		<input type="text" value="${reply.reply_contents }" name = "replycontents">
 			                                		<input type="text" value="${reply.user_nickname }" name = "replynickname">
-				    	               				<div style=" clear: both; float: right; position: relative; top: 0; left: 4px;">
-			                                			<c:if test="${member.user_nickname eq oracleview.user_nickname}">
-					    	             	 				<button type="submit" data-oper='modify' class="btn btn-info btn-sm">수정</button>
-				             	    	  					<button type="submit" data-oper='list' class="btn btn-danger btn-sm">삭제</button>
-				                                 		</c:if>
-				                	 				</div>
 												</c:forEach>
 	                                		</c:when>
 	                                		<c:otherwise>													                                		
@@ -266,7 +262,7 @@
 					reply_contents : reply_contents.val(),
 					post_id : postValue
 			};
-			alert(JSON.stringify(reply));
+			alert( );
 			console.log(reply);
 			replyService.add(reply, function(result){
 				alert(result);
@@ -289,12 +285,26 @@
 					return; 
 				}
 				for (var i = 0, len = list.length || 0; i < len; i++) {
-					str += "<li class='left clearfix' data-rno='" + list[i].reply_id + "'>";
+					str += "<div class='left clearfix' data-rno='" + list[i].reply_id + "'>";
 					str += "<div>"+ "<div class='header'>"+ "<strong class='primary-font'>"
 								+ list[i].user_nickname+ "</strong>";
 					str += "<small class='pull-right text-muted'>" + replyService.displayTime(list[i].reply_regdate) + "</small></div>"
-					str += "<p>" + list[i].reply_contents + "</p></div>"
-					str += "</li>";
+					str += "<c:if test='${member.user_nickname eq oracleview.user_nickname}'>"
+					str += "<div class='col-md-12' style='padding-left : 0 !important; padding-right : 0 !important; padding-bottom : 40px;'>"
+					str += "<div class='pull-right text-muted'>"
+					str += "<button type='submit' data-oper='modify' class='btn btn-info btn-sm mr-2'>수정"
+					str += "</button>"
+					str += "<button type='submit' data-oper='list' class='btn btn-danger btn-sm'>삭제"
+					str += "</button>"
+					str += "</div>"
+					str += "</div>"
+// 					str += "</p>"
+					str += "</c:if>"
+					str += "<p style='font-size : 16px;'>" + list[i].reply_contents + "</p>"
+					str += "</div>"
+					
+					str += "<p style='border : 1px solid #d9d9d9; margin-top : 40px;'>"
+					str += "</div>";
 				}
 				replyUL.html(str);
 				

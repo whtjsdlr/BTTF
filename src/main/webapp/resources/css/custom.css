@@ -146,6 +146,15 @@
 }
 /*margin-right end*/
 
+/*padding none*/
+.p-0{
+	padding : 0px !important;
+	
+}
+
+
+/*end padding none*/
+
 
 /*padding-top*/
 .pt-1{
@@ -1525,6 +1534,10 @@ pre{
 
 .invisible {
   visibility: hidden !important;
+}
+
+.primary-font{
+	font-size : 17px;
 }
 
 /* end Reply_content */
