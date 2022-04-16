@@ -350,6 +350,33 @@
 		values (#{user_index} ,#{post_id} , 6) 
 	</insert>
 	
+	<!-- 좋아요 추가 -->
+	<insert id="picture_heart_save" parameterType="kr.co.bttf.domain.LikeVO">
+		insert into recommend (recommend_id, user_index, post_id_oracle, board_category_id) values ( #{recommend_id}, #{user_index}, #{post_id}, 6);
+	</insert>
+	<update id="picture_heart_up" parameterType="kr.co.bttf.domain.OracleBoardVO">
+		update oracle set post_rec=post_rec+1
+		where post_id=#{post_id}
+	</update>
+
+	<!-- 좋아요 삭제 -->
+	<delete id="picture_heart_remove" parameterType="kr.co.bttf.domain.LikeVO">
+		delete from recommend
+		where post_id=#{post_id} and user_index=#{user_index}
+	</delete>
+	<update id="picture_heart_down" parameterType="kr.co.bttf.domain.OracleBoardVO">
+		update oracle set post_rec=post_rec-1
+		where post_id=#{post_id}
+	</update>
+
+	<!-- 좋아요 추가/삭제시 좋아요 갯수 가져오기 -->
+	<select id="picture_heart_count"
+		parameterType="kr.co.bttf.domain.OracleBoardVO"
+		resultType="kr.co.bttf.domain.OracleBoardVO">
+		select post_rec
+		from oracle
+		where post_id=#{post_id}
+	</select>
 
 <!-- 
 ========================================
@@ -407,7 +434,5 @@
 		insert into post_bookmark (user_index, post_id_spring ,board_category_id  ) 
 		values (#{user_index} ,#{post_id} , 7) 
 	</insert>
-
-
 
 </mapper>

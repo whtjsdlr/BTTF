@@ -18,5 +18,6 @@ public class OracleBoardVO extends BoardVO {
 	private int post_vcount;
 	private Date post_regdate;
 	private int board_category_id;
+	private int recommend_id;
   
 }

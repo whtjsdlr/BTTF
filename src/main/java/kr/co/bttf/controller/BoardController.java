@@ -14,13 +14,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.bttf.dao.LikeDAO;
+import kr.co.bttf.dao.LikeDAO;
 import kr.co.bttf.domain.CssBoardVO;
 import kr.co.bttf.domain.HtmlBoardVO;
 import kr.co.bttf.domain.JavaBoardVO;
 import kr.co.bttf.domain.JsBoardVO;
 import kr.co.bttf.domain.JspBoardVO;
+import kr.co.bttf.domain.LikeVO;
 import kr.co.bttf.domain.MemberVO;
 import kr.co.bttf.domain.OracleBoardVO;
 import kr.co.bttf.domain.ReplyVO;
@@ -66,6 +70,8 @@ public class BoardController {
 	@Inject
 	private SpringBoardService springService;
 	
+	@Inject
+	private LikeDAO likeDao;
 	/* --------------------------------
 				01. HTML
 	-------------------------------- */
@@ -981,6 +987,42 @@ public class BoardController {
 		}
 		 
 
+	}
+	// 빈하트 클릭시 하트 저장
+	@ResponseBody
+	@RequestMapping(value = "/saveHeart")
+	public OracleBoardVO save_heart(@RequestParam int post_id, HttpSession session) throws Exception {
+		
+		LikeVO vo = new LikeVO();
+		
+		// 게시물 번호 세팅
+		vo.setPost_id(post_id);
+		
+		// 좋아요 누른 사람 nick을 userid로 세팅
+		vo.setUser_index((String) session.getAttribute("nick"));
+		
+		// +1된 하트 갯수를 담아오기위함
+		OracleBoardVO bvo = likeDao.pictureSaveHeart(vo);
+		
+		return bvo;
+	}
+	
+	// 꽉찬하트 클릭시 하트 해제
+	@ResponseBody
+	@RequestMapping(value = "/removeHeart")
+	public OracleBoardVO remove_heart(@RequestParam int post_id, HttpSession session) throws Exception {
+		LikeVO vo = new LikeVO();
+		
+		// 게시물 번호 세팅
+		vo.setPost_id(post_id);
+		
+		// 좋아요 누른 사람 nick을 userid로 세팅
+		vo.setUser_index((String) session.getAttribute("nick"));
+		
+		// -1된 하트 갯수를 담아오기위함
+		OracleBoardVO bvo = likeDao.pictureRemoveHeart(vo);
+		
+		return bvo;
 	}
 	
 	
