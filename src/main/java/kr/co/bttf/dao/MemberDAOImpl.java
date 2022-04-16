@@ -132,31 +132,11 @@ public class MemberDAOImpl implements MemberDAO {
 		// 전체 게시글 목록
 		List<BoardVO> mypostlist = new ArrayList<BoardVO>();
 
-		// 각각의 게시글 목록
-		List<BoardVO> eachlist = new ArrayList<BoardVO>();			
-		
-		
-		for (int i = 0; i < 7; i++) {
-			eachlist = sql.selectList(namespace + ".mypostlist"+i, user_index );
+			mypostlist = sql.selectList(namespace + ".mypostlist", user_index );
 			
-			if(eachlist==null) {
-				continue;				
-			}
-			
-			for(int j = 0; j<eachlist.size(); j++) {
-				
-				BoardVO board = eachlist.get(j);
-				System.out.println(board.getBoard_category_name()+ " board");
-				
-				mypostlist.add(board);
-				
-			}
-		}
-		
-
-		
 		return mypostlist;
 	}
+	
 	
 	@Override
 	public List<BoardVO> mybookmarks(int user_index) {
@@ -164,25 +144,7 @@ public class MemberDAOImpl implements MemberDAO {
 		// 전체 게시글 목록
 		List<BoardVO> mybookmarks = new ArrayList<BoardVO>();
 
-		// 각각의 게시글 목록
-		List<BoardVO> bookmark = new ArrayList<BoardVO>();			
-		
-		
-		for (int i = 0; i < 7; i++) {
-			bookmark = sql.selectList(namespace + ".mybookmarks"+i, user_index );
-			
-			if(bookmark==null) {
-				continue;				
-			}
-			
-			for(int j = 0; j<bookmark.size(); j++) {
-				
-				BoardVO bm = bookmark.get(j);
-								
-				mybookmarks.add(bm);
-			}
-		}
-		
+			mybookmarks = sql.selectList(namespace + ".mybookmarks", user_index );
 
 		
 		return mybookmarks;
