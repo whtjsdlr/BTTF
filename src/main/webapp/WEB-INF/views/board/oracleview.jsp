@@ -108,7 +108,10 @@
 										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#memberreport" data-whatever="@getbootstrap" style="float: right;" >작성자 신고</button>
 									</c:if>
                               	 </div>
-                            </form>
+								<div style="text-align: right;">
+									<a class="btn btn-outline-dark heart"> <img id="heart" src=""></a>
+								</div>
+							</form>
            					<!-- 댓글 작성 -->
 							<div class="card" id="result ">
 	                            <div class="card-body">
@@ -325,6 +328,46 @@
 						});
 
 					});
+</script>
+<script>
+    $(document).ready(function () {
+
+        var heartval = ${heart};
+
+        if(heartval>0) {
+            console.log(heartval);
+            $("#heart").prop("src", "../../../resources/img/like2.png");
+            $(".heart").prop('name',heartval)
+        }
+        else {
+            console.log(heartval);
+            $("#heart").prop("src", "../../../resources/img/like1.png");
+            $(".heart").prop('name',heartval)
+        }
+
+        $(".heart").on("click", function () {
+
+            var that = $(".heart");
+
+            var sendData = {'post_id' : '${OracleBoardVO.post_id}','heart' : that.prop('name')};
+            $.ajax({
+                url :'/board/heart',
+                type :'POST',
+                data : sendData,
+                success : function(data){
+                    that.prop('name',data);
+                    if(data==1) {
+                        $('#heart').prop("src","../../../resources/images/like2.png");
+                    }
+                    else{
+                        $('#heart').prop("src","../../../resources/images/like1.png");
+                    }
+
+
+                }
+            });
+        });
+    });
 </script>
 </body>
 <!-- END BODY -->

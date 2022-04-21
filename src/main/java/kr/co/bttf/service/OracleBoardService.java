@@ -3,6 +3,7 @@ package kr.co.bttf.service;
 import java.util.HashMap;
 import java.util.List;
 
+import kr.co.bttf.domain.LikeVO;
 import kr.co.bttf.domain.OracleBoardVO;
 
 public interface OracleBoardService {
@@ -33,5 +34,11 @@ public interface OracleBoardService {
 	
 	// 게시글 북마크 설정
 	public void oraclebookmark(HashMap<String, Integer> postid_useridx) throws Exception;
+	
+	public void insertBoardLike(LikeVO lvo) throws Exception;
 
+    public void deleteBoardLike(LikeVO lvo) throws Exception;
+    
+    public  int getBoardLike(LikeVO lvo) throws Exception;
+    
 }

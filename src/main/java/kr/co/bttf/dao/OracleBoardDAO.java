@@ -3,6 +3,7 @@ package kr.co.bttf.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import kr.co.bttf.domain.LikeVO;
 import kr.co.bttf.domain.OracleBoardVO;
 
 public interface OracleBoardDAO {
@@ -33,6 +34,14 @@ public interface OracleBoardDAO {
 	
 	// 게시글 북마크 설정
 	public void oraclebookmark(HashMap<String, Integer> postid_useridx) throws Exception;
+	
+	public int getBoardLike(LikeVO lvo) throws Exception;
+	
+	// 좋아요 추가
+	public void insertBoardLike(LikeVO lvo) throws Exception;
+	
+	// 좋아요 삭제
+	public void deleteBoardLike(LikeVO lvo) throws Exception;
 
-
+	public void updateBoardLike(int post_id) throws Exception;
 }

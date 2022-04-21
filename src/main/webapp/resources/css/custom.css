@@ -1568,7 +1568,10 @@ pre{
 
 /* 4. footer end */
 
-
+.btn-outline-dark {
+  color: #212529;
+  border-color: #212529;
+}
 
 
 

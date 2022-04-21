@@ -350,6 +350,30 @@
 		values (#{user_index} ,#{post_id} , 6) 
 	</insert>
 	
+	<!-- 좋아요 -->
+
+     <insert id="createBoardLike">
+         INSERT INTO board_like (post_id, user_index)
+         VALUES (#{post_id}, #{user_index})
+     </insert>
+
+     <delete id="deleteBoardLike">
+         DELETE FROM board_like
+         WHERE post_id = #{post_id} AND user_index = #{user_index}
+     </delete>
+
+     <update id="updateBoardLike">
+         UPDATE oracle
+         SET
+         like_cnt = (SELECT COUNT(*)
+         FROM board_like
+         WHERE post_id = #{post_id})
+         WHERE post_id = #{post_id}
+     </update>
+
+     <select id="getBoardLike" resultType="int">
+         SELECT COUNT(like_id) FROM board_like WHERE post_id = #{post_id} AND user_index = #{user_index}
+     </select>
 
 <!-- 
 ========================================

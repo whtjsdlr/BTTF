@@ -11,9 +11,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.bttf.domain.CssBoardVO;
@@ -21,6 +23,7 @@ import kr.co.bttf.domain.HtmlBoardVO;
 import kr.co.bttf.domain.JavaBoardVO;
 import kr.co.bttf.domain.JsBoardVO;
 import kr.co.bttf.domain.JspBoardVO;
+import kr.co.bttf.domain.LikeVO;
 import kr.co.bttf.domain.MemberVO;
 import kr.co.bttf.domain.OracleBoardVO;
 import kr.co.bttf.domain.ReplyVO;
@@ -852,7 +855,7 @@ public class BoardController {
 	
 	// 6-3. 게시물 상세보기 페이지 이동
 	@RequestMapping(value = "/oracleview", method = RequestMethod.GET)
-	public void oracleView(@RequestParam("post_id") int post_id, Model model, @RequestParam(defaultValue="1") int curPage, ModelAndView mav, HttpSession session) throws Exception {
+	public void oracleView(@RequestParam("post_id") int post_id, Model model, @RequestParam(defaultValue="1") int curPage, ModelAndView mav, HttpSession session, HttpServletRequest httpRequest) throws Exception {
 		
 		// 상세보기 시 조회수 갱신
 		int oraclevcnt = 0;
@@ -869,6 +872,17 @@ public class BoardController {
 		
 		OracleBoardVO vo = oracleService.oracleView(post_id);
 		model.addAttribute("oracleview", vo);
+		
+		int user_index = ((MemberVO) httpRequest.getSession().getAttribute("member")).getUser_index();
+
+		LikeVO lvo = new LikeVO();
+		lvo.setPost_id(post_id);
+		lvo.setUser_index(user_index);
+
+		int boardlike = oracleService.getBoardLike(lvo);
+		System.out.println("b="+boardlike);
+
+		model.addAttribute("heart", boardlike);
 	}
 		
 		
@@ -981,6 +995,37 @@ public class BoardController {
 			e.printStackTrace();
 		}
 		 
+
+	}
+	
+
+	@ResponseBody
+	@RequestMapping(value = "/heart", method = RequestMethod.POST, produces = "application/json")
+	public int heart(HttpServletRequest httpRequest) throws Exception {
+
+		int heart = Integer.parseInt(httpRequest.getParameter("heart"));
+		int post_id = Integer.parseInt(httpRequest.getParameter("post_id"));
+		int user_index = ((MemberVO) httpRequest.getSession().getAttribute("member")).getUser_index();
+		
+		
+		LikeVO LikeVO = new LikeVO();
+
+		LikeVO.setPost_id(post_id);
+		LikeVO.setUser_index(user_index);
+
+		System.out.println(post_id);
+		System.out.println(user_index);
+		System.out.println(heart);
+
+		if (heart >= 1) {
+			oracleService.deleteBoardLike(LikeVO);
+			heart = 0;
+		} else {
+			oracleService.insertBoardLike(LikeVO);
+			heart = 1;
+		}
+
+		return heart;
 
 	}
 	

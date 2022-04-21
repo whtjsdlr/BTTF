@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import kr.co.bttf.domain.LikeVO;
 import kr.co.bttf.domain.OracleBoardVO;
 
 @Repository
@@ -65,4 +66,24 @@ public class OracleBoardDAOImpl implements OracleBoardDAO {
 		
 		sql.insert(namespace + ".oraclebookmark", postid_useridx);
 	}
+	
+	@Override
+    public int getBoardLike(LikeVO lvo) throws Exception {
+        return sql.selectOne(namespace +".getBoardLike",lvo);
+    }
+
+    @Override
+    public void insertBoardLike(LikeVO lvo) throws Exception {
+    	sql.insert(namespace +".createBoardLike",lvo);
+    }
+
+    @Override
+    public void deleteBoardLike(LikeVO lvo) throws Exception {
+    	sql.delete(namespace +".deleteBoardLike",lvo);
+    }
+
+    @Override
+    public void updateBoardLike(int post_id) throws Exception {
+    	sql.update(namespace +".updateBoardLike",post_id);
+    }
 }

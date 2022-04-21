@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import kr.co.bttf.dao.OracleBoardDAO;
+import kr.co.bttf.domain.LikeVO;
 import kr.co.bttf.domain.OracleBoardVO;
 
 @Service
@@ -67,5 +68,22 @@ public class OracleBoardServiceImpl implements OracleBoardService {
 
 		dao.oraclebookmark(postid_useridx);
 	}
+	
+	@Override
+    public void insertBoardLike(LikeVO lvo) throws Exception {
+        dao.insertBoardLike(lvo);
+        dao.updateBoardLike(lvo.getPost_id());
+    }
 
+    @Override
+    public void deleteBoardLike(LikeVO lvo) throws Exception {
+        dao.deleteBoardLike(lvo);
+        dao.updateBoardLike(lvo.getPost_id());
+    }
+    
+    @Override
+    public  int getBoardLike(LikeVO lvo) throws Exception {
+            return dao.getBoardLike(lvo);
+    }
+	
 }
