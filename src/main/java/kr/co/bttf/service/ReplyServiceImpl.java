@@ -31,8 +31,8 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public int modify(ReplyVO vo) {
-		return mapper.update(vo);
+	public void replyupdate(ReplyVO replybean){
+		mapper.replyupdate(replybean);
 	}
 
 	@Override
