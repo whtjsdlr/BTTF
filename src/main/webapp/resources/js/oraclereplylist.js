@@ -1,10 +1,7 @@
-///**
-// * oracleReplyList
-// */
 
 
-console.log("reply module.....")
 var replyService = (function(){
+
 	function get(reply_id, callback, error){
 		$.get("/reply/" + reply_id + ".json", function(result){
 			if(callback){
@@ -18,9 +15,6 @@ var replyService = (function(){
 	}
 	
 	function add(reply, callback){
-		console.log("reply.............");
-		
-		
 		$.ajax({
 			type: 'post',
 			url : '/reply/new',
@@ -29,7 +23,6 @@ var replyService = (function(){
 			success: function(result, status, xhr){
 				if(callback){
 					callback(result);
-					
 				}
 			},
 			error: function(xhr, status, er){
@@ -40,6 +33,7 @@ var replyService = (function(){
 		});
 			
 	}
+	
 	function getList(param, callback, error){
 		var post_id = param.post_id;
 		var page = param.page || 1;
@@ -55,24 +49,6 @@ var replyService = (function(){
 			});
 	}
 	
-	function update(reply, callback, error){
-		console.log("reply_id : " + reply.reply_id);
-		$.ajax({
-			type : 'patch',
-			url : '/reply/' + reply.reply_id,
-			data : JSON.stringify(reply),
-			contentType : "application/json;charset=utf-8",
-			success : function(result, status, xhr){
-				if(callback){
-					callback(result);
-				}
-			}, error : function(xhr, status, er){
-				if(error){
-					error(er);
-				}
-			}
-		});
-	}
 	
 	function remove(reply_id, callback, error) {
 			$.ajax({
@@ -116,7 +92,6 @@ var replyService = (function(){
 	return {add : add,
 			getList : getList,
 			remove : remove,
-			update : update,
 			get : get,
 			displayTime : displayTime
 			};

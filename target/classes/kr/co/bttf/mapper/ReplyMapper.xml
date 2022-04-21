@@ -14,7 +14,7 @@
 	<delete id="delete">
 		delete from reply_oracle where reply_id = #{reply_id}
 	</delete>
-	<update id="update">
+	<update id="replyupdate">
 		update reply_oracle set reply_contents = #{reply_contents}, reply_regdate_modified = sysdate() where reply_id = #{reply_id}
 	</update>
 	<select id="getListWithPaging" resultType="kr.co.bttf.domain.ReplyVO">

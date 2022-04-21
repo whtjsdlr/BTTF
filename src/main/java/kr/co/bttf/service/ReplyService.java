@@ -10,10 +10,12 @@ public interface ReplyService {
 
 	public ReplyVO get(Long reply_id);
 
-	public int modify(ReplyVO vo);
+	//public int modify(ReplyVO vo);
 
 	public int remove(Long reply_id);
 
 	public List<ReplyVO> getList(Criteria cri, Long bno);
+
+	public void replyupdate(ReplyVO replybean);
 
 }
