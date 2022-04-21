@@ -853,7 +853,7 @@ public class BoardController {
 	// 6-3. 게시물 상세보기 페이지 이동
 	@RequestMapping(value = "/oracleview", method = RequestMethod.GET)
 	public void oracleView(@RequestParam("post_id") int post_id, Model model, @RequestParam(defaultValue="1") int curPage, ModelAndView mav, HttpSession session) throws Exception {
-		
+		System.out.println("post_id_boardcontroller = " + post_id);
 		// 상세보기 시 조회수 갱신
 		int oraclevcnt = 0;
 		oracleService.oraclevcnt(post_id);

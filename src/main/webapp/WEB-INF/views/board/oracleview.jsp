@@ -130,6 +130,7 @@
 				                                 	<p>${reply.reply_id}</p>
 				                                	<c:forEach items="${reply }" var="reply">
 				                                		<input type="text" value="${reply.reply_id }" name = "replyid" >
+<%-- 				                                		<input type="hidden" id="post_id_reply" name="post_id_reply" value="${oracleview.post_id}"> --%>
 				                                		<input type="text" value="${reply.reply_contents }" name = "replycontents">
 				                                		<input type="text" value="${reply.user_nickname }" name = "replynickname">
 													</c:forEach>
@@ -214,53 +215,49 @@
 	function all_reset(){
 		document.replyForm.reset();
 	}
-	$(document).ready(function() {
+	
+		var postValue = '<c:out value="${oracleview.post_id }"/>'
+		var replyUL = $(".chat");
+		showList(1);
 		var replyForm = $("#replyForm");
 		var user_nickname = replyForm.find("input[name='user_nickname']");
 		var reply_contents = replyForm.find("input[name='reply_contents']");
 		var reply_id = replyForm.find("input[name='replyid']");
 				
-		$("#btnReply").on("click", function(e){			
+		$("#btnReply").on("click", function(e){
+			var postValue = '<c:out value="${oracleview.post_id }"/>'
 			var reply = {
 					user_nickname : user_nickname.val(),					
 					reply_contents : reply_contents.val(),
 					post_id : postValue
 			};
-			alert( );
-			console.log(reply);
 			replyService.add(reply, function(result){
-				alert(result);
-				showList(-1);
+				showList(1);
 				all_reset();
 			});
 		});
 		
 		
-		var postValue = '<c:out value="${oracleview.post_id }"/>'
-		var replyUL = $(".chat");
-		showList(1);
-		function showList(page) {
+
+	function showList(page) {
+			var postValue = '<c:out value="${oracleview.post_id }"/>'
 			replyService.getList({post_id : postValue,page : page || 1},function(list) {
-				
-				
 				var str = "";
 				if (list == null || list.length == 0) {
 					str +=	"<p class='text-center' style='font-size : 20px;'>댓글이 없습니다</p>"				
-					
 					return replyUL.html(str); 
 				}
 				
 				for (var i = 0, len = list.length || 0; i < len; i++) {
-					str += "<div class='left clearfix' data-rno='" + list[i].reply_id + "'>";
-					str += "<div>"+ "<div class='header'>"+ "<strong class='primary-font'>"
-								+ list[i].user_nickname+ "</strong>";
+					str += "<div class='left clearfix' id='reply_id" + list[i].reply_id + "'>";
+					str += "<div>"+ "<div class='header'>"+ "<strong class='primary-font'>" + list[i].user_nickname+ "</strong>";
 					str += "<small class='pull-right text-muted'>" + replyService.displayTime(list[i].reply_regdate) + "</small></div>"
 					str += "<c:if test='${member.user_nickname eq oracleview.user_nickname}'>"
 					str += "<div class='col-md-12' style='padding-left : 0 !important; padding-right : 0 !important; padding-bottom : 40px;'>"
 					str += "<div class='pull-right text-muted'>"
-					str += "<button type='submit' data-oper='modify' class='btn btn-info btn-sm mr-2'>수정"
-					str += "</button>"
-					str += "<button type='submit' data-oper='list' class='btn btn-danger btn-sm'>삭제"
+					str += "<a href='javascript:void(0)' onclick='updateviewBtn(" + list[i].reply_id + ",\"" + list[i].reply_regdate+"\", \""+ list[i].reply_contents+"\", \""+ list[i].user_nickname +"\")' class='btn btn-info btn-sm mr-2'>수정"
+					str += "</a>"
+					str += "<button type='submit' data-oper='list' class='btn btn-danger btn-sm'>삭제미구현"
 					str += "</button>"
 					str += "</div>"
 					str += "</div>"
@@ -272,59 +269,51 @@
 				}
 				replyUL.html(str);
 			}); //end getlsit function
-		} // end showlist
+		}; // end showlist
+		
+		
+		function updateviewBtn(reply_id, reply_regdate, reply_contents,user_nickname) {
+			var updatestr = "";
+				updatestr += "<div class='left clearfix' id='reply_id" + reply_id + "'>";
+				updatestr += "<div>"+ "<div class='header'>"+ "<strong class='primary-font'>" + user_nickname + "</strong>";
+				updatestr += "<small class='pull-right text-muted'></small></div>";
+				updatestr += "<c:if test='${member.user_nickname eq oracleview.user_nickname}'>";
+				updatestr += "<div class='col-md-12' style='padding-left : 0 !important; padding-right : 0 !important; padding-bottom : 40px;'>";
+				updatestr += "<div class='pull-right text-muted'>";
+				updatestr += '<a href="javascript:void(0)" class="btn btn-info btn-sm mr-2"';
+				updatestr += 'onclick="updateBtn('+ reply_id + ',\'' + user_nickname + '\')" >수정완료';
+				updatestr += "</a>";
+				updatestr += "<button type='submit' data-oper='list' class='btn btn-danger btn-sm'>취소";
+				updatestr += "</button>";
+				updatestr += "</div>";
+				updatestr += "</div>";
+				updatestr += "</c:if>";
+				updatestr += "<textarea id='reply_edit_content' style='font-size : 16px;'>" + reply_contents + "</textarea >";
+				updatestr += "</div>";
+				updatestr += "<p style='border : 1px solid #d9d9d9; margin-top : 40px;'>";
+ 				updatestr += "</div>";
+					$('#reply_id'+reply_id).replaceWith(updatestr);
+					$('#reply_id'+reply_id+'#reply_contents').focus();
+		        };
+		        
+		        function updateBtn(reply_id){
+		    		var reply_content = $("#reply_edit_content").val();
+		    		
+		    		$.ajax({
+		    			url: '/reply/'+reply_id+'/'+reply_content,
+		    			type : 'POST',
+		    			dataType: 'json',
+		    			success: function(result){
+		    			   	showList(1);
+		    			}
+		    			, error: function(error){
+		    				console.log("에러 : " + error);
+		    			}
+		    		});
+		    		
+		    	};
 
-// 		console.log("=============================================");
-// 		console.log("JS TEST");
-
-// 		replyService.getList({post_id : postValue,page : 1},function(list) {
-// 			for (var i = 0, len = list.length || 0; i < len; i++) {
-// 				console.log(list[i]);
-// 			}
-// 		}); 
-						//reply add test 용
-// 		replyService.add({reply_contents: "JS TEST", user_nickname: "tester", post_id : postValue},
-// 			function(result) {
-// 								alert("결과는: " +result);
-// 						}); 
-
-// 						replyService.remove(36, function(count) {
-// 							console.log(count);
-// 							if(count === "success"){
-// 								alert("삭제됨");
-// 								}
-// 							}, function(err) {
-// 								alert("Error...");
-// 						}); 
-
-// 						replyService.update({
-// 							reply_id : 19,
-// 							post_id : postValue,
-// 							reply_contents : "1120댓글수정"
-// 						}, function(result) {
-// 							alert("수정완료");
-// 						}, function(err) {
-// 							alert("수정Error...");
-// 						}); // 19번 댓글 수정 
-
-// 						replyService.get(10, function(data) {
-// 							console.log(data);
-// 						}, function(err) {
-// 							alert("get Error...");
-// 						}); 
-
-						var operForm = $("#operForm");
-						$("button[data/='modify']").on("click",function(e) {
-							var reply_id = replyForm.find("input[name='replyid']");
-							operForm.attr("action", "/reply/reply_id").submit();
-						});
-						
-						$("button[data-oper='list']").on("click", function(e) {
-							operForm.find("#post_id").remove();
-							operForm.attr("action", "/reply/list").submit();
-						});
-
-					});
+	
 </script>
 </body>
 <!-- END BODY -->

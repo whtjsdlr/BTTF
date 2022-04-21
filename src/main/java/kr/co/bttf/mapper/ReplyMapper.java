@@ -15,10 +15,12 @@ public interface ReplyMapper {
 	
 	public int delete (Long reply_id); // 댓글을 삭제한다.
 	
-	public int update (ReplyVO vo); // 댓글을 수정 한다.
+	//public int update (ReplyVO vo); // 댓글을 수정 한다.
 	
 	public List<ReplyVO> getListWithPaging(
 			@Param("cri") Criteria cri, 
 			@Param("post_id") Long post_id); // 댓글 목록(페이징)
 	
+	public void replyupdate(ReplyVO replybean);
+
 }
