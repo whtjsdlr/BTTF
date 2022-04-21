@@ -2,6 +2,7 @@ package kr.co.bttf.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -9,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import kr.co.bttf.domain.OracleBoardVO;
+import kr.co.bttf.domain.HeartVO;
 
 @Repository
 public class OracleBoardDAOImpl implements OracleBoardDAO {
@@ -64,5 +66,28 @@ public class OracleBoardDAOImpl implements OracleBoardDAO {
 	public void oraclebookmark(HashMap<String, Integer> postid_useridx) {
 		
 		sql.insert(namespace + ".oraclebookmark", postid_useridx);
+	}
+	
+	@Override
+	public HeartVO findHeart(Map<String, Integer> post_useridx) throws Exception {
+		return sql.selectOne(namespace + ".findHeart", post_useridx);
+	}
+	
+	// 좋아요가 DB에 있는지 확인
+	@Override
+	public HeartVO findHeart(HeartVO heart) {
+		return sql.selectOne(namespace + ".findHeart2",heart);
+	}
+
+	// 좋아요 정보(heart_table에 게시글 번호, 회원 번호) 저장
+	@Override
+	public int insertHeart(HeartVO heart) {
+		return sql.insert(namespace + ".insertHeart", heart);
+	}
+
+	// 좋아요 삭제
+	@Override
+	public void deleteHeart(HeartVO heart) {
+		sql.delete(namespace + ".deleteHeart",heart);
 	}
 }

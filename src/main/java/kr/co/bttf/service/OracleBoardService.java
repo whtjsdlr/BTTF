@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import kr.co.bttf.domain.OracleBoardVO;
+import kr.co.bttf.domain.HeartVO;
 
 public interface OracleBoardService {
 	
@@ -34,4 +35,9 @@ public interface OracleBoardService {
 	// 게시글 북마크 설정
 	public void oraclebookmark(HashMap<String, Integer> postid_useridx) throws Exception;
 
+	//좋아요 체크
+	public HeartVO findHeart(int post_id_oracle, int user_index) throws Exception;
+	
+	public int insertHeart(HeartVO heart)throws Exception;
+	
 }

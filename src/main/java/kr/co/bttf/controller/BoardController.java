@@ -11,9 +11,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.bttf.domain.CssBoardVO;
@@ -23,6 +25,7 @@ import kr.co.bttf.domain.JsBoardVO;
 import kr.co.bttf.domain.JspBoardVO;
 import kr.co.bttf.domain.MemberVO;
 import kr.co.bttf.domain.OracleBoardVO;
+import kr.co.bttf.domain.HeartVO;
 import kr.co.bttf.domain.ReplyVO;
 import kr.co.bttf.domain.SpringBoardVO;
 import kr.co.bttf.service.CssBoardService;
@@ -832,6 +835,7 @@ public class BoardController {
 		List<OracleBoardVO> oraclelist = null;
 		oraclelist = oracleService.oracleList();
 		model.addAttribute("oraclelist", oraclelist);
+		
 	}
 	
 	// 6-2. write페이지이동
@@ -852,7 +856,7 @@ public class BoardController {
 	
 	// 6-3. 게시물 상세보기 페이지 이동
 	@RequestMapping(value = "/oracleview", method = RequestMethod.GET)
-	public void oracleView(@RequestParam("post_id") int post_id, Model model, @RequestParam(defaultValue="1") int curPage, ModelAndView mav, HttpSession session) throws Exception {
+	public void oracleView(@RequestParam("post_id") int post_id, @RequestParam("user_index") int user_index, Model model, @RequestParam(defaultValue="1") int curPage, ModelAndView mav, HttpSession session) throws Exception {
 		
 		// 상세보기 시 조회수 갱신
 		int oraclevcnt = 0;
@@ -869,6 +873,13 @@ public class BoardController {
 		
 		OracleBoardVO vo = oracleService.oracleView(post_id);
 		model.addAttribute("oracleview", vo);
+		
+		// 아래부터 좋아요 기능 시 추가되는 부분
+		HeartVO heart = new HeartVO();
+		// 좋아요가 되있는지 찾기위해 게시글번호와 회원번호를 보냄.
+		heart = oracleService.findHeart(post_id, user_index);
+		// 찾은 정보를 heart로 담아서 보냄
+		model.addAttribute("heart",heart);
 	}
 		
 		
@@ -963,27 +974,26 @@ public class BoardController {
 		int result = oracleService.oraclebookmarklist(postid_useridx);
 		
 		try {
-			
 			if(result==1) {
-				
 				ScriptUtils.alertAndMovePage(res, "이미 북마크에 추가된 게시글입니다. ", "http://localhost:9090/board/oracleview?post_id=" + post_id);
-			
 			} else {
-				
 				//게시글 북마크에추가
 				oracleService.oraclebookmark(postid_useridx);
 				ScriptUtils.alertAndMovePage(res, "게시글이 북마크에 추가되었습니다. ", "http://localhost:9090/board/oracleview?post_id=" + post_id);
-				
 			}
-			
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		 
-
 	}
 	
+	// 좋아요
+	@ResponseBody
+	@RequestMapping(value="/heart",method=RequestMethod.POST)
+	public int heart(@ModelAttribute HeartVO heart) throws Exception {
+		int result = oracleService.insertHeart(heart);
+		return result;
+	}
 	
 	/* --------------------------------
 				07. SPRING

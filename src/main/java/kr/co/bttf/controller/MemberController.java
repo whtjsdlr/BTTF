@@ -42,11 +42,11 @@ public class MemberController {
 	}
 	
 	// 닉네임 중복체크
-		@ResponseBody
-		@RequestMapping(value = "/nickcheck", method = RequestMethod.POST)
-		public int nickcheck(MemberVO vo) throws Exception {
-			int result2 = service.nickcheck(vo);
-			return result2;
+	@ResponseBody
+	@RequestMapping(value = "/nickcheck", method = RequestMethod.POST)
+	public int nickcheck(MemberVO vo) throws Exception {
+		int result2 = service.nickcheck(vo);
+		return result2;
 	}
 		
 	// 회원 가입 get

@@ -105,6 +105,8 @@
 	                        		<a href="/board/oraclelist" class="btn btn-default mt-4" id="edit" type="submit">글 목록</a>
 									<c:if test="${member.user_nickname != oracleview.user_nickname && member != null && oracleview.user_nickname != 'admin'}">
 										<a href="/board/oraclebookmark?post_id=${oracleview.post_id }&user_index=${member.user_index }" class="btn btn-default mt-4">북마크</a>
+										<a class="text-dark heart" style="text-decoration-line: none;">
+											<img id="heart" src="/resources/img/heart.png"></a>
 										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#memberreport" data-whatever="@getbootstrap" style="float: right;" >작성자 신고</button>
 									</c:if>
                               	 </div>
@@ -325,6 +327,42 @@
 						});
 
 					});
+</script>
+<script>
+     $(document).ready(function () {
+				
+ 	// 좋아요가 있는지 확인한 값을 heartval에 저장
+         var heartval = ${heart.heart}
+         // heartval이 1이면 좋아요가 이미 되있는것이므로 heart-fill.svg를 출력하는 코드
+         if(heartval>0) {
+             console.log(heartval);
+             $("#heart").prop("src", "/resources/img/heart-fill.png");
+             $(".heart").prop('name',heartval)
+         }
+         else {
+             console.log(heartval);
+             $("#heart").prop("src", "/resources/img/heart.png");
+             $(".heart").prop('name',heartval)
+         }
+
+ 	// 좋아요 버튼을 클릭 시 실행되는 코드
+         $(".heart").on("click", function () {
+             var that = $(".heart");
+ 	    $.ajax({
+ 	    	url :'/board/heart',
+ 	        type :'POST',
+ 	        data : {'post_id':${oracleview.post_id}, 'user_index':${member.user_index}},
+ 	    	success : function(data){
+ 	    		that.prop('name',data);
+ 	        	if(data==1) {
+ 	            	     $('#heart').prop("src","/resources/img/heart-fill.png");
+ 	        	} else {
+                     	     $('#heart').prop("src","/resources/img/heart.png");
+ 	        	}
+              	}
+ 	    });
+         });
+     });
 </script>
 </body>
 <!-- END BODY -->

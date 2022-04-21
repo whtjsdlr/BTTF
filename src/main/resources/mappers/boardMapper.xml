@@ -350,7 +350,23 @@
 		values (#{user_index} ,#{post_id} , 6) 
 	</insert>
 	
-
+	<!-- 좋아요 체크 -->
+	<select id="findHeart" parameterType="hashmap" resultType="kr.co.bttf.domain.HeartVO">
+		select * from heart where post_id_oracle=#{post_id} and user_index=#{user_index}
+	</select>
+	
+	<select id="findHeart2" parameterType="kr.co.bttf.domain.HeartVO" resultType="kr.co.bttf.domain.HeartVO">
+		select * from heart where post_id_oracle=#{post_id} and user_index=#{user_index}
+	</select>
+	
+	<insert id="insertHeart" parameterType="kr.co.bttf.domain.HeartVO">
+		insert into heart(post_id_oracle, user_index, heart)
+		values(#{post_id}, #{user_index}, 1)
+	</insert>
+	
+	<delete id="deleteHeart" parameterType="kr.co.bttf.domain.HeartVO">
+		delete from heart where post_id_oracle=#{post_id} and user_index=#{user_index}
+	</delete>
 <!-- 
 ========================================
 			06. SPRING
