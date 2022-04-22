@@ -48,10 +48,8 @@ public class ReplyController {
 		return new ResponseEntity<>(service.get(reply_id), HttpStatus.OK);
 	}
 	
-	@DeleteMapping(value = "/{reply_id}", produces = {MediaType.TEXT_PLAIN_VALUE})
+	@PostMapping(value = "/{reply_id}", produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> remove(@PathVariable("reply_id") Long reply_id){
-		System.out.println("리플라이컨트롤러에서 삭제" + reply_id);
-		System.out.println("post_id를 넘겨받는가?444444444");
 		return service.remove(reply_id) == 1?
 				new ResponseEntity<>("success", HttpStatus.OK) :
 					new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

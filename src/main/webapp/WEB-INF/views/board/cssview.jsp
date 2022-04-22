@@ -102,86 +102,8 @@
 										<a href="/board/cssbookmark?post_id=${cssview.post_id }&user_index=${member.user_index }" class="btn btn-default mt-4">북마크</a>
 										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#memberreport" data-whatever="@getbootstrap" style="float: right;" >작성자 신고</button>
 									</c:if>
-<!-- 	                        		<p style="transform: translate(0%,62%); color: #000 !important;">댓글 개수 : </p> -->
                               	 </div>
                             </form>
-							
-           					<!-- 댓글 작성 -->
-           					<div class="card" id="result ">
-	                            <div class="card-body">
-	                                <!-- Comment form-->
-	                                <form name="replyForm" method="post" class="mb-4 d-flex">
-	                                	<textarea id="replytext" class="form-control mr-5" rows="2" placeholder="댓글을 작성하세요"></textarea>
-	                                	<a href="/reply/cssReplyWrite" id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;">작성하기</a>
-	                                </form>
-	                                <!-- Comment with nested comments-->
-	                                <div class="d-flex mb-4 mt-10">
-	                                    <!-- Parent comment-->
-	                                    <div class="flex-shrink-0 mr-4">
-<!-- 	                                    	<img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /> -->
-	                                    </div>
-	                                    <div class="ms-3" style="width : 100%;">
-	                                        <div class="fw-bold">
-			                                    <h3>Commenter Name</h3>
-	                                        	<div style=" clear: both; float: right; position: relative; top: 0; left: 4px;">
-		                                        	<a href="/reply/cssReplyModify" id="btnUpdate" class="btn btn-info btn-sm">수정</a>
-		                                        	<a href="/reply/cssReplyDelete" class="btn btn-danger btn-sm">삭제</a>
-	                                        	</div>
-	                                        </div>
-	                                        If you're going to lead a space frontier, it has to be government; it'll never be private enterprise. Because the space frontier is dangerous, and it's expensive, and it has unquantified risks.
-	                                       
-	                                        <!-- Child comment 1-->
-	                                        <div class="d-flex mt-4">
-	                                            <div class="flex-shrink-0 mr-4 col-sm-offset-1">
-<!-- 	                                            	<img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /> -->
-	                                            </div>
-	                                            <div class="ms-3" style="width : 100%;">
-	                                                <div class="fw-bold">
-			                                        	<h3>Commenter Name</h3>
-	                                                	<div style=" clear: both; float: right; position: relative; top: 0; left: 4px;">
-				                                        	<a href="/reply/cssReplyModify" class="btn btn-info btn-sm">수정</a>
-				                                        	<a href="/reply/cssReplyDelete" class="btn btn-danger btn-sm">삭제</a>
-			                                        	</div>
-	                                                </div>
-	                                                And under those conditions, you cannot establish a capital-market evaluation of that enterprise. You can't get investors.
-	                                            </div>
-	                                        </div>
-	                                        
-	                                        <!-- Child comment 2-->
-	                                        <div class="d-flex mt-4 ">
-	                                            <div class="flex-shrink-0 mr-4 col-sm-offset-1">
-<!-- 	                                            	<img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /> -->
-	                                            </div>
-	                                            <div class="ms-3" style="width : 100%;">
-	                                                <div class="fw-bold">
-			                                        	<h3>Commenter Name</h3>
-		                                                <div style=" clear: both; float: right; position: relative; top: 0; left: 4px;">
-				                                        	<a href="/reply/cssReplyModify" class="btn btn-info btn-sm">수정</a>
-				                                        	<a href="/reply/cssReplyDelete" class="btn btn-danger btn-sm">삭제</a>
-			                                        	</div>
-	                                                </div>
-               											When you put money directly to a problem, it makes a good headline.
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                </div>
-	                                <!-- Single comment-->
-	                                <div class="d-flex">
-	                                    <div class="flex-shrink-0 mr-4">
-	                                    </div>
-	                                    <div class="ms-3" style="width : 100%;">
-	                                        <div class="fw-bold">
-	                                        	<h3>Commenter Name</h3>
-	                                        	<div style=" clear: both; float: right; position: relative; top: 0; left: 4px;">
-		                                        	<a href="#" class="btn btn-info btn-sm">수정</a>
-		                                        	<a href="#" class="btn btn-danger btn-sm">삭제</a>
-	                                        	</div>
-	                                        </div>   
-	                                        When I look at the universe and all the ways the universe wants to kill us, I find it hard to reconcile that with statements of beneficence.
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
                         </div>
                     </div>
                 </div>
@@ -300,86 +222,9 @@
             } );
     </script>
     <script src="../../../resources/js/confirm.js"></script>
+    <script src="../../../resources/js/maxreport.js"></script>
 </body>
 <!-- END BODY -->
-<script>
-// 	//[글 수정하기] function
-// 	function updateReadonlyBoard( post_id ){
-// 	   document.getElementById( post_id ).readOnly = false;
-// 	}
-	
 
-	// [글 삭제] function
-	function deletePost(post_id){
-		if (true){
-			document.replyForm.action = "${pageContext.request.contextPath}/pages/cssDelete.do?post_id="+post_id;
-			document.replyForm.submit();
-		}
-	}
-	
-	// [댓글 수정하기] function
-	function updateReadonlyReply( reply_id ){
-		document.getElementById( 'reply' + reply_id ).readOnly = false;
-		
-// 		document.getElementById( 'editfail' ).style.display = 'block'; 
-// 		document.getElementById( 'editsubmitfail' ).style.display = 'none'; 
-		// 수정하기 버튼 none, 수정완료(펑션) block
-	}
-	
-	// [댓글 수정] function
-	function updateReply( reply_id ){
-		if (true){
-			document.replyForm.action = "${pageContext.request.contextPath}/pages/cssUpdateReply.do?reply_id="+reply_id;
-			document.replyForm.submit();
-			// 수정하기 버튼 block, 수정완료(펑션) none
-		}
-	}
-	
-	// [댓글삭제] function
-	function deleteReply( reply_id ){
-		if (true){
-			document.replyForm.action = "${pageContext.request.contextPath}/pages/cssDeleteReply.do?reply_id="+reply_id;
-			document.replyForm.submit();
-		}
-	}
-	
-</script>
-
-<script type="text/javascript">
-
-
-// 설정 시작
-var maxChecked = 1;
-var totalChecked = 0;
-// 설정 끝
-function CountChecked(field) {
-if (field.checked)
-totalChecked += 1;
-else
-totalChecked -= 1; 
-if (totalChecked > maxChecked) {
-alert ("신고사유를 1가지만 선택하세요.");
-field.checked = false;
-totalChecked -= 1;
-} 
-}
-function ResetCount(){
-totalChecked = 0;
-}
-</script>
-<script type="text/javascript">
-  (function(d, s) {
-      var j, e = d.getElementsByTagName(s)[0];
-
-      if (typeof LivereTower === 'function') { return; }
-
-      j = d.createElement(s);
-      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-      j.async = true;
-
-      0
-      e.parentNode.insertBefore(j, e);
-  })(document, 'script');
-</script>
 
 </html>
