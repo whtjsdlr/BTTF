@@ -177,8 +177,12 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int bookmarkdelete(Map<String, Object> board_category_nameid) throws Exception {
 		
-		int result = sql.delete(namespace+".bookmarkdelete", board_category_nameid);
+		String board_category_name = (String) board_category_nameid.get("board_category_name");
 		
+		Integer results = sql.delete(namespace + ".bookmarkdelete_"+board_category_name, board_category_nameid);
+		
+		int result = results.intValue();
+				
 		return result;
 	}
 	

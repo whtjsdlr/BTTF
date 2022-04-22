@@ -162,8 +162,15 @@ public class MemberController {
 	
 	//마이페이지 이동
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
-	public void mypageModify(@RequestParam("user_index") int user_index, @RequestParam("user_nickname") String user_nickname, Model model) throws Exception {
+	public void mypageModify(@RequestParam("user_index") int user_index, Model model, 
+							HttpServletRequest req, HttpSession session) throws Exception {
+		
 		logger.info("mypage");
+		
+		HttpSession sessionout = req.getSession();  // 현재 세션 정보를 가져옴
+		
+		MemberVO member = (MemberVO) sessionout.getAttribute("member");
+		String user_nickname = member.getUser_nickname();
 		
 		//작성한 글 수
 		int mypostcnt = service.mypostcnt(user_index);
@@ -189,44 +196,17 @@ public class MemberController {
 	public String bookmarkdelete(@RequestParam("board_category_name") String board_category_name, 
 								@RequestParam("post_id") int post_id,  
 								@RequestParam("user_index") int user_index) throws Exception {
-				
-		int board_category_id = 0;
-		
-		switch(board_category_name) {
-			case "html": 
-				board_category_id = 1;
-				break;
-			case "css": 
-				board_category_id = 2;
-				break;
-			case "javascript": 
-				board_category_id = 3;
-				break;
-			case "jsp":
-				board_category_id = 4;
-				break;
-			case "java":
-				board_category_id = 5;	
-				break;
-			case "oracle":
-				board_category_id = 6;	
-				break;
-			case "spring":
-				board_category_id = 7;	
-				break;
-		}
-		
+
 		Map<String, Object> board_category_nameid = new HashMap<String, Object>();
 		
 		board_category_nameid.put("user_index", user_index);
-		board_category_nameid.put("board_category_name", board_category_name);
-		board_category_nameid.put("board_category_id", board_category_id);
 		board_category_nameid.put("post_id", post_id);
-		
+		board_category_nameid.put("board_category_name", board_category_name);
+			
 		int result = service.bookmarkdelete(board_category_nameid);
 	
 		if(result==1){
-			return "redirect:http://localhost:9090/";			
+			return "redirect:/member/mypage?user_index="+user_index;
 		} else {
 			return "redirect:/index";
 		}
