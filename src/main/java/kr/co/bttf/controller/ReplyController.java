@@ -16,18 +16,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kr.co.bttf.domain.ReplyVO;
-import kr.co.bttf.service.ReplyService;
+import kr.co.bttf.domain.OracleReplyVO;
+import kr.co.bttf.service.OracleReplyService;
 
 @RestController
 @RequestMapping("/reply/*")
 public class ReplyController {
 
 	@Inject
-	private ReplyService service;
+	private OracleReplyService service;
 	
 	@PostMapping(value = "/new", consumes = "application/json;charset=utf-8", produces = {MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> create(@RequestBody ReplyVO reply){
+	public ResponseEntity<String> create(@RequestBody OracleReplyVO reply){
 		if (service.register(reply) == 1) {
 			return new ResponseEntity<>("success", HttpStatus.OK);
 			
@@ -36,7 +36,7 @@ public class ReplyController {
 		}
 	
 	@GetMapping(value = "/page/{post_id}/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<List<ReplyVO>> getList(
+	public ResponseEntity<List<OracleReplyVO>> getList(
 			@PathVariable("page") int page,
 			@PathVariable("post_id") Long post_id){
 		Criteria crit = new Criteria(page, 10);
@@ -44,7 +44,7 @@ public class ReplyController {
 	}
 	
 	@GetMapping(value = "/{reply_id}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<ReplyVO> get(@PathVariable("reply_id") Long reply_id){
+	public ResponseEntity<OracleReplyVO> get(@PathVariable("reply_id") Long reply_id){
 		return new ResponseEntity<>(service.get(reply_id), HttpStatus.OK);
 	}
 	
@@ -60,7 +60,7 @@ public class ReplyController {
 	public Map<String, Object> replyupdate(@PathVariable int reply_id, @PathVariable String reply_contents) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
-			ReplyVO replybean = new ReplyVO();
+			OracleReplyVO replybean = new OracleReplyVO();
 			replybean.setReply_id(reply_id);
 			replybean.setReply_contents(reply_contents);
 			service.replyupdate(replybean);
