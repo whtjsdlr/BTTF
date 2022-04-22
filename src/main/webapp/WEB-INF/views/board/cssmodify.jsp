@@ -77,7 +77,7 @@
                     <div class="wow fadeInLeft" data-wow-duration=".3" data-wow-delay=".3s">
                         <div class="my_box" data-height="height">
                             <!-- Start write Form -->
-							<form name = "cssedit" action="${pageContext.request.contextPath }/board/cssedit" method="post">
+							<form name = "cssmodify" action="${pageContext.request.contextPath }/board/cssedit" method="post">
 								<input type="hidden" name="post_id" value="${cssview.post_id }">
 								<div class="col-auto">
 									<label for="subject">제목</label>
@@ -85,7 +85,7 @@
 									<textarea id="editor" name="post_contents" class="form-control" placeholder="내용을 입력해 주세요." 
 									style="height: 650px; resize: none;">${cssview.post_contents }</textarea>
                                 </div> 
-                            <a href="javascript:document.cssedit.submit()" class="btn btn-info mt-4" id="writesuccess">작성완료</a>
+                            <a href="javascript:document.cssmodify.submit()" class="btn btn-info mt-4" id="writesuccess">작성완료</a>
                         	<a href="${pageContext.request.contextPath }/board/csslist" class="btn btn-default mt-4" id="edit" type="submit">글 목록</a>
                             </form>
                         </div>

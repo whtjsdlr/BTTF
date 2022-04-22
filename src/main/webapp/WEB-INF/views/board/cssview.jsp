@@ -106,7 +106,7 @@
 							                                
 	                        	<div class="mb-5">
 									<c:if test="${member.user_nickname eq cssview.user_nickname}">
-		 		                    	<a href="/board/cssedit?post_id=${cssview.post_id }" class="btn btn-primary mt-4" id="list" type="submit">글수정</a>                          
+		 		                    	<a href="/board/cssmodify?post_id=${cssview.post_id }" class="btn btn-primary mt-4" id="list" type="submit">글수정</a>                          
 				                		<a href="/board/cssdelete?post_id=${cssview.post_id }&mypage=" class="btn btn-danger mt-4" id="list" type="submit">글삭제</a>
 				                		<p style=" transform: translate(0%,62%); color: #000 !important; ">댓글 개수 : </p>
 									</c:if> 
