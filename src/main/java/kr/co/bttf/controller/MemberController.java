@@ -95,7 +95,6 @@ public class MemberController {
 		
 		if(loginSuccess) {
 			session.setAttribute("member", loginInfo);  // member 세션에 로그인 정보를 부여
-
 			ScriptUtils.alertAndMovePage(res, loginInfo.getUser_nickname()+"님 환영합니다.", "http://localhost:9090");
 		}else {
 			session.setAttribute("member", null);

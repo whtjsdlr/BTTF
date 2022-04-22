@@ -1,57 +1,49 @@
-//package kr.co.bttf.service;
-//
-//import java.util.HashMap;
-//import java.util.List;
-//
-//import javax.inject.Inject;
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpSession;
-//
-//import org.springframework.stereotype.Service;
-//import org.springframework.web.bind.annotation.RequestParam;
-//
-//import kr.co.bttf.controller.Criteria;
-//import kr.co.bttf.dao.OracleReplyDAO;
-//import kr.co.bttf.domain.MemberVO;
-////import kr.co.bttf.domain.OracleReplyVO;
-//import kr.co.bttf.domain.ReplyVO;
-//
-//@Service
-//public class OracleReplyServiceImpl implements OracleReplyService {
-//
-//	@Inject
-//	private OracleReplyDAO dao;
-//
-//	// 댓글 목록
-//	@Override
-//	public List<ReplyVO> oracleReplyList(Criteria cri, int post_id) throws Exception {
-////		List<OracleReplyVO> oracleReplyList =
-//		return dao.oracleReplyList(cri, post_id);
-//	}
-//
-//	// 댓글 작성
-//	@Override
-//	public int oracleReplyWrite(ReplyVO vo) throws Exception {
-//
-//		return dao.oracleReplyWrite(vo);
-//	}
-//
-//	// 댓글 수정
-//	@Override
-//	public int oracleReplyModify(ReplyVO vo) throws Exception {
-//		return dao.oracleReplyModify(vo);
-//	}
-//
-//	// 댓글 삭제
-//	@Override
-//	public int oracleReplyDelete(ReplyVO vo) throws Exception {
-//		return dao.oracleReplyDelete(vo);
-//
-//	}
-//
-//	@Override
-//	public int oracleCount(int post_id) throws Exception {
-//		return dao.oracleCount(post_id);
-//	}
-//
-//}
+package kr.co.bttf.service;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import kr.co.bttf.controller.Criteria;
+import kr.co.bttf.domain.OracleReplyVO;
+import kr.co.bttf.mapper.OracleReplyMapper;
+import lombok.Setter;
+
+@Service
+public class OracleReplyServiceImpl implements OracleReplyService {
+	
+	
+	@Inject
+	private OracleReplyMapper mapper;
+
+	@Override
+	public int register(OracleReplyVO vo) {
+		System.out.println("service 들어옴");
+		return mapper.insert(vo);
+	}
+
+	@Override
+	public OracleReplyVO get(Long reply_id) {
+		return mapper.read(reply_id);
+	}
+
+	@Override
+	public void replyupdate(OracleReplyVO replybean){
+		mapper.replyupdate(replybean);
+	}
+
+	@Override
+	public List<OracleReplyVO> getList(Criteria cri, Long post_id) {
+		return mapper.getListWithPaging(cri, post_id);
+	}
+	
+	@Override
+	public int remove(Long reply_id) {
+		return mapper.delete(reply_id);
+	}
+
+
+}
