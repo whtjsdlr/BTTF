@@ -328,15 +328,17 @@ public class BoardController {
 			
 		
 			if(map == null) {
-				//처음 추천 누른것
 				
+				//처음 추천 누른것
 				cssService.insertRecBtn(post_useridx); //recommend 테이블에 데이터 인서트
 				cssService.updateRecCntPlus(post_useridx); // 게시글의 추천수 테이블 +1
 				resultCode = 1;
 				
 			} else if (Integer.parseInt(map.get("recommend_check").toString())==0) {
 				
-				cssService.insertRecBtn(post_useridx); //recommend 테이블에 데이터 인서트
+				//추천이 처음은 아니고 취소했다가 다시 눌렀을때
+				post_useridx.put("recommend_check", recommend_check);
+				cssService.updateRecCheck(post_useridx); // 게시글의 추천수 테이블 +1
 				cssService.updateRecCntPlus(post_useridx); // 게시글의 추천수 테이블 +1
 				resultCode = 1; 
 			} else {
