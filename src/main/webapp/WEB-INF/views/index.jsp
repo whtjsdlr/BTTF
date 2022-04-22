@@ -120,9 +120,9 @@
                             <div class="service-info">
                                 <h3>JAVASCRIPT</h3>
                                 <p class="margin-b-5">Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
-                                <a class="link" href="#">Read More</a>
+                                <a class="link" href="/board/jslist">Read More</a>
                             </div>
-                            <a href="#" class="content-wrapper-link"></a>
+                            <a href="/board/jslist" class="content-wrapper-link"></a>
                         </div>
                     </div>
                 </div>
@@ -152,9 +152,9 @@
 	                            <div class="service-info">
 	                                <h3>JSP</h3>
 	                                <p class="margin-b-5">Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
-	                                <a class="link" href="#">Read More</a>
+	                                <a class="link" href="/board/jsplist">Read More</a>
 	                            </div>
-	                            <a href="#" class="content-wrapper-link"></a>
+	                            <a href="/board/jsplist" class="content-wrapper-link"></a>
 	                        </div>
 	                    </div>
 	                </div>
@@ -162,14 +162,14 @@
 	                    <div class="wow fadeInLeft" data-wow-duration=".3" data-wow-delay=".5s">
 	                        <div class="service" data-height="height">
 	                            <div class="service-element">
-	                                <i class="service-icon fas fa-leaf"></i>
+	                                <i class="service-icon fas fa-database"></i>
 	                            </div>
 	                            <div class="service-info">
-	                                <h3>SPRING</h3>
+	                                <h3>ORACLE</h3>
 	                                <p class="margin-b-5">Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
-	                                <a class="link" href="#">Read More</a>
+	                                <a class="link" href="/board/oraclelist">Read More</a>
 	                            </div>
-	                            <a href="#" class="content-wrapper-link"></a>
+	                            <a href="/board/oraclelist" class="content-wrapper-link"></a>
 	                        </div>
 	                    </div>
 	                </div>
@@ -177,14 +177,14 @@
 	                    <div class="wow fadeInLeft" data-wow-duration=".3" data-wow-delay=".6s">
 	                        <div class="service" data-height="height">
 	                            <div class="service-element">
-	                                <i class="service-icon fas fa-database"></i>
+	                                <i class="service-icon fas fa-leaf"></i>
 	                            </div>
 	                            <div class="service-info">
-	                                <h3>ORACLE</h3>
+	                                <h3>SPRING</h3>
 	                                <p class="margin-b-5">Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
-	                                <a class="link" href="#">Read More</a>
+	                                <a class="link" href="/board/springlist">Read More</a>
 	                            </div>
-	                            <a href="#" class="content-wrapper-link"></a>
+	                            <a href="/board/springlist" class="content-wrapper-link"></a>
 	                        </div>
 	                    </div>
 	                </div>
@@ -211,7 +211,7 @@
                         <img class="img-responsive" src="../../resources/img/970x647/01.jpg" alt="Latest Products Image">
                     </div>
                 </div>
-                <h4><a href="#">박지율</a> <span class="text-uppercase margin-l-20">리더</span></h4>
+                <h4><a>박지율</a> <span class="text-uppercase margin-l-20">리더</span></h4>
                 <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed tempor incdidunt ut laboret dolor magna ut
                     consequat siad esqudiat dolor</p>
             </div>
@@ -224,7 +224,7 @@
                         <img class="img-responsive" src="../../resources/img/970x647/content_sub2.png" alt="Latest Products Image">
                     </div>
                 </div>
-                <h4><a href="#">이초록</a> <span class="text-uppercase margin-l-20">부 리더</span></h4>
+                <h4><a>이초록</a> <span class="text-uppercase margin-l-20">부 리더</span></h4>
                 <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed tempor incdidunt ut laboret dolor magna ut
                     consequat siad esqudiat dolor</p>
             </div>
@@ -237,7 +237,7 @@
                         <img class="img-responsive" src="../../resources/img/970x647/03.jpg" alt="Latest Products Image">
                     </div>
                 </div>
-                <h4><a href="#">조선익</a> <span class="text-uppercase margin-l-20">크루원</span></h4>
+                <h4><a>조선익</a> <span class="text-uppercase margin-l-20">크루원</span></h4>
                 <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed tempor incdidunt ut laboret dolor magna ut
                     consequat siad esqudiat dolor</p>
             </div>
@@ -252,7 +252,7 @@
                         <img class="img-responsive" src="../../resources/img/970x647/01.jpg" alt="Latest Products Image">
                     </div>
                 </div>
-                <h4><a href="#">주수진</a> <span class="text-uppercase margin-l-20">크루원</span></h4>
+                <h4><a>주수진</a> <span class="text-uppercase margin-l-20">크루원</span></h4>
                 <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed tempor incdidunt ut laboret dolor magna ut
                     consequat siad esqudiat dolor</p>
             </div>
@@ -265,7 +265,7 @@
                         <img class="img-responsive" src="../../resources/img/970x647/02.jpg" alt="Latest Products Image">
                     </div>
                 </div>
-                <h4><a href="#">정진형</a> <span class="text-uppercase margin-l-20">크루원</span></h4>
+                <h4><a>정진형</a> <span class="text-uppercase margin-l-20">크루원</span></h4>
                 <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed tempor incdidunt ut laboret dolor magna ut
                     consequat siad esqudiat dolor</p>
             </div>
@@ -276,7 +276,19 @@
                         <img class="img-responsive" src="../../resources/img/970x647/03.jpg" alt="Latest Products Image">
                     </div>
                 </div>
-                <h4><a href="#">김선경</a> <span class="text-uppercase margin-l-20">크루원</span></h4>
+                <h4><a>김선경</a> <span class="text-uppercase margin-l-20">크루원</span></h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed tempor incdidunt ut laboret dolor magna ut
+                    consequat siad esqudiat dolor</p>
+            </div>
+            <!-- End Latest Products -->
+            <!-- Latest Products -->
+            <div class="col-sm-4 sm-margin-b-50 mt-4">
+                <div class="margin-b-20">
+                    <div class="wow zoomIn" data-wow-duration=".3" data-wow-delay=".1s">
+                        <img class="img-responsive" src="../../resources/img/970x647/02.jpg" alt="Latest Products Image">
+                    </div>
+                </div>
+                <h4><a>이다인</a> <span class="text-uppercase margin-l-20">크루원</span></h4>
                 <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed tempor incdidunt ut laboret dolor magna ut
                     consequat siad esqudiat dolor</p>
             </div>
