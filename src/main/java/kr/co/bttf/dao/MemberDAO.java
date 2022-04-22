@@ -59,6 +59,9 @@ public interface MemberDAO {
 	// 마이페이지 작성한 댓글 수
 	public int myreplycnt(String user_nickname) throws Exception;
 	
+	// 마이페이지 받은 추천 수
+	public int myrecommendcnt(int user_index) throws Exception;
+	
 	// 마이페이지 작성한 글 목록 조회
 	public List<BoardVO> mypostlist(int user_index) throws Exception;
 		

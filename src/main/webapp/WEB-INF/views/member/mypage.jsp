@@ -91,9 +91,7 @@
                             <div class="my_box_my_page_info">
                                 <h3>작성한 글 수</h3>
                                 <p class="margin-b-5">${mypostcnt} 개</p>
-                                <!-- <a class="link" href="html5.html">Read More</a> -->
                             </div>
-                            <!-- <a href="html5.html" class="content-wrapper-link"></a> -->
                         </div>
                     </div>
                 </div>
@@ -106,9 +104,7 @@
                             <div class="my_box_my_page_info">
                                 <h3>작성한 댓글 수</h3>
                                 <p class="margin-b-5">${myreplycnt} 개</p>
-                                <!-- <a class="link" href="html5.html">Read More</a> -->
                             </div>
-                            <!-- <a href="html5.html" class="content-wrapper-link"></a> -->
                         </div>
                     </div>
                 </div>
@@ -120,10 +116,8 @@
                             </div>
                             <div class="my_box_my_page_info">
                                 <h3>받은 추천 수</h3>
-                                <p class="margin-b-5">${myrecomendcount}</p>
-                                <!-- <a class="link" href="html5.html">Read More</a> -->
+                                <p class="margin-b-5">${myrecommendcnt} 개</p>
                             </div>
-                            <!-- <a href="html5.html" class="content-wrapper-link"></a> -->
                         </div>
                     </div>
                 </div>
@@ -132,7 +126,6 @@
             <!--// end row -->
         </div>
     </div>
-
     
     <!-- End Service -->
 

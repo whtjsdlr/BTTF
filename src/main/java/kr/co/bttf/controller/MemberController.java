@@ -174,6 +174,8 @@ public class MemberController {
 		model.addAttribute("myreplycnt", myreplycnt);
 		
 		//받은 추천 수
+		int myrecommendcnt = service.myrecommendcnt(user_index);
+		model.addAttribute("myrecommendcnt", myrecommendcnt);
 		
 		//북마크한 글 list
 		List<BoardVO> mybookmarks = service.mybookmarks(user_index);
