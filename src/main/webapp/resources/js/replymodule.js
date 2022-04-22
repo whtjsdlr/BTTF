@@ -1,12 +1,7 @@
-/**
- * 
- */
-
-
-console.log("reply module.....")
 var replyService = (function(){
-	function get(rno, callback, error){
-		$.get("/replies/" + rno + ".json", function(result){
+
+	function get(reply_id, callback, error){
+		$.get("/reply/" + reply_id + ".json", function(result){
 			if(callback){
 				callback(result);
 			}
@@ -18,14 +13,11 @@ var replyService = (function(){
 	}
 	
 	function add(reply, callback){
-		console.log("reply.............");
-		
-		
 		$.ajax({
 			type: 'post',
-			url : '/replies/new',
-			data: JSON.stringify(reply),
-			contentType: "application/json;charset:utf-8",
+			url : '/reply/new',
+			data : JSON.stringify(reply),
+			contentType : 'application/json; charset=utf-8',
 			success: function(result, status, xhr){
 				if(callback){
 					callback(result);
@@ -39,10 +31,11 @@ var replyService = (function(){
 		});
 			
 	}
+	
 	function getList(param, callback, error){
-		var bno = param.bno;
+		var post_id = param.post_id;
 		var page = param.page || 1;
-		$.getJSON("/replies/page/" + bno + "/" + page + ".json", 
+		$.getJSON("/reply/page/" + post_id + "/" + page + ".json", 
 			function(data){
 				if(callback){
 					callback(data);
@@ -54,29 +47,11 @@ var replyService = (function(){
 			});
 	}
 	
-	function update(reply, callback, error){
-		console.log("Rno : " + reply.rno);
-		$.ajax({
-			type : 'patch',
-			url : '/replies/' + reply.rno,
-			data : JSON.stringify(reply),
-			contentType : "application/json;charset=utf-8",
-			success : function(result, status, xhr){
-				if(callback){
-					callback(result);
-				}
-			}, error : function(xhr, status, er){
-				if(error){
-					error(er);
-				}
-			}
-		});
-	}
 	
-	function remove(rno, callback, error) {
+	function remove(reply_id, callback, error) {
 			$.ajax({
 				type : 'delete',
-				url: "/replies/" + rno,
+				url: "/reply/" + reply_id,
 				success : function(deleteResult, status, xhr) {
 					if(callback){
 						callback(deleteResult);
@@ -115,7 +90,7 @@ var replyService = (function(){
 	return {add : add,
 			getList : getList,
 			remove : remove,
-			update : update,
 			get : get,
-			displayTime : displayTime};
-})();  //IIFE
+			displayTime : displayTime
+			};
+})();  
