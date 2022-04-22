@@ -2,6 +2,7 @@ package kr.co.bttf.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import kr.co.bttf.domain.CssBoardVO;
 
@@ -18,6 +19,9 @@ public interface CssBoardDAO {
 	
 	// 게시글 조회수
 	public int cssvcnt(int post_id) throws Exception;
+	
+	// 게시글 좋아요 확인
+	public Map<String, Object> recommendcheck(Map<String, Object> post_useridx);
 		
 	// 게시글 수정
 	public void cssEdit(CssBoardVO vo) throws Exception;
@@ -33,6 +37,23 @@ public interface CssBoardDAO {
 
 	// 게시글 북마크 설정
 	public void cssbookmark(HashMap<String, Integer> postid_useridx) throws Exception;
+
+	// 추천 테이블 인서트
+	public void insertRecBtn(Map<String, Object> post_useridx) throws Exception;
+
+	// 게시글 추천수 +1 업데이트
+	public void updateRecCntPlus(Map<String, Object> post_useridx) throws Exception;
+
+	// 추천 테이블 recommend_check 업데이트
+	public void updateRecCheck(Map<String, Object> post_useridx) throws Exception ;
+
+	// 게시글 추천수 -1 업데이트
+	public void updateRecCntMinus(Map<String, Object> post_useridx) throws Exception ;
+
+	//게시글 추천수 조회
+	public int getRecCnt(Map<String, Object> post_useridx) throws Exception;
+
+
 
 
 

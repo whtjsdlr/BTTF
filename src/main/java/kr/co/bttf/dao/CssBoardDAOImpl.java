@@ -2,6 +2,7 @@ package kr.co.bttf.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -61,8 +62,44 @@ public class CssBoardDAOImpl implements CssBoardDAO {
 	}
 
 	@Override
-	public void cssbookmark(HashMap<String, Integer> postid_useridx) {
+	public void cssbookmark(HashMap<String, Integer> postid_useridx) throws Exception {
 		
 		sql.insert(namespace + ".cssbookmark", postid_useridx);
+	}
+	
+	@Override
+	public Map<String, Object> recommendcheck(Map<String, Object> post_useridx) {
+		return sql.selectOne(namespace + ".recommendcheck", post_useridx);
+	}
+
+	@Override
+	public void insertRecBtn(Map<String, Object> post_useridx) throws Exception {
+
+		sql.insert(namespace +".insertRecBtn", post_useridx);
+		
+	}
+
+	@Override
+	public void updateRecCntPlus(Map<String, Object> post_useridx) throws Exception {
+
+		sql.update(namespace + ".updateRecCntPlus", post_useridx);
+	}
+
+	@Override
+	public void updateRecCheck(Map<String, Object> post_useridx) throws Exception  {
+
+		sql.update(namespace + ".updateRecCheck", post_useridx);
+	}
+
+	@Override
+	public void updateRecCntMinus(Map<String, Object> post_useridx) throws Exception  {
+
+		sql.update(namespace + ".updateRecCntMinus", post_useridx);
+	}
+
+	@Override
+	public int getRecCnt(Map<String, Object> post_useridx) throws Exception {
+
+		return sql.selectOne(namespace + ".getRecCnt", post_useridx);
 	}
 }
