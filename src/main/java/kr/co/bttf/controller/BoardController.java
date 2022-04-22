@@ -406,7 +406,7 @@ public class BoardController {
 	
 	
 	// 2-4. 게시물 수정 페이지 이동
-	@RequestMapping(value = "/cssedit", method = RequestMethod.GET)
+	@RequestMapping(value = "/cssmodify", method = RequestMethod.GET)
 	public void cssModify(@RequestParam("post_id") int post_id, Model model) throws Exception {
 
 		CssBoardVO vo = cssService.cssView(post_id);

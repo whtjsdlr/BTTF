@@ -113,7 +113,7 @@ public class MemberDAOImpl implements MemberDAO {
 		return result;
 	}
 	
-		@Override
+	@Override
 	public int mypostcnt(int user_index) throws Exception {
 
 		return sql.selectOne(namespace + ".mypostcnt", user_index);
@@ -124,6 +124,13 @@ public class MemberDAOImpl implements MemberDAO {
 	public int myreplycnt(String user_nickname) throws Exception {
 		
 		return sql.selectOne(namespace + ".myreplycnt", user_nickname);
+		
+	}
+	
+	@Override
+	public int myrecommendcnt(int user_index) throws Exception {
+
+		return sql.selectOne(namespace + ".myrecommendcnt", user_index);
 		
 	}
 

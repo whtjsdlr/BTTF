@@ -97,6 +97,16 @@
 			+ (select count(*) from reply_spring where user_nickname = #{user_nickname})
 	</select>
 	
+	<select id="myrecommendcnt" parameterType="_int" resultType="_int">
+		select (select IFNULL(sum(post_rec), 0) from html where user_index = #{user_index})
+			+ (select IFNULL(sum(post_rec), 0) from css where user_index = #{user_index})
+			+ (select IFNULL(sum(post_rec), 0) from javascript where user_index = #{user_index})
+			+ (select IFNULL(sum(post_rec), 0) from jsp where user_index = #{user_index})
+			+ (select IFNULL(sum(post_rec), 0) from java where user_index = #{user_index})
+			+ (select IFNULL(sum(post_rec), 0) from oracle where user_index = #{user_index})
+			+ (select IFNULL(sum(post_rec), 0) from spring where user_index = #{user_index})
+	</select>
+	
 	<select id="mypostlist" parameterType="_int" resultType="kr.co.bttf.domain.HtmlBoardVO">
 		select board_category_name, post_subject, post_rec ,user_nickname ,post_regdate ,post_id
 			from html h
@@ -258,4 +268,5 @@
 	</delete>
 	
 	
+
 </mapper>

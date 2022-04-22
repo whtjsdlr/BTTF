@@ -253,6 +253,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public int myrecommendcnt(int user_index) throws Exception {
+		
+		return dao.myrecommendcnt(user_index);
+	}
+	
+	@Override
 	public List<BoardVO> mypostlist(int user_index) throws Exception {
 		
 		return dao.mypostlist(user_index) ;
