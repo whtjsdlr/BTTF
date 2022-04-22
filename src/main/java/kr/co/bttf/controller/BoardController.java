@@ -27,7 +27,7 @@ import kr.co.bttf.domain.JsBoardVO;
 import kr.co.bttf.domain.JspBoardVO;
 import kr.co.bttf.domain.MemberVO;
 import kr.co.bttf.domain.OracleBoardVO;
-import kr.co.bttf.domain.ReplyVO;
+import kr.co.bttf.domain.OracleReplyVO;
 import kr.co.bttf.domain.SpringBoardVO;
 import kr.co.bttf.service.CssBoardService;
 import kr.co.bttf.service.HtmlBoardService;
@@ -1000,19 +1000,10 @@ public class BoardController {
 	// 6-3. 게시물 상세보기 페이지 이동
 	@RequestMapping(value = "/oracleview", method = RequestMethod.GET)
 	public void oracleView(@RequestParam("post_id") int post_id, Model model, @RequestParam(defaultValue="1") int curPage, ModelAndView mav, HttpSession session) throws Exception {
-		System.out.println("post_id_boardcontroller = " + post_id);
 		// 상세보기 시 조회수 갱신
 		int oraclevcnt = 0;
 		oracleService.oraclevcnt(post_id);
 		model.addAttribute("oraclevcnt", oraclevcnt);
-		
-//		// 상세보기 시 댓글 조회 및 댓글페이징
-//		int count = oracleReplyService.oracleCount(post_id);
-//		ReplyPager replyPager = new ReplyPager(count, curPage);
-//		int start = replyPager.getPageBegin();
-//		int end = replyPager.getPageEnd();
-//		List<OracleReplyVO> oraclereplylist = oracleReplyService.oracleReplyList(post_id, start, end, session);
-//		model.addAttribute("oraclereplylist", oraclereplylist);
 		
 		OracleBoardVO vo = oracleService.oracleView(post_id);
 		model.addAttribute("oracleview", vo);
