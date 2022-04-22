@@ -170,7 +170,7 @@
 			                    		<td>${mybookmarks.post_rec}</td>
 			                    		<td>${mybookmarks.user_nickname}</td>
 			                    		<td><fmt:formatDate value="${mybookmarks.post_regdate}" pattern="yyyy-MM-dd" /></td>
-			                    		<td><a class="btn btn-danger" href="/board/${mybookmarks.board_category_name }delete?post_id=${mybookmarks.post_id }&mypage=right">삭제</a></td>
+			                    		<td><a class="btn btn-danger" href="/member/bookmarkdelete?board_category_name=${mybookmarks.board_category_name}&post_id=${mybookmarks.post_id }&user_index=${member.user_index}">삭제</a></td>
 			                    	</tr>
 			                    </c:forEach>
 	                    	</c:when>
@@ -203,7 +203,7 @@
 	                        <th>추천수</th>
 	                        <th>작성자</th>
 	                        <th>작성일자</th>
-							<th>내 게시물관리</th>
+							<th>내가 쓴 게시물관리</th>
 	                    </tr>
                     </thead>
                     <tbody>

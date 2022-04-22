@@ -2,6 +2,7 @@ package kr.co.bttf.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -63,12 +64,15 @@ public interface MemberService {
 	public List<BoardVO> mybookmarks(int user_index) throws Exception;
 	
 	// 마이페이지 - 수정하기 화면
-	public MemberVO mypage_view(int user_index);
+	public MemberVO mypage_view(int user_index) throws Exception;
 	
 	// 마이페이지 - 수정하기 (DB) 
-	public int mypage_update(MemberVO member);
+	public int mypage_update(MemberVO member) throws Exception;
 	
 	// 마이페이지 - 회원탈퇴
-	public int joinout(int user_index);
+	public int joinout(int user_index) throws Exception;
+	
+	// 북마크한 글 삭제
+	public int bookmarkdelete(Map<String, Object> board_category_nameid) throws Exception;
 
 }

@@ -216,5 +216,10 @@
 		update user_all set avaliability_category_id = 4 where user_index = #{user_index}
 	</update>
 	
+	<delete id ="bookmarkdelete" parameterType="map">
+		delete from post_bookmark 
+		where board_category_id = #{board_category_id} and post_id_spring = #{post_id} and user_index = #{user_index}
+	</delete>
+	
 
 </mapper>

@@ -41,6 +41,8 @@
     <!-- c3 chart -->
     <link href="../../../resources/vendor/c3-0.7.20/c3.css" rel="stylesheet">
     
+    <!--reply style -->
+    <link href="../../../resources/css/comment.css">
    
     <style type="text/css">
        .remove{
@@ -265,9 +267,8 @@
 	<!-- ALERT SECTION -->
     <script src="../../../resources/js/confirm.js"></script>
     <script src="../../../resources/js/maxreport.js"></script>
-	<script>
-   		
-    </script>
+    <script src="../../../resources/js/boardheart.js"></script>
+    
     <script>
         ClassicEditor
             .create( document.querySelector( '#classic' ))
@@ -356,7 +357,7 @@
 				updatestr += "</div>";
 				updatestr += "</div>";
 				updatestr += "</c:if>";
-				updatestr += "<textarea id='reply_edit_content' style='font-size : 16px;'>" + reply_contents + "</textarea >";
+				updatestr += "<textarea id='reply_edit_content' style='font-size : 16px; resize: none; width:100%;'>" + reply_contents + "</textarea >";
 				updatestr += "</div>";
 				updatestr += "<p style='border : 1px solid #d9d9d9; margin-top : 40px;'>";
  				updatestr += "</div>";
@@ -382,7 +383,6 @@
 		    	};
 		    	
 		    	function fn_deleteReply(reply_id){
-		    		alert("fn 들어옴");
 		    		var paramData = {"reply_id": reply_id};
 		    		$.ajax({
 		    			url: '/reply/'+reply_id

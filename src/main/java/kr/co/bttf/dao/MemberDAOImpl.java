@@ -3,6 +3,7 @@ package kr.co.bttf.dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
@@ -169,6 +170,14 @@ public class MemberDAOImpl implements MemberDAO {
 	public int joinout(int user_index) {
 
 		int result = sql.update(namespace + ".joinout", user_index);
+		
+		return result;
+	}
+
+	@Override
+	public int bookmarkdelete(Map<String, Object> board_category_nameid) throws Exception {
+		
+		int result = sql.delete(namespace+".bookmarkdelete", board_category_nameid);
 		
 		return result;
 	}
