@@ -189,7 +189,7 @@
 	}
 
 	
-	// 사용자가 입력한 이름 변수에 담아주기
+	// 사용자가 입력한 닉네임 변수에 담아주기
 	var my_nickname = '<c:out value="${member.user_nickname }"/>'
 	
 	
