@@ -134,8 +134,8 @@
 <!-- 2-10. 추천 테이블에 추천 추가 -->
 	<insert id = "insertRecBtn" parameterType="map">
 		insert into recommend 
-		(post_id_css, user_index , board_category_id, recommend_check) values 
-		(#{post_id}, #{user_index}, 2, 1)
+		(post_id_css, user_index , recommend_check) values 
+		(#{post_id}, #{user_index}, 1)
 	</insert>
 	
 <!-- 	2-11. 해당 게시글에 추천수 업데이트 -->
