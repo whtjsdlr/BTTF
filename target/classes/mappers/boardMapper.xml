@@ -124,6 +124,42 @@
 		insert into post_bookmark (user_index, post_id_css ,board_category_id  ) 
 		values (#{user_index} ,#{post_id} , 2) 
 	</insert>
+	
+<!-- 	2-9. 게시글 추천 유무 확인-->
+	<select id = "recommendcheck" parameterType="map" resultType="map" >
+		select recommend_check from recommend 
+		where post_id_css = #{post_id} and user_index = #{user_index};
+	</select>
+
+<!-- 2-10. 추천 테이블에 추천 추가 -->
+	<insert id = "insertRecBtn" parameterType="map">
+		insert into recommend 
+		(post_id_css, user_index , board_category_id, recommend_check) values 
+		(#{post_id}, #{user_index}, 2, 1)
+	</insert>
+	
+<!-- 	2-11. 해당 게시글에 추천수 업데이트 -->
+	<update id ="updateRecCntPlus" parameterType="map">
+		update css set post_rec = post_rec + 1 where post_id = #{post_id}
+	</update>
+	
+	
+<!-- 	2-12. 추천 테이블 recommend_check 업데이트 -->
+	<update id="updateRecCheck" parameterType="map">
+		update recommend set recommend_check = #{recommend_check} 
+		where post_id_css = #{post_id} and user_index = #{user_index}
+	</update>
+	
+<!-- 	2-13. 해당 게시글에 추천수 업데이트 -->
+	<update id ="updateRecCntMinus" parameterType="map">
+		update css set post_rec = post_rec -1 where post_id = #{post_id}
+	</update>
+	
+<!-- 	2.14 해당 게시글의 추천수 조회 -->
+	<select id = "getRecCnt" parameterType="map" resultType="_int">
+		select post_rec from css where post_id = #{post_id}
+	</select>
+	
 <!-- 
 ========================================
 			03. JAVASCRIPT

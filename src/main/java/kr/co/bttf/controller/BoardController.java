@@ -1,19 +1,23 @@
 package kr.co.bttf.controller;
 
 import java.io.IOException;
+import java.lang.System.Logger;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.bttf.domain.CssBoardVO;
@@ -65,6 +69,7 @@ public class BoardController {
 //	
 	@Inject
 	private SpringBoardService springService;
+	
 	
 	/* --------------------------------
 				01. HTML
@@ -248,16 +253,155 @@ public class BoardController {
 
 	// 2-3. 게시물 상세보기 페이지 이동
 	@RequestMapping(value = "/cssview", method = RequestMethod.GET)
-	public void cssView(@RequestParam("post_id") int post_id, Model model) throws Exception {
+	public void cssView(@RequestParam("post_id") int post_id, Model model, HttpServletRequest req, HttpSession session) throws Exception {
 		
 		// 상세보기 시 조회수 갱신
 		int cssvcnt = 0;
 		cssService.cssvcnt(post_id);
 		model.addAttribute("cssvcnt", cssvcnt);
 		
-		CssBoardVO vo = cssService.cssView(post_id);
-		model.addAttribute("cssview", vo);
+
+		// 좋아요 눌렀는지 조회
+		HttpSession sessions = req.getSession();  // 현재 세션 정보를 가져옴
+			
+			// 현재 로그인해있는 user의 정보 가져오기
+			MemberVO member = (MemberVO) sessions.getAttribute("member");
+			
+			//로그인 되어있는 경우에만
+			if(member!=null) {
+				
+				int user_index = member.getUser_index();
+				
+				Map<String, Object> post_useridx = new HashMap<>();
+				
+				post_useridx.put("post_id", post_id);
+				post_useridx.put("user_index", user_index);
+				
+			
+				 try {
+					 	//사용자가 해당 글에 좋아요 누른적이 있는지 확인
+					 	Map<String, Object> recommendcheckmap = cssService.recommendcheck(post_useridx);
+						
+					 	
+						if(recommendcheckmap==null) {
+							//한번도 누른적이 없을때
+							model.addAttribute("recommend_check", 0);
+							
+						} else {
+							// 추천 누른적이 있을 때 (recommend 테이블에 데이터가 있을 때 )
+							model.addAttribute("recommend_check", recommendcheckmap.get("recommend_check"));
+						}
+				     
+						
+						
+				    } catch (Exception e) {
+				        e.printStackTrace();
+				    }
+				
+			} else {
+				
+				model.addAttribute("recommend_check", 0);
+			}
+			
+			CssBoardVO vo = cssService.cssView(post_id);
+			model.addAttribute("cssview", vo);
+		
 	}
+	
+	
+	// 좋아요 눌렀을 때 
+	@RequestMapping(value ="/clickRecommend", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> clickLike(@RequestParam Map<String,Object> post_useridx, HttpServletRequest req, HttpServletResponse res, HttpSession session) throws Exception{
+				
+		int resultCode = 1;
+		int recommend_check = 1;
+		Map<String,Object> map = new HashMap<>();
+		Map<String,Object> resultMap = new HashMap<>();
+		
+	
+		// 현재 로그인해있는 user의 정보 가져오기
+		try {
+			
+			// 추천 눌렀는지 조회하기
+			map = cssService.recommendcheck(post_useridx);
+			
+		
+			if(map == null) {
+				//처음 추천 누른것
+				
+				cssService.insertRecBtn(post_useridx); //recommend 테이블에 데이터 인서트
+				cssService.updateRecCntPlus(post_useridx); // 게시글의 추천수 테이블 +1
+				resultCode = 1;
+				
+			} else if (Integer.parseInt(map.get("recommend_check").toString())==0) {
+				
+				cssService.insertRecBtn(post_useridx); //recommend 테이블에 데이터 인서트
+				cssService.updateRecCntPlus(post_useridx); // 게시글의 추천수 테이블 +1
+				resultCode = 1; 
+			} else {
+				//추천 취소한거 recommend_check=0, 빈하트 되야됨
+				
+				recommend_check = 0;
+				post_useridx.put("recommend_check",recommend_check);
+				cssService.updateRecCheck(post_useridx); //  recommend 테이블에 recommend_check=0 으로 업데이트
+				cssService.updateRecCntMinus(post_useridx); // 게시글의 추천수 테이블 -1
+				resultCode = 0;
+				
+			}
+			
+			
+			
+			
+//			if(recCheck == 1) {
+//				//추천 취소한거 recommend_check=0, 빈하트 되야됨
+//				
+//				recommend_check = 0;
+//				post_useridx.put("recommend_check",recommend_check);
+//				cssService.updateRecCheck(post_useridx); //  recommend 테이블에 recommend_check=0 으로 업데이트
+//				cssService.updateRecCntMinus(post_useridx); // 게시글의 추천수 테이블 -1
+//				resultCode = 0;
+//				
+//			} else {
+//				// 추천을 누르는 경우 recommend_check=1, 꽉 찬 하트 되야됨
+//				
+//					if(map == null) {
+//						//처음 추천 누른것
+//						
+//						cssService.insertRecBtn(post_useridx); //recommend 테이블에 데이터 인서트
+//						
+//					} else if (recCheck == 0) {
+//						//추천이 처음은 아니고 취소했다가 다시 눌렀을때
+//						post_useridx.put("recommend_check", recommend_check);
+//						cssService.updateRecCheck(post_useridx); //recommend 테이블에 recommend_check=1 으로 업데이트
+//						
+//					}
+//					
+//					cssService.updateRecCntPlus(post_useridx); // 게시글의 추천수 테이블 +1
+//					resultCode = 1;
+//				
+//			}
+			
+			
+			
+			// 해당 게시글 테이블의 RecCnt칼럼 update가 끝난후 RecCnt값 가져옴
+			int post_rec = cssService.getRecCnt(post_useridx); 
+						
+			resultMap.put("post_rec", post_rec);
+			resultMap.put("recommend_check", recommend_check);
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			resultCode = -1;
+		}
+		
+		resultMap.put("resultCode", resultCode);
+		//resultCode가 1이면 빨간하트 0이면 빈하트
+		return resultMap;
+	}
+
+	
+	
 	
 	// 2-4. 게시물 수정 페이지 이동
 	@RequestMapping(value = "/cssedit", method = RequestMethod.GET)
@@ -371,6 +515,9 @@ public class BoardController {
 		 
 
 	}
+	
+	
+
 	
 	/* --------------------------------
 			03. JAVASCRIPT
@@ -1017,13 +1164,13 @@ public class BoardController {
 	@RequestMapping(value = "/springview", method = RequestMethod.GET)
 	public void springView(@RequestParam("post_id") int post_id, Model model) throws Exception {
 	
-	// 상세보기 시 조회수 갱신
-	int springvcnt = 0;
-	springService.springvcnt(post_id);
-	model.addAttribute("springvcnt", springvcnt);
-	
-	SpringBoardVO vo = springService.springView(post_id);
-	model.addAttribute("springview", vo);
+		// 상세보기 시 조회수 갱신
+		int springvcnt = 0;
+		springService.springvcnt(post_id);
+		model.addAttribute("springvcnt", springvcnt);
+		
+		SpringBoardVO vo = springService.springView(post_id);
+		model.addAttribute("springview", vo);
 	}
 	
 	// 7-4. 게시물 수정 페이지 이동

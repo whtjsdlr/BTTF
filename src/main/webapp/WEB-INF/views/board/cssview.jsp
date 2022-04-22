@@ -76,7 +76,8 @@
                         <div class="my_box" data-height="height">
                             <form method="post">
                                 <div class="col-md-6">
-									<input type="hidden" name="post_id" value="${cssview.post_id }">
+									<input type="hidden" name="user_index" id = "user_index" value="${member.user_index }">
+									<input type="hidden" name="post_id" id = "post_id" value="${cssview.post_id }">
                                     <p style="color: black; font-size: 2rem; font-weight:bold;">글 제목 : ${cssview.post_subject }</p>
                                 </div>
                                 <div class="col-md-2">
@@ -90,7 +91,19 @@
                                 </div>
                                 <div>
                                     <pre class="form-control" placeholder="내용을 입력해 주세요." style="height : 650px; resize: none; background-color: #fff;" disabled>${cssview.post_contents }</pre>
+	                                <c:choose>
+									    <c:when test="${recommend_check eq '0' or empty recommend_check}"> <!-- recommend_check가0이면 빈하트-->
+									        <img src="../../../resources/img/emptyheart.jpg" 
+									             id="btn_like" align="left" style="cursor:pointer; width: 50px;">
+									    </c:when>
+									    <c:otherwise> <!-- likecheck가1이면 빨간 하트-->
+									        <img src="../../../resources/img/fullheart.jpg" 
+									              id="btn_like" align="left" style="cursor:pointer; width: 50px;">
+									    </c:otherwise>
+									</c:choose>
+									<p id="post_rec" style="margin-left:5px;">${cssview.post_rec}</p>
                                 </div> 
+							                                
 	                        	<div class="mb-5">
 									<c:if test="${member.user_nickname eq cssview.user_nickname}">
 		 		                    	<a href="/board/cssedit?post_id=${cssview.post_id }" class="btn btn-primary mt-4" id="list" type="submit">글수정</a>                          
@@ -300,6 +313,7 @@
             } );
     </script>
     <script src="../../../resources/js/confirm.js"></script>
+    <script src="../../../resources/js/boardheart.js"></script>
 </body>
 <!-- END BODY -->
 <script>
@@ -380,6 +394,8 @@ totalChecked = 0;
       0
       e.parentNode.insertBefore(j, e);
   })(document, 'script');
+ 
 </script>
+
 
 </html>
