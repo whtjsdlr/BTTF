@@ -39,12 +39,12 @@ var btn_like = document.getElementById("btn_like");
                 }
                 else{
                     if(data.recommend_check == 1){
-                        $("#btn_like").attr("src","../../../resources/img/fullheart.jpg");
+                        $("#btn_like").attr("src","../../../resources/img/heart-fill.png");
                         $("#post_rec").empty();
                         $("#post_rec").append(data.post_rec);
                     }
                     else if (data.recommend_check == 0){
-                        $("#btn_like").attr("src","../../../resources/img/emptyheart.jpg");
+                        $("#btn_like").attr("src","../../../resources/img/heart.png");
                         $("#post_rec").empty();
                         $("#post_rec").append(data.post_rec);
                         

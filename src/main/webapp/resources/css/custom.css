@@ -1569,6 +1569,9 @@ pre{
 /* 4. footer end */
 
 
+.cen_img {
+	display:block; margin:auto; 
+}
 
 
 
