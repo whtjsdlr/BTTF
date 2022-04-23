@@ -191,6 +191,7 @@ public class MemberController {
 		//내가 작성한 글 list
 		List<BoardVO> mypostlist = service.mypostlist(user_index);
 		model.addAttribute("mypostlist", mypostlist);
+		
 	}
 	
 	//마이페이지 - 북마크한 글 삭제하기
