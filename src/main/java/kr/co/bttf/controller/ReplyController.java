@@ -34,7 +34,7 @@ public class ReplyController {
 	/* --------------------------------
 				02. CSS
 	-------------------------------- */
-	@PostMapping(value = "/new", consumes = "application/json;charset=utf-8", produces = {MediaType.TEXT_PLAIN_VALUE})
+	@PostMapping(value = "/cssnew", consumes = "application/json;charset=utf-8", produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> cssReplyCreate(@RequestBody CssReplyVO reply){
 		if (cssservice.register(reply) == 1) {
 			return new ResponseEntity<>("success", HttpStatus.OK);
@@ -43,7 +43,7 @@ public class ReplyController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	
-	@GetMapping(value = "/page/{post_id}/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+	@GetMapping(value = "/csspage/{post_id}/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<CssReplyVO>> cssReplyGetList(
 			@PathVariable("page") int page,
 			@PathVariable("post_id") Long post_id){
@@ -51,12 +51,12 @@ public class ReplyController {
 		return new ResponseEntity<>(cssservice.getList(crit, post_id), HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "/{reply_id}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+	@GetMapping(value = "/css/{reply_id}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<CssReplyVO> cssReplyGet(@PathVariable("reply_id") Long reply_id){
 		return new ResponseEntity<>(cssservice.get(reply_id), HttpStatus.OK);
 	}
 	
-	@PostMapping(value = "/{reply_id}", produces = {MediaType.TEXT_PLAIN_VALUE})
+	@PostMapping(value = "/css/{reply_id}", produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> cssReplyRemove(@PathVariable("reply_id") Long reply_id){
 		return cssservice.remove(reply_id) == 1?
 				new ResponseEntity<>("success", HttpStatus.OK) :
@@ -64,7 +64,7 @@ public class ReplyController {
 	}
 
 	
-	@PostMapping(value = "/{reply_id}/{reply_contents}")
+	@PostMapping(value = "/css/{reply_id}/{reply_contents}")
 	public Map<String, Object> cssReplyupdate(@PathVariable int reply_id, @PathVariable String reply_contents) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
@@ -84,7 +84,7 @@ public class ReplyController {
 	/* --------------------------------
 				06. ORACLE
 	-------------------------------- */
-	@PostMapping(value = "/new", consumes = "application/json;charset=utf-8", produces = {MediaType.TEXT_PLAIN_VALUE})
+	@PostMapping(value = "/oraclenew", consumes = "application/json;charset=utf-8", produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> oracleReplyCreate(@RequestBody OracleReplyVO reply){
 		if (oracleservice.register(reply) == 1) {
 			return new ResponseEntity<>("success", HttpStatus.OK);
@@ -93,7 +93,7 @@ public class ReplyController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	
-	@GetMapping(value = "/page/{post_id}/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+	@GetMapping(value = "/oraclepage/{post_id}/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<OracleReplyVO>> oracleReplyGetList(
 			@PathVariable("page") int page,
 			@PathVariable("post_id") Long post_id){
@@ -101,12 +101,12 @@ public class ReplyController {
 		return new ResponseEntity<>(oracleservice.getList(crit, post_id), HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "/{reply_id}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+	@GetMapping(value = "/oracle/{reply_id}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<OracleReplyVO> oracleReplyGet(@PathVariable("reply_id") Long reply_id){
 		return new ResponseEntity<>(oracleservice.get(reply_id), HttpStatus.OK);
 	}
 	
-	@PostMapping(value = "/{reply_id}", produces = {MediaType.TEXT_PLAIN_VALUE})
+	@PostMapping(value = "/oracle/{reply_id}", produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> oracleReplyRemove(@PathVariable("reply_id") Long reply_id){
 		return oracleservice.remove(reply_id) == 1?
 				new ResponseEntity<>("success", HttpStatus.OK) :
@@ -114,7 +114,7 @@ public class ReplyController {
 	}
 
 	
-	@PostMapping(value = "/{reply_id}/{reply_contents}")
+	@PostMapping(value = "/oracle/{reply_id}/{reply_contents}")
 	public Map<String, Object> oracleReplyUpdate(@PathVariable int reply_id, @PathVariable String reply_contents) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {

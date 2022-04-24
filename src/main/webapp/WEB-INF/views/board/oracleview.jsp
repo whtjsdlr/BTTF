@@ -369,7 +369,7 @@
 		    		var reply_content = $("#reply_edit_content").val();
 		    		
 		    		$.ajax({
-		    			url: '/reply/'+reply_id+'/'+reply_content,
+		    			url: '/oracle/reply/'+reply_id+'/'+reply_content,
 		    			type : 'POST',
 		    			dataType: 'json',
 		    			success: function(result){
@@ -385,7 +385,7 @@
 		    	function fn_deleteReply(reply_id){
 		    		var paramData = {"reply_id": reply_id};
 		    		$.ajax({
-		    			url: '/reply/'+reply_id
+		    			url: '/oracle/reply/'+reply_id
 		    			, data : paramData
 		    			, type : 'POST'
 		    			, dataType : 'text'
