@@ -100,6 +100,10 @@
 <!-- 				                		<p style=" transform: translate(0%,62%); color: #000 !important; ">댓글 개수 : </p> -->
 									</c:if> 
 	                        		<a href="/board/csslist" class="btn btn-default mt-4" id="edit" type="submit">글 목록</a>
+									<c:if test="${member.user_nickname != cssview.user_nickname && member != null && cssview.user_nickname != 'admin'}">
+										<a href="/board/cssbookmark?post_id=${cssview.post_id }&user_index=${member.user_index }" class="btn btn-default mt-4">북마크</a>
+										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#memberreport" data-whatever="@getbootstrap" style="float: right;" >작성자 신고</button>
+									</c:if>
 			                		<div style="text-align:center;">
 			                			<c:choose>
 									    	<c:when test="${recommend_check eq '0' or empty recommend_check}"> <!-- recommend_check가0이면 빈하트-->
@@ -109,12 +113,8 @@
 									        	<img src="../../../resources/img/heart-fill.png" id="btn_like" style="cursor:pointer; width: 50px;">
 									    	</c:otherwise>
 										</c:choose>
-									<p id="post_rec" style="color: #000;">${cssview.post_rec}</p>
+											<p id="post_rec" style="color: #000;">${cssview.post_rec}</p>
 									</div>
-									<c:if test="${member.user_nickname != cssview.user_nickname && member != null && cssview.user_nickname != 'admin'}">
-										<a href="/board/cssbookmark?post_id=${cssview.post_id }&user_index=${member.user_index }" class="btn btn-default mt-4">북마크</a>
-										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#memberreport" data-whatever="@getbootstrap" style="float: right;" >작성자 신고</button>
-									</c:if>
                               	 </div>
                             </form>
                         </div>
