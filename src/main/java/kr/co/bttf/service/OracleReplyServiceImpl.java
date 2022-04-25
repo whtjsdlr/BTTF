@@ -1,6 +1,8 @@
 package kr.co.bttf.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -59,38 +61,40 @@ public class OracleReplyServiceImpl implements OracleReplyService {
 	}
 
 	@Override
-	public ReplyVO get(Long reply_id, int board_category_id) {
+	public ReplyVO get(Map <String, Object> reply_id_category) {
 		
-		int result = 0;
+		ReplyVO vo = new ReplyVO();
+		
+		int board_category_id = (int) reply_id_category.get("reply_id_category");
+		Long reply_id = (Long) reply_id_category.get("reply_id");
 		
 		switch (board_category_id) {
 			case 1:
-				result = mapper.insert_html(vo);
+				vo = mapper.get_html(reply_id);
 				break;
 			case 2:
-				result = mapper.insert_css(vo);
+				vo = mapper.get_css(reply_id);
 				break;
 			case 3:
-				result = mapper.insert_javascript(vo);
+				vo = mapper.get_javascript(reply_id);
 				break;
 			case 4:
-				result = mapper.insert_jsp(vo);
+				vo = mapper.get_jsp(reply_id);
 				break;
 			case 5:
-				result = mapper.insert_java(vo);
+				vo = mapper.get_java(reply_id);
 				break;
 			case 6:
-				result = mapper.insert_oracle(vo);
+				vo = mapper.get_oracle(reply_id);
 				break;
 			case 7:
-				result = mapper.insert_spring(vo);
+				vo = mapper.get_spring(reply_id);
 				break;
 		}
 		
 		
-		return result;
+		return vo;
 		
-		return mapper.read(reply_id);
 	}
 
 	@Override
@@ -99,8 +103,40 @@ public class OracleReplyServiceImpl implements OracleReplyService {
 	}
 
 	@Override
-	public List<ReplyVO> getList(Criteria cri, Long post_id) {
-		return mapper.getListWithPaging(cri, post_id);
+	public List<ReplyVO> getList(Criteria cri, Map <String, Object> reply_id_category) {
+		
+		List<ReplyVO> result = new ArrayList<ReplyVO>();
+		
+		int board_category_id = (int )reply_id_category.get("board_category_id");
+//		int board_category_id_num = board_category_id.intValue();
+		
+		Long post_id = (Long) reply_id_category.get("post_id");
+		
+		switch (board_category_id) {
+		case 1:
+			result = mapper.getListWithPaging_html(cri, post_id);
+			break;
+		case 2:
+			result = mapper.getListWithPaging_css(cri, post_id);
+			break;
+		case 3:
+			result = mapper.getListWithPaging_javascript(cri, post_id);
+			break;
+		case 4:
+			result = mapper.getListWithPaging_jsp(cri, post_id);
+			break;
+		case 5:
+			result = mapper.getListWithPaging_java(cri, post_id);
+			break;
+		case 6:
+			result = mapper.getListWithPaging_oracle(cri, post_id);
+			break;
+		case 7:
+			result = mapper.getListWithPaging_spring(cri, post_id);
+			break;
+		}
+		
+		return result;
 	}
 	
 	@Override

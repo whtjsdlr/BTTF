@@ -326,7 +326,9 @@
 
 	function showList(page) {
 			var postValue = '<c:out value="${oracleview.post_id }"/>'
-			replyService.getList({post_id : postValue,page : page || 1},function(list) {
+			var board_category_idValue = '<c:out value="${oracleview.board_category_id}"/>'
+			
+			replyService.getList({ board_category_id : board_category_idValue, post_id : postValue, page : page || 1},function(list) {
 				var str = "";
 				if (list == null || list.length == 0) {
 					str +=	"<p class='text-center' style='font-size : 20px;'>댓글이 없습니다</p>"				

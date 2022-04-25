@@ -35,17 +35,30 @@ public class ReplyController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	
-	@GetMapping(value = "/page/{post_id}/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<List<ReplyVO>> getList(
+	@GetMapping(value = "/page/{board_category_id}/{post_id}/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<List<ReplyVO>> getList(			
+			@PathVariable("board_category_id") int board_category_id,
 			@PathVariable("page") int page,
 			@PathVariable("post_id") Long post_id){
+		
+		Map <String, Object> reply_id_category = new HashMap<String, Object>();
+		
+		reply_id_category.put("post_id", post_id);
+		reply_id_category.put("board_category_id", board_category_id);
+				
 		Criteria crit = new Criteria(page, 10);
-		return new ResponseEntity<>(service.getList(crit, post_id), HttpStatus.OK);
+		return new ResponseEntity<>(service.getList(crit, reply_id_category), HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/{reply_id}/{board_category_id}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<ReplyVO> get(@PathVariable("reply_id") Long reply_id, @PathVariable("board_category_id") int board_category_id){
-		return new ResponseEntity<>(service.get(reply_id, board_category_id), HttpStatus.OK);
+		
+		Map <String, Object> reply_id_category = new HashMap<String, Object>();
+		
+		reply_id_category.put("reply_id", reply_id);
+		reply_id_category.put("board_category_id", board_category_id);
+		
+		return new ResponseEntity<>(service.get(reply_id_category), HttpStatus.OK);
 	}
 	
 	@PostMapping(value = "/{reply_id}", produces = {MediaType.TEXT_PLAIN_VALUE})
