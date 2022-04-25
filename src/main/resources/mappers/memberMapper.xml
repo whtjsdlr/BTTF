@@ -153,7 +153,7 @@
 	
 	
 	<select id = "mybookmarks" parameterType="_int" resultType="kr.co.bttf.domain.HtmlBoardVO">
-		select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index
+		select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index, pb.bookmark_regdate 
 			from html h
 			inner join post_bookmark pb 
 			on h.post_id  = pb.post_id_html
@@ -161,7 +161,7 @@
 			on bc.board_category_id = pb.board_category_id  
 			having pb.user_index = #{user_index}
 		union 
-			select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index
+			select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index, pb.bookmark_regdate 
 			from css h
 			inner join post_bookmark pb 
 			on h.post_id  = pb.post_id_css
@@ -169,7 +169,7 @@
 			on bc.board_category_id = pb.board_category_id  
 			having pb.user_index = #{user_index}
 		union
-			select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index
+			select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index, pb.bookmark_regdate 
 			from javascript h
 			inner join post_bookmark pb 
 			on h.post_id  = pb.post_id_javascript
@@ -177,7 +177,7 @@
 			on bc.board_category_id = pb.board_category_id  
 			having pb.user_index = #{user_index}
 		union 
-			select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index
+			select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index, pb.bookmark_regdate 
 			from jsp h
 			inner join post_bookmark pb 
 			on h.post_id  = pb.post_id_jsp
@@ -185,7 +185,7 @@
 			on bc.board_category_id = pb.board_category_id  
 			having pb.user_index = #{user_index}
 		union 
-			select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index
+			select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index, pb.bookmark_regdate 
 			from java h
 			inner join post_bookmark pb 
 			on h.post_id  = pb.post_id_java
@@ -193,7 +193,7 @@
 			on bc.board_category_id = pb.board_category_id  
 			having pb.user_index = #{user_index}
 		union
-			select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index
+			select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index, pb.bookmark_regdate 
 			from oracle h
 			inner join post_bookmark pb 
 			on h.post_id  = pb.post_id_oracle
@@ -201,14 +201,14 @@
 			on bc.board_category_id = pb.board_category_id  
 			having pb.user_index = #{user_index}
 		union 
-			select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index
+			select bc.board_category_name ,post_subject , post_rec, user_nickname , post_regdate, h.post_id, pb.user_index, pb.bookmark_regdate 
 			from spring h
 			inner join post_bookmark pb 
 			on h.post_id  = pb.post_id_spring
 			inner join board_category bc 
 			on bc.board_category_id = pb.board_category_id  
 			having pb.user_index = #{user_index}
-			order by post_regdate desc;
+			order by bookmark_regdate desc;
 	</select>
 	
 	
