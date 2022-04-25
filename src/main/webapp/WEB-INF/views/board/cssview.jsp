@@ -126,10 +126,10 @@
 								<div class="modal-dialog">
 									<div class="modal-content">
 										<form name="Check" action="/board/oraclereport" id="reportForm" method ="get" >
-											<input type="text" style="display:none;" name="reportee_index" id="reportee_index" value="${csseview.user_index }">
+											<input type="text" style="display:none;" name="reportee_index" id="reportee_index" value="${cssview.user_index }">
 											<input type="text" style="display:none;" name="reporter_index" id="reporter_index" value="${member.user_index }">
-											<input type="text" style="display:none;" name="board_category_id" id="board_category_id" value="${csseview.board_category_id }">
-											<input type="text" style="display:none;" name="post_id" id="post_id" value="${csseview.post_id }">
+											<input type="text" style="display:none;" name="board_category_id" id="board_category_id" value="${cssview.board_category_id }">
+											<input type="text" style="display:none;" name="post_id" id="post_id" value="${cssview.post_id }">
 											<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 													<h4 class="modal-title" id="reportModalLabel">회원 신고</h4>
@@ -195,8 +195,8 @@
 									<div class="d-flex col-md-12 p-0" style="margin-bottom : 40px;">
 		                                <form id="replyForm" name="replyForm" method="post" class="mb-4 d-flex col-md-12 p-0" target=detail onsubmit="all_reset();">
 		                                	<input type="hidden" id="user_nickname" name="user_nickname" value="${member.user_nickname}">
-		                                	<input type="hidden" id="board_category_id" name="board_category_id" value="${csseview.board_category_id}">
-		                                	<input type="hidden" id="post_id" name="post_id" value="${csseview.post_id}">
+		                                	<input type="hidden" id="board_category_id" name="board_category_id" value="${cssview.board_category_id}">
+		                                	<input type="hidden" id="post_id" name="post_id" value="${cssview.post_id}">
 		                                	<input id="reply_contents" type="text" name="reply_contents" class="form-control mr-5" placeholder="댓글을 작성하세요" value="">
 		                                </form>
 										<input id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;" value="댓글쓰기" type="submit">
@@ -287,6 +287,8 @@
             .catch( error => {
                 console.error( error );
             } );
+        
+
     </script>
     
    	<script>
@@ -310,6 +312,7 @@
 	
 		
 		$("#btnReply").on("click", function(e){
+			
 			var postValue = '<c:out value="${cssview.post_id }"/>'
 			var reply = {
 					user_nickname : user_nickname.val(),					
@@ -327,7 +330,9 @@
 
 	function showList(page) {
 			var postValue = '<c:out value="${cssview.post_id }"/>'
-			replyService.getList({post_id : postValue,page : page || 1},function(list) {
+			var board_category_idValue = '<c:out value="${cssview.board_category_id}"/>'
+				
+			replyService.getList({board_category_id : board_category_idValue, post_id : postValue, page : page || 1},function(list) {
 				var str = "";
 				if (list == null || list.length == 0) {
 					str +=	"<p class='text-center' style='font-size : 20px;'>댓글이 없습니다</p>"				
@@ -338,7 +343,7 @@
 					str += "<div class='left clearfix' id='reply_id" + list[i].reply_id + "'>";
 					str += "<div>"+ "<div class='header'>"+ "<strong class='primary-font'>" + list[i].user_nickname+ "</strong>";
 					str += "<small class='pull-right text-muted'>" + replyService.displayTime(list[i].reply_regdate) + "</small></div>";
-					str += "<c:if test='${member.user_nickname eq oracleview.user_nickname}'>";
+					str += "<c:if test='${member.user_nickname eq cssview.user_nickname}'>";
 					str += "<div class='col-md-12' style='padding-left : 0 !important; padding-right : 0 !important; padding-bottom : 40px;'>";
 					str += "<div class='pull-right text-muted'>";
 					str += "<a href='javascript:void(0)' onclick='updateviewBtn(" + list[i].reply_id + ",\"" + list[i].reply_regdate+"\", \""+ list[i].reply_contents+"\", \""+ list[i].user_nickname +"\")' class='btn btn-info btn-sm mr-2'>수정";
@@ -363,7 +368,7 @@
 				updatestr += "<div class='left clearfix' id='reply_id" + reply_id + "'>";
 				updatestr += "<div>"+ "<div class='header'>"+ "<strong class='primary-font'>" + user_nickname + "</strong>";
 				updatestr += "<small class='pull-right text-muted'></small></div>";
-				updatestr += "<c:if test='${member.user_nickname eq oracleview.user_nickname}'>";
+				updatestr += "<c:if test='${member.user_nickname eq cssview.user_nickname}'>";
 				updatestr += "<div class='col-md-12' style='padding-left : 0 !important; padding-right : 0 !important; padding-bottom : 40px;'>";
 				updatestr += "<div class='pull-right text-muted'>";
 				updatestr += '<a href="javascript:void(0)" class="btn btn-info btn-sm mr-2"';

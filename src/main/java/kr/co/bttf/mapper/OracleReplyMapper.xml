@@ -35,19 +35,78 @@
 	</insert>
 	
 	
-	<select id="read" resultType="kr.co.bttf.domain.ReplyVO">
+	<select id="get_html" parameterType="map" resultType="kr.co.bttf.domain.ReplyVO">
+		select * from reply_html where reply_id = #{reply_id}
+	</select>
+	
+	<select id="get_css" parameterType="map" resultType="kr.co.bttf.domain.ReplyVO">
+		select * from reply_css where reply_id = #{reply_id}
+	</select>
+	
+	<select id="get_javascript" parameterType="map" resultType="kr.co.bttf.domain.ReplyVO">
+		select * from reply_javascript where reply_id = #{reply_id}
+	</select>
+	
+	<select id="get_jsp" parameterType="map" resultType="kr.co.bttf.domain.ReplyVO">
+		select * from reply_jsp where reply_id = #{reply_id}
+	</select>
+	
+	<select id="get_java" parameterType="map" resultType="kr.co.bttf.domain.ReplyVO">
+		select * from reply_java where reply_id = #{reply_id}
+	</select>
+	
+	<select id="get_oracle" parameterType="map" resultType="kr.co.bttf.domain.ReplyVO">
 		select * from reply_oracle where reply_id = #{reply_id}
 	</select>
+	
+	<select id="get_spring" parameterType="map" resultType="kr.co.bttf.domain.ReplyVO">
+		select * from reply_spring where reply_id = #{reply_id}
+	</select>
+	
+	
+	<select id="getListWithPaging_html" resultType="kr.co.bttf.domain.ReplyVO">
+		select reply_id, post_id, reply_contents, user_nickname, reply_regdate, reply_regdate_modified from reply_html
+			where post_id = #{post_id} order by reply_id asc
+	</select>
+	
+	<select id="getListWithPaging_css" resultType="kr.co.bttf.domain.ReplyVO">
+		select reply_id, post_id, reply_contents, user_nickname, reply_regdate, reply_regdate_modified from reply_css
+			where post_id = #{post_id} order by reply_id asc
+	</select>
+	
+	<select id="getListWithPaging_javascript" resultType="kr.co.bttf.domain.ReplyVO">
+		select reply_id, post_id, reply_contents, user_nickname, reply_regdate, reply_regdate_modified from reply_javascript
+			where post_id = #{post_id} order by reply_id asc
+	</select>
+	
+	<select id="getListWithPaging_jsp" resultType="kr.co.bttf.domain.ReplyVO">
+		select reply_id, post_id, reply_contents, user_nickname, reply_regdate, reply_regdate_modified from reply_jsp
+			where post_id = #{post_id} order by reply_id asc
+	</select>
+	
+	<select id="getListWithPaging_java" resultType="kr.co.bttf.domain.ReplyVO">
+		select reply_id, post_id, reply_contents, user_nickname, reply_regdate, reply_regdate_modified from reply_java
+			where post_id = #{post_id} order by reply_id asc
+	</select>
+	
+	<select id="getListWithPaging_oracle" resultType="kr.co.bttf.domain.ReplyVO">
+		select reply_id, post_id, reply_contents, user_nickname, reply_regdate, reply_regdate_modified from reply_oracle
+			where post_id = #{post_id} order by reply_id asc
+	</select>
+	
+	<select id="getListWithPaging_spring" resultType="kr.co.bttf.domain.ReplyVO">
+		select reply_id, post_id, reply_contents, user_nickname, reply_regdate, reply_regdate_modified from reply_spring
+			where post_id = #{post_id} order by reply_id asc
+	</select>
+	
+	
+	
 	<delete id="delete">
 		delete from reply_oracle where reply_id = #{reply_id}
 	</delete>
 	<update id="replyupdate">
 		update reply_oracle set reply_contents = #{reply_contents}, reply_regdate_modified = sysdate() where reply_id = #{reply_id}
 	</update>
-	<select id="getListWithPaging" resultType="kr.co.bttf.domain.ReplyVO">
-		select reply_id, post_id, reply_contents, user_nickname, reply_regdate, reply_regdate_modified from reply_oracle
-			where post_id = #{post_id} order by reply_id asc
-	</select>
 
 </mapper>
 

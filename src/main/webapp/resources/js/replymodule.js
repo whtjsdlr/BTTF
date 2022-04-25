@@ -30,8 +30,8 @@
 	
 var replyService = (function(){
 
-	function get(reply_id,board_category_id, callback, error){
-		$.get("/reply/" + reply_id + "/" +board_category_id + ".json", function(result){
+	function get(reply_id, board_category_id, callback, error){
+		$.get("/reply/" + reply_id + "/" +board_category_id+ ".json", function(result){
 			if(callback){
 				callback(result);
 			}
@@ -67,7 +67,9 @@ var replyService = (function(){
 	function getList(param, callback, error){
 		var post_id = param.post_id;
 		var page = param.page || 1;
-		$.getJSON("/reply/page/" + post_id + "/" + page + ".json", 
+		var board_category_id = param.board_category_id;
+		
+		$.getJSON("/reply/page/" + board_category_id + "/" + post_id + "/" + page + ".json", 
 			function(data){
 				if(callback){
 					callback(data);
@@ -78,6 +80,22 @@ var replyService = (function(){
 				}
 			});
 	}
+	
+	
+//	function getList(param, callback, error){
+//		var post_id = param.post_id;
+//		var page = param.page || 1;
+//		$.getJSON("/reply/page/" + post_id + "/" + page + ".json", 
+//			function(data){
+//				if(callback){
+//					callback(data);
+//				}
+//			}).fail(function(xhr, status, err){
+//				if(error){
+//					error();
+//				}
+//			});
+//	}
 	
 	
 	function remove(reply_id, callback, error) {
