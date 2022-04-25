@@ -1,7 +1,37 @@
+		var board_category_id = document.getElementById("board_category_id").value;
+		
+		var urls = '';
+		
+	switch(board_category_id){
+		case '1':
+			urls = 'html';
+			break;
+		case '2':
+			urls = 'css';
+			break;
+		case '3':
+			urls = 'javascript';
+			break;
+		case '4':
+			urls = 'jsp';
+			break;
+		case '5':
+			urls = 'java';
+			break;
+		case '6':
+			urls = 'oracle';
+			break;
+		case '7':
+			urls = 'spring';
+			break;
+	
+	}
+	
+	
 var replyService = (function(){
 
-	function get(reply_id, callback, error){
-		$.get("/reply/" + reply_id + ".json", function(result){
+	function get(reply_id,board_category_id, callback, error){
+		$.get("/reply/" + reply_id + "/" +board_category_id + ".json", function(result){
 			if(callback){
 				callback(result);
 			}
@@ -13,9 +43,11 @@ var replyService = (function(){
 	}
 	
 	function add(reply, callback){
+
+
 		$.ajax({
 			type: 'post',
-			url : '/reply/new',
+			url : '/reply/new/'+urls,
 			data : JSON.stringify(reply),
 			contentType : 'application/json; charset=utf-8',
 			success: function(result, status, xhr){

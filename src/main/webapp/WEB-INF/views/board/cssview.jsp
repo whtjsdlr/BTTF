@@ -48,6 +48,11 @@
        .remove{
           display : none;
        }
+       
+       .bg_white_pd{
+	   		background-color : white;
+	   		padding-bottom : 200px;
+       }
     </style>
 </head>
 <!-- END HEAD -->
@@ -71,7 +76,7 @@
     <div class="bg-color-sky-light" data-auto-height="true">
         <div class="content-lg container" style="margin-top : 50px;">
             <div class="row row-space-1 margin-b-2">
-                <div class="col-sm-12 sm-margin-b-2" style="margin-bottom: 20px;">
+                <div class="col-sm-12 sm-margin-b-2 bg_white_pd wow fadeInLeft" style="margin-bottom: 20px;">
                     <div class="wow fadeInLeft" data-wow-duration=".3" data-wow-delay=".3s">
                         <div class="my_box" data-height="height">
                             <form method="post">
@@ -97,7 +102,6 @@
 									<c:if test="${member.user_nickname eq cssview.user_nickname}">
 		 		                    	<a href="/board/cssmodify?post_id=${cssview.post_id }" class="btn btn-primary mt-4" id="list" type="submit">글수정</a>                          
 				                		<a href="/board/cssdelete?post_id=${cssview.post_id }&mypage=" class="btn btn-danger mt-4" id="list" type="submit">글삭제</a>
-<!-- 				                		<p style=" transform: translate(0%,62%); color: #000 !important; ">댓글 개수 : </p> -->
 									</c:if> 
 	                        		<a href="/board/csslist" class="btn btn-default mt-4" id="edit" type="submit">글 목록</a>
 									<c:if test="${member.user_nickname != cssview.user_nickname && member != null && cssview.user_nickname != 'admin'}">
@@ -117,6 +121,108 @@
 									</div>
                               	 </div>
                             </form>
+							<!--신고모달 시작 -->
+							<div class="modal fade" id="memberreport" tabindex="-1" role="dialog" aria-labelledby="memberreport" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<form name="Check" action="/board/oraclereport" id="reportForm" method ="get" >
+											<input type="text" style="display:none;" name="reportee_index" id="reportee_index" value="${csseview.user_index }">
+											<input type="text" style="display:none;" name="reporter_index" id="reporter_index" value="${member.user_index }">
+											<input type="text" style="display:none;" name="board_category_id" id="board_category_id" value="${csseview.board_category_id }">
+											<input type="text" style="display:none;" name="post_id" id="post_id" value="${csseview.post_id }">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+													<h4 class="modal-title" id="reportModalLabel">회원 신고</h4>
+											</div>
+											<div class="modal-body">
+												<div class="form-group">
+													<div class="form-check form-check-inline">
+													  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="1" id="report1" onclick=CountChecked(this) value="1">
+													  <label class="form-check-label" for="report1">욕설 등 부적절한 게시글, 댓글 또는 채팅</label>
+													</div>
+													<div class="form-check form-check-inline">
+													  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="2" id="report2" onclick=CountChecked(this) value="2">
+													  <label class="form-check-label" for="report2">갈등 조장, 불쾌감 조성 및 허위사실 유포성 게시글, 댓글 또는 채팅</label>
+													</div>
+													<div class="form-check form-check-inline">
+													  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="3" id="report3" onclick=CountChecked(this) value="3" >
+													  <label class="form-check-label" for="report3">악성코드/스파이웨어 유포성 게시글, 댓글 또는 채팅</label>
+													</div>
+													<div class="form-check form-check-inline">
+													  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="4" id="report4" onclick=CountChecked(this) value="4" >
+													  <label class="form-check-label" for="report4">도배성 게시글, 댓글 또는 채팅</label>
+													</div>	
+													<div class="form-check form-check-inline">
+													  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="5" id="report5" onclick=CountChecked(this) value="5" >
+													  <label class="form-check-label" for="report5">부적절한 홍보 게시글, 댓글 또는 채팅</label>
+													</div>	
+													<div class="form-check form-check-inline">
+													  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="6" id="report6" onclick=CountChecked(this) value="6" >
+													  <label class="form-check-label" for="report6">명예훼손/사생활 침해 및 저작권 침해 게시글, 댓글 또는 채팅</label>
+													</div>	
+													<div class="form-check form-check-inline">
+													  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="7" id="report7" onclick=CountChecked(this) value="7" >
+													  <label class="form-check-label" for="report7">음란성 또는 청소년에게 부적합한 게시글, 댓글 또는 채팅</label>
+													</div>	
+													<div class="form-check form-check-inline">
+													  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="8" id="report8" onclick=CountChecked(this) value="8" >
+													  <label class="form-check-label" for="report8">운영자 사칭 게시글, 댓글 또는 채팅</label>
+													</div>	
+													<div class="form-check form-check-inline">
+													  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="9" id="report9" onclick=CountChecked(this) value="9" >
+													  <label class="form-check-label" for="report9">개인정보 유포 게시글, 댓글 또는 채팅</label>
+													</div>	
+													<div class="form-check form-check-inline">
+													  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="10" id="report10" onclick=CountChecked(this) value="10" >
+													  <label class="form-check-label" for="report10">금전거래 유도 및 도박 조장 게시글, 댓글 또는 채팅</label>
+													</div>	
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">신고 취소</button>
+												<input type="submit" class="btn btn-danger" id="report" value="신고하기">
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<!--신고모달 끝 -->                            
+                            
+                           	<!-- 댓글 작성 시작-->
+							<div class="card" id="result ">
+	                            <div class="card-body">
+	                                <!-- Comment form-->
+									<div class="d-flex col-md-12 p-0" style="margin-bottom : 40px;">
+		                                <form id="replyForm" name="replyForm" method="post" class="mb-4 d-flex col-md-12 p-0" target=detail onsubmit="all_reset();">
+		                                	<input type="hidden" id="user_nickname" name="user_nickname" value="${member.user_nickname}">
+		                                	<input type="hidden" id="board_category_id" name="board_category_id" value="${csseview.board_category_id}">
+		                                	<input type="hidden" id="post_id" name="post_id" value="${csseview.post_id}">
+		                                	<input id="reply_contents" type="text" name="reply_contents" class="form-control mr-5" placeholder="댓글을 작성하세요" value="">
+		                                </form>
+										<input id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;" value="댓글쓰기" type="submit">
+									</div>
+	                               	<!-- Comment with nested comments-->
+	                               	<form id="operForm" >
+		                                <div id="getReplyList" class="chat">
+		                                	<c:choose>
+		                                		<c:when test="${reply != null and fn:length(reply) > 0 }">
+				                                 	<p>${reply.reply_id}</p>
+				                                	<c:forEach items="${reply }" var="reply">
+				                                		<input type="text" value="${reply.reply_id }" name = "replyid" >
+				                                		<input type="text" value="${reply.reply_contents }" name = "replycontents">
+				                                		<input type="text" value="${reply.user_nickname }" name = "replynickname">
+													</c:forEach>
+		                                		</c:when>
+		                                		<c:otherwise>													                                		
+														<c:out value="댓글이 없습니다." />
+		                                		</c:otherwise>
+		                                	</c:choose>
+		                                </div>
+	                                </form>
+	                            </div>
+	                        </div>     
+						<!-- 댓글 작성 끝-->
+                            
                         </div>
                     </div>
                 </div>
@@ -125,70 +231,6 @@
             <!--// end row -->
         </div>
     </div>				
-	<div class="modal fade" id="memberreport" tabindex="-1" role="dialog" aria-labelledby="memberreport" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form name="Check" action="/board/cssreport" id="reportForm" method ="get" >
-					<input type="text" style="display:none;" name="reportee_index" id="reportee_index" value="${cssview.user_index }">
-					<input type="text" style="display:none;" name="reporter_index" id="reporter_index" value="${member.user_index }">
-					<input type="text" style="display:none;" name="board_category_id" id="board_category_id" value="${cssview.board_category_id }">
-					<input type="text" style="display:none;" name="post_id" id="post_id" value="${cssview.post_id }">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<h4 class="modal-title" id="reportModalLabel">회원 신고</h4>
-					</div>
-					<div class="modal-body">
-						<div class="form-group">
-							<div class="form-check form-check-inline">
-							  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="1" id="report1" onclick=CountChecked(this) value="1">
-							  <label class="form-check-label" for="report1">욕설 등 부적절한 게시글, 댓글 또는 채팅</label>
-							</div>
-							<div class="form-check form-check-inline">
-							  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="2" id="report2" onclick=CountChecked(this) value="2">
-							  <label class="form-check-label" for="report2">갈등 조장, 불쾌감 조성 및 허위사실 유포성 게시글, 댓글 또는 채팅</label>
-							</div>
-							<div class="form-check form-check-inline">
-							  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="3" id="report3" onclick=CountChecked(this) value="3" >
-							  <label class="form-check-label" for="report3">악성코드/스파이웨어 유포성 게시글, 댓글 또는 채팅</label>
-							</div>
-							<div class="form-check form-check-inline">
-							  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="4" id="report4" onclick=CountChecked(this) value="4" >
-							  <label class="form-check-label" for="report4">도배성 게시글, 댓글 또는 채팅</label>
-							</div>	
-							<div class="form-check form-check-inline">
-							  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="5" id="report5" onclick=CountChecked(this) value="5" >
-							  <label class="form-check-label" for="report5">부적절한 홍보 게시글, 댓글 또는 채팅</label>
-							</div>	
-							<div class="form-check form-check-inline">
-							  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="6" id="report6" onclick=CountChecked(this) value="6" >
-							  <label class="form-check-label" for="report6">명예훼손/사생활 침해 및 저작권 침해 게시글, 댓글 또는 채팅</label>
-							</div>	
-							<div class="form-check form-check-inline">
-							  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="7" id="report7" onclick=CountChecked(this) value="7" >
-							  <label class="form-check-label" for="report7">음란성 또는 청소년에게 부적합한 게시글, 댓글 또는 채팅</label>
-							</div>	
-							<div class="form-check form-check-inline">
-							  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="8" id="report8" onclick=CountChecked(this) value="8" >
-							  <label class="form-check-label" for="report8">운영자 사칭 게시글, 댓글 또는 채팅</label>
-							</div>	
-							<div class="form-check form-check-inline">
-							  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="9" id="report9" onclick=CountChecked(this) value="9" >
-							  <label class="form-check-label" for="report9">개인정보 유포 게시글, 댓글 또는 채팅</label>
-							</div>	
-							<div class="form-check form-check-inline">
-							  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="10" id="report10" onclick=CountChecked(this) value="10" >
-							  <label class="form-check-label" for="report10">금전거래 유도 및 도박 조장 게시글, 댓글 또는 채팅</label>
-							</div>	
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">신고 취소</button>
-						<input type="submit" class="btn btn-danger" id="report" value="신고하기">
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
     <!-- End join Form -->
     <!--========== END PAGE LAYOUT ==========-->
 
@@ -213,7 +255,6 @@
     <!-- PAGE LEVEL PLUGINS -->
     <script src="../../../resources/vendor/jquery.easing.js" type="text/javascript"></script>
     <script src="../../../resources/vendor/jquery.back-to-top.js" type="text/javascript"></script>
-    <!--  <script src="vendor/jquery.smooth-scroll.js" type="text/javascript"></script> -->
     <script src="../../../resources/vendor/jquery.wow.min.js" type="text/javascript"></script>
     <script src="../../../resources/vendor/swiper/js/swiper.jquery.min.js" type="text/javascript"></script>
     <script src="../../../resources/vendor/masonry/jquery.masonry.pkgd.min.js" type="text/javascript"></script>
@@ -224,9 +265,22 @@
     <script src="../../../resources/js/components/wow.min.js" type="text/javascript"></script>
     <script src="../../../resources/js/components/swiper.min.js" type="text/javascript"></script>
     <script src="../../../resources/js/components/masonry.min.js" type="text/javascript"></script>
+    
+	<!-- Drop Down Menu -->
     <script src="../../../resources/js/action.js"></script>
+    
+	<!--CKEDITOR -->
     <script src="../../../resources/vendor/ckeditor5-build-classic/translations/ko.js"></script>
 	<script src="../../../resources/vendor/ckeditor5-build-classic/ckeditor.js"></script>
+	
+	<!-- REPLY AJAX -->
+	<script type="text/javascript" src="../../../resources/js/replymodule.js"></script>
+	
+	<!-- ALERT SECTION -->
+    <script src="../../../resources/js/confirm.js"></script>
+    <script src="../../../resources/js/maxreport.js"></script>
+    <script src="../../../resources/js/boardheart.js"></script>
+    
     <script>
         ClassicEditor
             .create( document.querySelector( '#classic' ))
@@ -234,9 +288,133 @@
                 console.error( error );
             } );
     </script>
-    <script src="../../../resources/js/confirm.js"></script>
-    <script src="../../../resources/js/maxreport.js"></script>
-    <script src="../../../resources/js/boardheart.js"></script>
+    
+   	<script>
+	function all_reset(){
+		document.replyForm.reset();
+	}
+	
+	function undo_process(){
+		showList(1);
+	}
+	
+		var postValue = '<c:out value="${cssview.post_id }"/>'
+		var replyUL = $(".chat");
+		showList(1);
+		var replyForm = $("#replyForm");
+		var user_nickname = replyForm.find("input[name='user_nickname']");
+		var reply_contents = replyForm.find("input[name='reply_contents']");
+		var reply_id = replyForm.find("input[name='replyid']");
+		var board_category_id = replyForm.find("input[name='board_category_id']");
+				
+	
+		
+		$("#btnReply").on("click", function(e){
+			var postValue = '<c:out value="${cssview.post_id }"/>'
+			var reply = {
+					user_nickname : user_nickname.val(),					
+					reply_contents : reply_contents.val(),
+					post_id : postValue,
+					board_category_id : board_category_id.val()
+			};
+			replyService.add(reply, function(result){
+				showList(1);
+				all_reset();
+			});
+		});
+		
+		
+
+	function showList(page) {
+			var postValue = '<c:out value="${cssview.post_id }"/>'
+			replyService.getList({post_id : postValue,page : page || 1},function(list) {
+				var str = "";
+				if (list == null || list.length == 0) {
+					str +=	"<p class='text-center' style='font-size : 20px;'>댓글이 없습니다</p>"				
+					return replyUL.html(str); 
+				}
+				
+				for (var i = 0, len = list.length || 0; i < len; i++) {
+					str += "<div class='left clearfix' id='reply_id" + list[i].reply_id + "'>";
+					str += "<div>"+ "<div class='header'>"+ "<strong class='primary-font'>" + list[i].user_nickname+ "</strong>";
+					str += "<small class='pull-right text-muted'>" + replyService.displayTime(list[i].reply_regdate) + "</small></div>";
+					str += "<c:if test='${member.user_nickname eq oracleview.user_nickname}'>";
+					str += "<div class='col-md-12' style='padding-left : 0 !important; padding-right : 0 !important; padding-bottom : 40px;'>";
+					str += "<div class='pull-right text-muted'>";
+					str += "<a href='javascript:void(0)' onclick='updateviewBtn(" + list[i].reply_id + ",\"" + list[i].reply_regdate+"\", \""+ list[i].reply_contents+"\", \""+ list[i].user_nickname +"\")' class='btn btn-info btn-sm mr-2'>수정";
+					str += "</a>";
+					str += "<a href='javascript:void(0)' onclick='fn_deleteReply("+ list[i].reply_id + ")' class='btn btn-danger btn-sm'>삭제";
+					str += "</a>";
+					str += "</div>";
+					str += "</div>";
+					str += "</c:if>";
+					str += "<p style='font-size : 16px;'>" + list[i].reply_contents + "</p>";
+					str += "</div>";
+					str += "<p style='border : 1px solid #d9d9d9; margin-top : 40px;'>";
+					str += "</div>";
+				}
+				replyUL.html(str);
+			}); //end getlsit function
+		}; // end showlist
+		
+		
+		function updateviewBtn(reply_id, reply_regdate, reply_contents,user_nickname) {
+			var updatestr = "";
+				updatestr += "<div class='left clearfix' id='reply_id" + reply_id + "'>";
+				updatestr += "<div>"+ "<div class='header'>"+ "<strong class='primary-font'>" + user_nickname + "</strong>";
+				updatestr += "<small class='pull-right text-muted'></small></div>";
+				updatestr += "<c:if test='${member.user_nickname eq oracleview.user_nickname}'>";
+				updatestr += "<div class='col-md-12' style='padding-left : 0 !important; padding-right : 0 !important; padding-bottom : 40px;'>";
+				updatestr += "<div class='pull-right text-muted'>";
+				updatestr += '<a href="javascript:void(0)" class="btn btn-info btn-sm mr-2"';
+				updatestr += 'onclick="updateBtn('+ reply_id + ',\'' + user_nickname + '\')" >수정완료';
+				updatestr += "</a>";
+				updatestr += "<a href='javascript:void(0)' onclick='undo_process()' class='btn btn-danger btn-sm'>취소";
+				updatestr += "</a>";
+				updatestr += "</div>";
+				updatestr += "</div>";
+				updatestr += "</c:if>";
+				updatestr += "<textarea id='reply_edit_content' style='font-size : 16px; resize: none; width:100%;'>" + reply_contents + "</textarea >";
+				updatestr += "</div>";
+				updatestr += "<p style='border : 1px solid #d9d9d9; margin-top : 40px;'>";
+ 				updatestr += "</div>";
+					$('#reply_id'+reply_id).replaceWith(updatestr);
+					$('#reply_id'+reply_id+'#reply_contents').focus();
+		        };
+		        
+		        function updateBtn(reply_id){
+		    		var reply_content = $("#reply_edit_content").val();
+		    		
+		    		$.ajax({
+		    			url: '/reply/'+reply_id+'/'+reply_content,
+		    			type : 'POST',
+		    			dataType: 'json',
+		    			success: function(result){
+		    			   	showList(1);
+		    			}
+		    			, error: function(error){
+		    				console.log("에러 : " + error);
+		    			}
+		    		});
+		    		
+		    	};
+		    	
+		    	function fn_deleteReply(reply_id){
+		    		var paramData = {"reply_id": reply_id};
+		    		$.ajax({
+		    			url: '/reply/'+reply_id
+		    			, data : paramData
+		    			, type : 'POST'
+		    			, dataType : 'text'
+		    			, success: function(result){
+		    				alert("댓글이 삭제되었습니다.");
+		    				showList(1);
+		    			}, error: function(error){
+		    				console.log("에러 : " + error);
+		    			}
+		    		});
+		    	}
+</script>  
 </body>
 <!-- END BODY -->
 </html>

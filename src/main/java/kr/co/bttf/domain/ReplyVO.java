@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class OracleReplyVO {
+public class ReplyVO {
 	private int reply_id;
 	private int post_id;
 	private String reply_contents;
@@ -13,4 +13,5 @@ public class OracleReplyVO {
 	private Date reply_regdate;
 	private Date reply_regdate_modified;
 	private int avaliability_category_id;
+	private int board_category_id;
 }
