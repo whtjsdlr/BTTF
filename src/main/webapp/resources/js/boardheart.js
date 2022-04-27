@@ -4,8 +4,36 @@ var user_index = document.getElementById("user_index").value;
 var post_id = document.getElementById("post_id").value;
 
 var btn_like = document.getElementById("btn_like");
+var board_category_id = document.getElementById("board_category_id").value;
+		
+		var urls = '';
+		
+	switch(board_category_id){
+		case '1':
+			urls = 'html';
+			break;
+		case '2':
+			urls = 'css';
+			break;
+		case '3':
+			urls = 'javascript';
+			break;
+		case '4':
+			urls = 'jsp';
+			break;
+		case '5':
+			urls = 'java';
+			break;
+		case '6':
+			urls = 'oracle';
+			break;
+		case '7':
+			urls = 'spring';
+			break;
+	
+	}
  btn_like.onclick = function(){ changeHeart(); }
- 
+
 
 
  // 좋아요 버튼 눌렀을 때
@@ -27,7 +55,7 @@ var btn_like = document.getElementById("btn_like");
   	
      $.ajax({
             type : "POST",  
-            url : "/board/clickRecommend",       
+            url : "/board/clickRecommend/"+urls,       
             dataType : "json",   
             data : "post_id="+post_id+"&user_index="+user_index,
             error : function(){

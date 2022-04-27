@@ -67,38 +67,39 @@ public class HtmlBoardDAOImpl implements HtmlBoardDAO {
 	}
 	
 	@Override
-	public Map<String, Object> recommendcheck(Map<String, Object> post_useridx) {
-		return sql.selectOne(namespace + ".recommendcheck", post_useridx);
+	public Map<String, Object> htmlRecommendCheck(Map<String, Object> post_useridx) {
+		return sql.selectOne(namespace + ".htmlRecommendCheck", post_useridx);
 	}
 
 	@Override
-	public void insertRecBtn(Map<String, Object> post_useridx) throws Exception {
+	public void htmlInsertRecBtn(Map<String, Object> post_useridx) throws Exception {
 
-		sql.insert(namespace +".insertRecBtn", post_useridx);
+		sql.insert(namespace +".htmlInsertRecBtn", post_useridx);
 		
 	}
 
 	@Override
-	public void updateRecCntPlus(Map<String, Object> post_useridx) throws Exception {
+	public void htmlUpdateRecCntPlus(Map<String, Object> post_useridx) throws Exception {
 
-		sql.update(namespace + ".updateRecCntPlus", post_useridx);
+		sql.update(namespace + ".htmlUpdateRecCntPlus", post_useridx);
 	}
 
 	@Override
-	public void updateRecCheck(Map<String, Object> post_useridx) throws Exception  {
+	public void htmlUpdateRecCheck(Map<String, Object> post_useridx) throws Exception  {
 
-		sql.update(namespace + ".updateRecCheck", post_useridx);
+		sql.update(namespace + ".htmlUpdateRecCheck", post_useridx);
 	}
 
 	@Override
-	public void updateRecCntMinus(Map<String, Object> post_useridx) throws Exception  {
+	public void htmlUpdateRecCntMinus(Map<String, Object> post_useridx) throws Exception  {
 
-		sql.update(namespace + ".updateRecCntMinus", post_useridx);
+		sql.update(namespace + ".htmlUpdateRecCntMinus", post_useridx);
 	}
 
 	@Override
-	public int getRecCnt(Map<String, Object> post_useridx) throws Exception {
+	public int htmlGetRecCnt(Map<String, Object> post_useridx) throws Exception {
 
-		return sql.selectOne(namespace + ".getRecCnt", post_useridx);
+		return sql.selectOne(namespace + ".htmlGetRecCnt", post_useridx);
 	}
+	
 }

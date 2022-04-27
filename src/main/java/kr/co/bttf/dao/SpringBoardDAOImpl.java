@@ -2,6 +2,7 @@ package kr.co.bttf.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -65,4 +66,41 @@ public class SpringBoardDAOImpl implements SpringBoardDAO {
 		
 		sql.insert(namespace + ".springbookmark", postid_useridx);
 	}
+	
+	@Override
+	public Map<String, Object> springRecommendCheck(Map<String, Object> post_useridx) {
+		return sql.selectOne(namespace + ".springRecommendCheck", post_useridx);
+	}
+	
+	@Override
+	public void springInsertRecBtn(Map<String, Object> post_useridx) throws Exception {
+
+		sql.insert(namespace +".springInsertRecBtn", post_useridx);
+		
+	}
+
+	@Override
+	public void springUpdateRecCntPlus(Map<String, Object> post_useridx) throws Exception {
+
+		sql.update(namespace + ".springUpdateRecCntPlus", post_useridx);
+	}
+
+	@Override
+	public void springUpdateRecCheck(Map<String, Object> post_useridx) throws Exception  {
+
+		sql.update(namespace + ".springUpdateRecCheck", post_useridx);
+	}
+
+	@Override
+	public void springUpdateRecCntMinus(Map<String, Object> post_useridx) throws Exception  {
+
+		sql.update(namespace + ".springUpdateRecCntMinus", post_useridx);
+	}
+
+	@Override
+	public int springGetRecCnt(Map<String, Object> post_useridx) throws Exception {
+
+		return sql.selectOne(namespace + ".springGetRecCnt", post_useridx);
+	}
+	
 }
