@@ -83,10 +83,10 @@ var replyService = (function(){
 	
 	
 	
-	function remove(reply_id, callback, error) {
+	function remove(board_category_id, reply_id, callback, error) {
 			$.ajax({
 				type : 'delete',
-				url: "/reply/" + reply_id,
+				url: "/reply/"+board_category_id+"/"+reply_id,
 				success : function(deleteResult, status, xhr) {
 					if(callback){
 						callback(deleteResult);
