@@ -19,9 +19,6 @@ public interface HtmlBoardDAO {
 
 	// 게시글 조회수
 	public int htmlvcnt(int post_id) throws Exception;
-	
-	// 게시글 좋아요 확인
-	public Map<String, Object> recommendcheck(Map<String, Object> post_useridx);
 			
 	// 게시글 수정
 	public void htmlModify(HtmlBoardVO vo) throws Exception;
@@ -37,21 +34,24 @@ public interface HtmlBoardDAO {
 
 	// 게시글 북마크 설정
 	public void htmlbookmark(HashMap<String, Integer> postid_useridx) throws Exception;
+	
+	// 게시글 좋아요 확인
+	public Map<String, Object> htmlRecommendCheck(Map<String, Object> post_useridx);
 
 	// 추천 테이블 인서트
-	public void insertRecBtn(Map<String, Object> post_useridx) throws Exception;
+	public void htmlInsertRecBtn(Map<String, Object> post_useridx) throws Exception;
 
 	// 게시글 추천수 +1 업데이트
-	public void updateRecCntPlus(Map<String, Object> post_useridx) throws Exception;
+	public void htmlUpdateRecCntPlus(Map<String, Object> post_useridx) throws Exception;
 
 	// 추천 테이블 recommend_check 업데이트
-	public void updateRecCheck(Map<String, Object> post_useridx) throws Exception ;
+	public void htmlUpdateRecCheck(Map<String, Object> post_useridx) throws Exception ;
 
 	// 게시글 추천수 -1 업데이트
-	public void updateRecCntMinus(Map<String, Object> post_useridx) throws Exception ;
+	public void htmlUpdateRecCntMinus(Map<String, Object> post_useridx) throws Exception ;
 
 	//게시글 추천수 조회
-	public int getRecCnt(Map<String, Object> post_useridx) throws Exception;
+	public int htmlGetRecCnt(Map<String, Object> post_useridx) throws Exception;
 	
 	
 }

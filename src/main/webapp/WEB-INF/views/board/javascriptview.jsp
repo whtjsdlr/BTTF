@@ -85,30 +85,30 @@
                             <form method="post">
                                 <div class="col-md-6">
 									<input type="hidden" name="user_index" id = "user_index" value="${member.user_index }">
-									<input type="hidden" name="post_id" id = "post_id" value="${jsview.post_id }">
-                                    <p style="color: black; font-size: 2rem; font-weight:bold;">글 제목 : ${jsview.post_subject }</p>
+									<input type="hidden" name="post_id" id = "post_id" value="${javascriptview.post_id }">
+                                    <p style="color: black; font-size: 2rem; font-weight:bold;">글 제목 : ${javascriptview.post_subject }</p>
                                 </div>
                                 <div class="col-md-2">
-                                	<p class="margin-b-50 text-center" >조회수 ${jsview.post_vcount }</p>
+                                	<p class="margin-b-50 text-center" >조회수 ${javascriptview.post_vcount }</p>
                                 </div>
                                 <div class="col-md-2">
-                                	<p class="margin-b-50 text-center" > 작성자 ${jsview.user_nickname }</p>
+                                	<p class="margin-b-50 text-center" > 작성자 ${javascriptview.user_nickname }</p>
                                 </div>
                                 <div class="col-md-2">
-                                	<p class="margin-b-50 text-center" > <fmt:formatDate value="${jsview.post_regdate}" pattern="yyyy-MM-dd HH:mm" /></p>
+                                	<p class="margin-b-50 text-center" > <fmt:formatDate value="${javascriptview.post_regdate}" pattern="yyyy-MM-dd HH:mm" /></p>
                                 </div>
                                 <div>
-                                    <pre class="form-control" placeholder="내용을 입력해 주세요." style="height : 650px; resize: none; background-color: #fff;" disabled>${jsview.post_contents }</pre>
+                                    <pre class="form-control" placeholder="내용을 입력해 주세요." style="height : 650px; resize: none; background-color: #fff;" disabled>${javascriptview.post_contents }</pre>
                                 </div> 
                                 
 	                        	<div class="mb-5">
-									<c:if test="${member.user_nickname eq jsview.user_nickname}">
-		 		                    	<a href="/board/jsmodify?post_id=${jsview.post_id }" class="btn btn-primary mt-4" id="list" type="submit">글수정</a>                          
-				                		<a href="/board/jsdelete?post_id=${jsview.post_id }&mypage=" class="btn btn-danger mt-4" id="list" type="submit">글삭제</a>
+									<c:if test="${member.user_nickname eq javascriptview.user_nickname}">
+		 		                    	<a href="/board/jsmodify?post_id=${javascriptview.post_id }" class="btn btn-primary mt-4" id="list" type="submit">글수정</a>                          
+				                		<a href="/board/jsdelete?post_id=${javascriptview.post_id }&mypage=" class="btn btn-danger mt-4" id="list" type="submit">글삭제</a>
 									</c:if> 
 	                        		<a href="/board/jslist" class="btn btn-default mt-4" id="edit" type="submit">글 목록</a>
-									<c:if test="${member.user_nickname != jsview.user_nickname && member != null && jsview.user_nickname != 'admin'}">
-										<a href="/board/jsbookmark?post_id=${jsview.post_id }&user_index=${member.user_index }" class="btn btn-default mt-4">북마크</a>
+									<c:if test="${member.user_nickname != javascriptview.user_nickname && member != null && javascriptview.user_nickname != 'admin'}">
+										<a href="/board/jsbookmark?post_id=${javascriptview.post_id }&user_index=${member.user_index }" class="btn btn-default mt-4">북마크</a>
 										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#memberreport" data-whatever="@getbootstrap" style="float: right;" >작성자 신고</button>
 									</c:if>
 	                 			   <div style="text-align:center;">
@@ -120,7 +120,7 @@
 									        	<img src="../../../resources/img/heart-fill.png" id="btn_like" style="cursor:pointer; width: 50px;">
 									    	</c:otherwise>
 										</c:choose>
-										<p id="post_rec" style="color: #000;">${jsview.post_rec}</p>
+										<p id="post_rec" style="color: #000;">${javascriptview.post_rec}</p>
 									</div>
                               	 </div>
                             </form>
@@ -129,10 +129,10 @@
 								<div class="modal-dialog">
 									<div class="modal-content">
 										<form name="Check" action="/board/jsreport" id="reportForm" method ="get" >
-											<input type="text" style="display:none;" name="reportee_index" id="reportee_index" value="${jsview.user_index }">
+											<input type="text" style="display:none;" name="reportee_index" id="reportee_index" value="${javascriptview.user_index }">
 											<input type="text" style="display:none;" name="reporter_index" id="reporter_index" value="${member.user_index }">
-											<input type="text" style="display:none;" name="board_category_id" id="board_category_id" value="${jsview.board_category_id }">
-											<input type="text" style="display:none;" name="post_id" id="post_id" value="${jsview.post_id }">
+											<input type="text" style="display:none;" name="board_category_id" id="board_category_id" value="${javascriptview.board_category_id }">
+											<input type="text" style="display:none;" name="post_id" id="post_id" value="${javascriptview.post_id }">
 											<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 													<h4 class="modal-title" id="reportModalLabel">회원 신고</h4>
@@ -198,8 +198,8 @@
 									<div class="d-flex col-md-12 p-0" style="margin-bottom : 40px;">
 		                                <form id="replyForm" name="replyForm" method="post" class="mb-4 d-flex col-md-12 p-0" target=detail onsubmit="all_reset();">
 		                                	<input type="hidden" id="user_nickname" name="user_nickname" value="${member.user_nickname}">
-		                                	<input type="hidden" id="board_category_id" name="board_category_id" value="${jsview.board_category_id}">
-		                                	<input type="hidden" id="post_id" name="post_id" value="${jsview.post_id}">
+		                                	<input type="hidden" id="board_category_id" name="board_category_id" value="${javascriptview.board_category_id}">
+		                                	<input type="hidden" id="post_id" name="post_id" value="${javascriptview.post_id}">
 		                                	<input id="reply_contents" type="text" name="reply_contents" class="form-control mr-5" placeholder="댓글을 작성하세요" value="">
 		                                </form>
 										<input id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;" value="댓글쓰기" type="submit">
@@ -299,7 +299,7 @@
 		showList(1);
 	}
 	
-		var postValue = '<c:out value="${jsview.post_id }"/>'
+		var postValue = '<c:out value="${javascriptview.post_id }"/>'
 		var replyUL = $(".chat");
 		showList(1);
 		var replyForm = $("#replyForm");
@@ -309,7 +309,7 @@
 		var board_category_id = replyForm.find("input[name='board_category_id']");
 				
 		$("#btnReply").on("click", function(e){
-			var postValue = '<c:out value="${jsview.post_id }"/>'
+			var postValue = '<c:out value="${javascriptview.post_id }"/>'
 			var reply = {
 					user_nickname : user_nickname.val(),					
 					reply_contents : reply_contents.val(),
@@ -325,8 +325,8 @@
 		
 
 	function showList(page) {
-			var postValue = '<c:out value="${jsview.post_id }"/>'
-			var board_category_idValue = '<c:out value="${jsview.board_category_id}"/>'
+			var postValue = '<c:out value="${javascriptview.post_id }"/>'
+			var board_category_idValue = '<c:out value="${javascriptview.board_category_id}"/>'
 			
 			replyService.getList({ board_category_id : board_category_idValue, post_id : postValue, page : page || 1},function(list) {
 				var str = "";
@@ -339,7 +339,7 @@
 					str += "<div class='left clearfix' id='reply_id" + list[i].reply_id + "'>";
 					str += "<div>"+ "<div class='header'>"+ "<strong class='primary-font'>" + list[i].user_nickname+ "</strong>";
 					str += "<small class='pull-right text-muted'>" + replyService.displayTime(list[i].reply_regdate) + "</small></div>";
-					str += "<c:if test='${member.user_nickname eq jsview.user_nickname}'>";
+					str += "<c:if test='${member.user_nickname eq javascriptview.user_nickname}'>";
 					str += "<div class='col-md-12' style='padding-left : 0 !important; padding-right : 0 !important; padding-bottom : 40px;'>";
 					str += "<div class='pull-right text-muted'>";
 					str += "<a href='javascript:void(0)' onclick='updateviewBtn(" + list[i].reply_id + ",\"" + list[i].reply_regdate+"\", \""+ list[i].reply_contents+"\", \""+ list[i].user_nickname +"\")' class='btn btn-info btn-sm mr-2'>수정";
@@ -364,7 +364,7 @@
 				updatestr += "<div class='left clearfix' id='reply_id" + reply_id + "'>";
 				updatestr += "<div>"+ "<div class='header'>"+ "<strong class='primary-font'>" + user_nickname + "</strong>";
 				updatestr += "<small class='pull-right text-muted'></small></div>";
-				updatestr += "<c:if test='${member.user_nickname eq jsview.user_nickname}'>";
+				updatestr += "<c:if test='${member.user_nickname eq javascriptview.user_nickname}'>";
 				updatestr += "<div class='col-md-12' style='padding-left : 0 !important; padding-right : 0 !important; padding-bottom : 40px;'>";
 				updatestr += "<div class='pull-right text-muted'>";
 				updatestr += '<a href="javascript:void(0)" class="btn btn-info btn-sm mr-2"';

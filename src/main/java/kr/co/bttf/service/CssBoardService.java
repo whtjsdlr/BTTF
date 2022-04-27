@@ -20,11 +20,8 @@ public interface CssBoardService {
 	// 게시글 조회수
 	public int cssvcnt(int post_id) throws Exception;
 	
-	// 게시글 추천확인
-	public Map<String, Object> recommendcheck(Map<String, Object> post_useridx);
-	
 	// 게시물 수정
-	public void cssEdit(CssBoardVO vo) throws Exception;
+	public void cssModify(CssBoardVO vo) throws Exception;
 	
 	//게시물 삭제
 	public void cssDelete(int post_id) throws Exception;
@@ -38,20 +35,23 @@ public interface CssBoardService {
 	// 게시글 북마크 설정
 	public void cssbookmark(HashMap<String, Integer> postid_useridx) throws Exception;
 
+	// 게시글 추천확인
+	public Map<String, Object> cssRecommendCheck(Map<String, Object> post_useridx);
+	
 	// 추천 테이블 인서트
-	public void insertRecBtn(Map<String, Object> post_useridx) throws Exception;
+	public void cssInsertRecBtn(Map<String, Object> post_useridx) throws Exception;
 
 	// 게시글 추천수 +1 업데이트
-	public void updateRecCntPlus(Map<String, Object> post_useridx) throws Exception;
+	public void cssUpdateRecCntPlus(Map<String, Object> post_useridx) throws Exception;
 
 	// 추천 테이블의 recommend_check 업데이트
-	public void updateRecCheck(Map<String, Object> post_useridx) throws Exception;
+	public void cssUpdateRecCheck(Map<String, Object> post_useridx) throws Exception;
 	
 	// 게시글 추천수 -1 업데이트
-	public void updateRecCntMinus(Map<String, Object> post_useridx) throws Exception ;
+	public void cssUpdateRecCntMinus(Map<String, Object> post_useridx) throws Exception ;
 
 	// 게시글 추천수 조회
-	public int getRecCnt(Map<String, Object> post_useridx) throws Exception;
+	public int cssGetRecCnt(Map<String, Object> post_useridx) throws Exception;
 
 
 

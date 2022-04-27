@@ -44,18 +44,11 @@ public class CssBoardServiceImpl implements CssBoardService {
 		return dao.cssvcnt(post_id);
 	}
 	
-	// 게시글 좋아요 확인
-	@Override
-	public Map<String, Object> recommendcheck(Map<String, Object> post_useridx) {
-
-		return dao.recommendcheck(post_useridx);
-	}
-
 	// 게시글 수정
 	@Override
-	public void cssEdit(CssBoardVO vo) throws Exception {
+	public void cssModify(CssBoardVO vo) throws Exception {
 
-		dao.cssEdit(vo);
+		dao.cssModify(vo);
 	}
 
 	// 게시글 삭제
@@ -86,38 +79,45 @@ public class CssBoardServiceImpl implements CssBoardService {
 		dao.cssbookmark(postid_useridx);
 	}
 
+	// 게시글 좋아요 확인
+	@Override
+	public Map<String, Object> cssRecommendCheck(Map<String, Object> post_useridx) {
+		
+		return dao.cssRecommendCheck(post_useridx);
+	}
+	
 	// 추천  테이블 인서트
 	@Override
-	public void insertRecBtn(Map<String, Object> post_useridx) throws Exception {
+	public void cssInsertRecBtn(Map<String, Object> post_useridx) throws Exception {
 
-		dao.insertRecBtn(post_useridx);
+		dao.cssInsertRecBtn(post_useridx);
 	}
 
 	// 게시글 추천수 +1 업데이트
 	@Override
-	public void updateRecCntPlus(Map<String, Object> post_useridx) throws Exception {
+	public void cssUpdateRecCntPlus(Map<String, Object> post_useridx) throws Exception {
 
-		dao.updateRecCntPlus(post_useridx);
+		dao.cssUpdateRecCntPlus(post_useridx);
 	}
 
 	// 추천 테이블 recommend_check 업데이트
 	@Override
-	public void updateRecCheck(Map<String, Object> post_useridx) throws Exception  {
+	public void cssUpdateRecCheck(Map<String, Object> post_useridx) throws Exception  {
 
-		dao.updateRecCheck(post_useridx);
+		dao.cssUpdateRecCheck(post_useridx);
 	}
 
 	// 게시글 추천수 -1 업데이트
 	@Override
-	public void updateRecCntMinus(Map<String, Object> post_useridx) throws Exception  {
+	public void cssUpdateRecCntMinus(Map<String, Object> post_useridx) throws Exception  {
 
-		dao.updateRecCntMinus(post_useridx);
+		dao.cssUpdateRecCntMinus(post_useridx);
 	}
 
 	//게시글 추천 수 조회
 	@Override
-	public int getRecCnt(Map<String, Object> post_useridx) throws Exception {
-		return dao.getRecCnt(post_useridx);
+	public int cssGetRecCnt(Map<String, Object> post_useridx) throws Exception {
+		return dao.cssGetRecCnt(post_useridx);
 	}
 
 }

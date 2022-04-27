@@ -40,8 +40,8 @@ public class CssBoardDAOImpl implements CssBoardDAO {
 	}
 
 	@Override
-	public void cssEdit(CssBoardVO vo) throws Exception {
-		sql.update(namespace + ".cssedit", vo);
+	public void cssModify(CssBoardVO vo) throws Exception {
+		sql.update(namespace + ".cssmodify", vo);
 	}
 
 	@Override
@@ -68,38 +68,38 @@ public class CssBoardDAOImpl implements CssBoardDAO {
 	}
 	
 	@Override
-	public Map<String, Object> recommendcheck(Map<String, Object> post_useridx) {
-		return sql.selectOne(namespace + ".recommendcheck", post_useridx);
+	public Map<String, Object> cssRecommendCheck(Map<String, Object> post_useridx) {
+		return sql.selectOne(namespace + ".cssRecommendCheck", post_useridx);
 	}
 
 	@Override
-	public void insertRecBtn(Map<String, Object> post_useridx) throws Exception {
+	public void cssInsertRecBtn(Map<String, Object> post_useridx) throws Exception {
 
-		sql.insert(namespace +".insertRecBtn", post_useridx);
+		sql.insert(namespace +".cssInsertRecBtn", post_useridx);
 		
 	}
 
 	@Override
-	public void updateRecCntPlus(Map<String, Object> post_useridx) throws Exception {
+	public void cssUpdateRecCntPlus(Map<String, Object> post_useridx) throws Exception {
 
-		sql.update(namespace + ".updateRecCntPlus", post_useridx);
+		sql.update(namespace + ".cssUpdateRecCntPlus", post_useridx);
 	}
 
 	@Override
-	public void updateRecCheck(Map<String, Object> post_useridx) throws Exception  {
+	public void cssUpdateRecCheck(Map<String, Object> post_useridx) throws Exception  {
 
-		sql.update(namespace + ".updateRecCheck", post_useridx);
+		sql.update(namespace + ".cssUpdateRecCheck", post_useridx);
 	}
 
 	@Override
-	public void updateRecCntMinus(Map<String, Object> post_useridx) throws Exception  {
+	public void cssUpdateRecCntMinus(Map<String, Object> post_useridx) throws Exception  {
 
-		sql.update(namespace + ".updateRecCntMinus", post_useridx);
+		sql.update(namespace + ".cssUpdateRecCntMinus", post_useridx);
 	}
 
 	@Override
-	public int getRecCnt(Map<String, Object> post_useridx) throws Exception {
+	public int cssGetRecCnt(Map<String, Object> post_useridx) throws Exception {
 
-		return sql.selectOne(namespace + ".getRecCnt", post_useridx);
+		return sql.selectOne(namespace + ".cssGetRecCnt", post_useridx);
 	}
 }

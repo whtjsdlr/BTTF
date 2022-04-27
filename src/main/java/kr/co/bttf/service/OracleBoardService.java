@@ -2,6 +2,7 @@ package kr.co.bttf.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import kr.co.bttf.domain.OracleBoardVO;
 
@@ -34,4 +35,22 @@ public interface OracleBoardService {
 	// 게시글 북마크 설정
 	public void oraclebookmark(HashMap<String, Integer> postid_useridx) throws Exception;
 
+	// 게시글 추천확인
+	public Map<String, Object> oracleRecommendCheck(Map<String, Object> post_useridx);
+	
+	// 추천 테이블 인서트
+	public void oracleInsertRecBtn(Map<String, Object> post_useridx) throws Exception;
+
+	// 게시글 추천수 +1 업데이트
+	public void oracleUpdateRecCntPlus(Map<String, Object> post_useridx) throws Exception;
+
+	// 추천 테이블의 recommend_check 업데이트
+	public void oracleUpdateRecCheck(Map<String, Object> post_useridx) throws Exception;
+	
+	// 게시글 추천수 -1 업데이트
+	public void oracleUpdateRecCntMinus(Map<String, Object> post_useridx) throws Exception ;
+
+	// 게시글 추천수 조회
+	public int oracleGetRecCnt(Map<String, Object> post_useridx) throws Exception;
+	
 }
