@@ -8,7 +8,6 @@ import javax.inject.Inject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,14 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.co.bttf.domain.ReplyVO;
-import kr.co.bttf.service.OracleReplyService;
+import kr.co.bttf.service.ReplyService;
 
 @RestController
 @RequestMapping("/reply/*")
 public class ReplyController {
 
 	@Inject
-	private OracleReplyService service;
+	private ReplyService service;
 	
 	@PostMapping(value = "/new/{urls}", consumes = "application/json;charset=utf-8", produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> create(@RequestBody ReplyVO reply){

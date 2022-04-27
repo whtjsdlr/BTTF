@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -60,7 +60,7 @@
     <!-- notice -->
     <div class="bg-color-sky-light fixed_container" style="min-height: 100vh;">
         <div class="content-lg container" style="margin-top : 50px;">
-            <h2>JAVASCRIPT QnA</h2>
+            <h2>JAVA QnA</h2>
             <form>
 	            <div class="table-responsive">
 	                <table id="foo-table" class="table table-striped" data-page-length='40' data-order='[[ 1, "desc" ]]'>
@@ -75,12 +75,12 @@
 	                    </thead>
 	                    <tbody>
 	                    	<c:choose>
-			                    <c:when test = "${jslist != null and fn:length(jslist) > 0 }">
-			                    		<c:forEach var="board" items="${jslist}">
+			                    <c:when test = "${javalist != null and fn:length(javalist) > 0 }">
+			                    		<c:forEach var="board" items="${javalist}">
 					                        <tr>
 					                            <td>${board.post_id }</td>
 					                            <td>
-					                            <a href="/board/jsview?post_id=${board.post_id }">${board.post_subject }</a>
+					                            <a href="/board/javaview?post_id=${board.post_id }">${board.post_subject }</a>
 					                            </td>
 					                            <td>${board.user_nickname }</td>
 					                            <td>${board.post_vcount }</td>
@@ -97,14 +97,16 @@
 	                    </tbody>
 	                </table>
 	            </div>
+			</form>
             <!-- End notice -->
 			<c:if test="${member != null }">
-           		<a href="/board/jswrite"class="btn btn-primary" type="submit">글쓰기</a>
+           		<a href="/board/javawrite"class="btn btn-primary" type="submit">글쓰기</a>
             </c:if>
  		</div>
 	 </div>
  
  
+   
     <!--========== END PAGE LAYOUT ==========-->
 
     <!--========== FOOTER ==========-->
@@ -115,6 +117,7 @@
         <!-- End Copyright -->
     </footer>
     <!--========== END FOOTER ==========-->
+
     <!-- Back To Top -->
     <a href="javascript:void(0);" class="js-back-to-top back-to-top">Top</a>
    

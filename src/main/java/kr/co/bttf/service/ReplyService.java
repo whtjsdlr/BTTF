@@ -6,7 +6,7 @@ import java.util.Map;
 import kr.co.bttf.controller.Criteria;
 import kr.co.bttf.domain.ReplyVO;
 
-public interface OracleReplyService {
+public interface ReplyService {
 	
 	public int register(ReplyVO vo);
 

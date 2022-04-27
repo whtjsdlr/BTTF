@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -76,7 +76,7 @@
 						<div class="my_box" data-height="height">
 						
 							<!-- Start write Form -->
-							<form name = "htmlwrite" method="post">
+							<form name = "javawrite" method="post">
 								<input type="hidden" name="user_index" value="${member.user_index }">
 								<div class="col-auto">
 									<label for="subject">제목</label>

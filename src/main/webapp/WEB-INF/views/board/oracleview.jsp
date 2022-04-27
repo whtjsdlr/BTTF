@@ -120,7 +120,7 @@
 									        	<img src="../../../resources/img/heart-fill.png" id="btn_like" style="cursor:pointer; width: 50px;">
 									    	</c:otherwise>
 										</c:choose>
-										<p id="post_rec" style="color: #000;">${cssview.post_rec}</p>
+										<p id="post_rec" style="color: #000;">${oracleview.post_rec}</p>
 									</div>
                               	 </div>
                             </form>

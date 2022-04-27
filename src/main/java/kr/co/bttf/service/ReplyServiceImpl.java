@@ -11,15 +11,15 @@ import org.springframework.stereotype.Service;
 
 import kr.co.bttf.controller.Criteria;
 import kr.co.bttf.domain.ReplyVO;
-import kr.co.bttf.mapper.OracleReplyMapper;
+import kr.co.bttf.mapper.ReplyMapper;
 import lombok.Setter;
 
 @Service
-public class OracleReplyServiceImpl implements OracleReplyService {
+public class ReplyServiceImpl implements ReplyService {
 	
 	
 	@Inject
-	private OracleReplyMapper mapper;
+	private ReplyMapper mapper;
 
 	
 	

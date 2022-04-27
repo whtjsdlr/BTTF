@@ -65,6 +65,41 @@
 		values (#{user_index} ,#{post_id} , 1) 
 	</insert>
 	
+	<!-- 1-9. 게시글 추천 유무 확인-->
+	<select id = "htmlrecommendcheck" parameterType="map" resultType="map" >
+		select recommend_check from recommend 
+		where post_id_html = #{post_id} and user_index = #{user_index};
+	</select>
+
+	<!-- 1-10. 추천 테이블에 추천 추가 -->
+	<insert id = "htmlinsertRecBtn" parameterType="map">
+		insert into recommend 
+		(post_id_html, user_index , recommend_check) values 
+		(#{post_id}, #{user_index}, 1)
+	</insert>
+	
+	<!-- 1-11. 해당 게시글에 추천수 업데이트 -->
+	<update id ="htmlupdateRecCntPlus" parameterType="map">
+		update html set post_rec = post_rec + 1 where post_id = #{post_id}
+	</update>
+	
+	
+	<!-- 1-12. 추천 테이블 recommend_check 업데이트 -->
+	<update id="htmlupdateRecCheck" parameterType="map">
+		update recommend set recommend_check = #{recommend_check} 
+		where post_id_html = #{post_id} and user_index = #{user_index}
+	</update>
+	
+	<!-- 1-13. 해당 게시글에 추천수 업데이트 -->
+	<update id ="htmlupdateRecCntMinus" parameterType="map">
+		update html set post_rec = post_rec -1 where post_id = #{post_id}
+	</update>
+	
+	<!-- 1-14 해당 게시글의 추천수 조회 -->
+	<select id = "htmlgetRecCnt" parameterType="map" resultType="_int">
+		select post_rec from html where post_id = #{post_id}
+	</select>
+	
 <!-- 
 ========================================
 			02. CSS

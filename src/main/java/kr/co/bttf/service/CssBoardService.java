@@ -20,7 +20,7 @@ public interface CssBoardService {
 	// 게시글 조회수
 	public int cssvcnt(int post_id) throws Exception;
 	
-	// 게시글 하트확인
+	// 게시글 추천확인
 	public Map<String, Object> recommendcheck(Map<String, Object> post_useridx);
 	
 	// 게시물 수정

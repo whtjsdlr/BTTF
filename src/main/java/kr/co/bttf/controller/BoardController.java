@@ -64,9 +64,6 @@ public class BoardController {
 	@Inject
 	private OracleBoardService oracleService;
 	
-//	@Inject
-//	private OracleReplyService oracleReplyService;
-//	
 	@Inject
 	private SpringBoardService springService;
 	
@@ -99,19 +96,156 @@ public class BoardController {
 	  return "redirect:/board/htmllist";
 	}
 
-	// 1-3. 게시물 상세보기 페이지 이동
-	@RequestMapping(value = "/htmlview", method = RequestMethod.GET)
-	public void htmlView(@RequestParam("post_id") int post_id, Model model) throws Exception {
-		
-		// 상세보기 시 조회수 갱신
-		int htmlvcnt = 0;
-		htmlService.htmlvcnt(post_id);
-		model.addAttribute("htmlvcnt", htmlvcnt);
-		
-		HtmlBoardVO vo = htmlService.htmlView(post_id);
-		model.addAttribute("htmlview", vo);
-	}
+	// 2-3. 게시물 상세보기 페이지 이동
+		@RequestMapping(value = "/htmlview", method = RequestMethod.GET)
+		public void htmlView(@RequestParam("post_id") int post_id, Model model, HttpServletRequest req, HttpSession session) throws Exception {
+			
+			// 상세보기 시 조회수 갱신
+			int htmlvcnt = 0;
+			htmlService.htmlvcnt(post_id);
+			model.addAttribute("htmlvcnt", htmlvcnt);
+			
+
+			// 좋아요 눌렀는지 조회
+			HttpSession sessions = req.getSession();  // 현재 세션 정보를 가져옴
+				
+				// 현재 로그인해있는 user의 정보 가져오기
+				MemberVO member = (MemberVO) sessions.getAttribute("member");
+				
+				//로그인 되어있는 경우에만
+				if(member!=null) {
+					
+					int user_index = member.getUser_index();
+					
+					Map<String, Object> post_useridx = new HashMap<>();
+					
+					post_useridx.put("post_id", post_id);
+					post_useridx.put("user_index", user_index);
+					
+				
+					 try {
+						 	//사용자가 해당 글에 좋아요 누른적이 있는지 확인
+						 	Map<String, Object> recommendcheckmap = htmlService.recommendcheck(post_useridx);
+							
+						 	
+							if(recommendcheckmap==null) {
+								//한번도 누른적이 없을때
+								model.addAttribute("recommend_check", 0);
+								
+							} else {
+								// 추천 누른적이 있을 때 (recommend 테이블에 데이터가 있을 때 )
+								model.addAttribute("recommend_check", recommendcheckmap.get("recommend_check"));
+							}
+					     
+							
+							
+					    } catch (Exception e) {
+					        e.printStackTrace();
+					    }
+					
+				} else {
+					
+					model.addAttribute("recommend_check", 0);
+				}
+				
+				HtmlBoardVO vo = htmlService.htmlView(post_id);
+				model.addAttribute("htmlview", vo);
+			
+		}
 	
+		// 좋아요 눌렀을 때 
+		@RequestMapping(value ="/htmlClickLike", method = RequestMethod.POST)
+		@ResponseBody
+		public Map<String, Object> htmlClickLike(@RequestParam Map<String,Object> post_useridx, HttpServletRequest req, HttpServletResponse res, HttpSession session) throws Exception{
+					
+			int resultCode = 1;
+			int recommend_check = 1;
+			Map<String,Object> map = new HashMap<>();
+			Map<String,Object> resultMap = new HashMap<>();
+			
+		
+			// 현재 로그인해있는 user의 정보 가져오기
+			try {
+				
+				// 추천 눌렀는지 조회하기
+				map = htmlService.recommendcheck(post_useridx);
+				
+			
+				if(map == null) {
+					
+					//처음 추천 누른것
+					htmlService.insertRecBtn(post_useridx); //recommend 테이블에 데이터 인서트
+					htmlService.updateRecCntPlus(post_useridx); // 게시글의 추천수 테이블 +1
+					resultCode = 1;
+					
+				} else if (Integer.parseInt(map.get("recommend_check").toString())==0) {
+					
+					//추천이 처음은 아니고 취소했다가 다시 눌렀을때
+					post_useridx.put("recommend_check", recommend_check);
+					htmlService.updateRecCheck(post_useridx); // 게시글의 추천수 테이블 +1
+					htmlService.updateRecCntPlus(post_useridx); // 게시글의 추천수 테이블 +1
+					resultCode = 1; 
+				} else {
+					//추천 취소한거 recommend_check=0, 빈하트 되야됨
+					
+					recommend_check = 0;
+					post_useridx.put("recommend_check",recommend_check);
+					htmlService.updateRecCheck(post_useridx); //  recommend 테이블에 recommend_check=0 으로 업데이트
+					htmlService.updateRecCntMinus(post_useridx); // 게시글의 추천수 테이블 -1
+					resultCode = 0;
+					
+				}
+				
+				
+				
+				
+//				if(recCheck == 1) {
+//					//추천 취소한거 recommend_check=0, 빈하트 되야됨
+//					
+//					recommend_check = 0;
+//					post_useridx.put("recommend_check",recommend_check);
+//					cssService.updateRecCheck(post_useridx); //  recommend 테이블에 recommend_check=0 으로 업데이트
+//					cssService.updateRecCntMinus(post_useridx); // 게시글의 추천수 테이블 -1
+//					resultCode = 0;
+//					
+//				} else {
+//					// 추천을 누르는 경우 recommend_check=1, 꽉 찬 하트 되야됨
+//					
+//						if(map == null) {
+//							//처음 추천 누른것
+//							
+//							cssService.insertRecBtn(post_useridx); //recommend 테이블에 데이터 인서트
+//							
+//						} else if (recCheck == 0) {
+//							//추천이 처음은 아니고 취소했다가 다시 눌렀을때
+//							post_useridx.put("recommend_check", recommend_check);
+//							cssService.updateRecCheck(post_useridx); //recommend 테이블에 recommend_check=1 으로 업데이트
+//							
+//						}
+//						
+//						cssService.updateRecCntPlus(post_useridx); // 게시글의 추천수 테이블 +1
+//						resultCode = 1;
+//					
+//				}
+				
+				
+				
+				// 해당 게시글 테이블의 RecCnt칼럼 update가 끝난후 RecCnt값 가져옴
+				int post_rec = htmlService.getRecCnt(post_useridx); 
+							
+				resultMap.put("post_rec", post_rec);
+				resultMap.put("recommend_check", recommend_check);
+				
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				resultCode = -1;
+			}
+			
+			resultMap.put("resultCode", resultCode);
+			//resultCode가 1이면 빨간하트 0이면 빈하트
+			return resultMap;
+		}	
+		
 	// 1-4. 게시물 수정 페이지 이동
 	@RequestMapping(value = "/htmlmodify", method = RequestMethod.GET)
 	public void htmlModify(@RequestParam("post_id") int post_id, Model model) throws Exception {
@@ -550,7 +684,7 @@ public class BoardController {
 		
 
 		// 3-3. 게시물 상세보기 페이지 이동
-		@RequestMapping(value = "/javascriptview", method = RequestMethod.GET)
+		@RequestMapping(value = "/jsview", method = RequestMethod.GET)
 		public void jsView(@RequestParam("post_id") int post_id, Model model) throws Exception {
 			
 			// 상세보기 시 조회수 갱신
@@ -578,7 +712,7 @@ public class BoardController {
 		}
 
 		// 3-5. vo가 없으니 get방식 삭제
-		@RequestMapping(value = "/javascriptdelete", method = RequestMethod.GET)
+		@RequestMapping(value = "/jsdelete", method = RequestMethod.GET)
 		public String jsDelete(HttpServletRequest req, @RequestParam("post_id") int post_id, @RequestParam("mypage") String mypage) throws Exception {
 
 			String result = "";
@@ -1127,6 +1261,7 @@ public class BoardController {
 	/* --------------------------------
 				07. SPRING
 	-------------------------------- */
+	
 	// 7-1 [GET] 게시물 목록
 	@RequestMapping(value = "/springlist", method = RequestMethod.GET)
 	public void springList(Model model) throws Exception {
@@ -1165,79 +1300,78 @@ public class BoardController {
 		model.addAttribute("springview", vo);
 	}
 	
+	
 	// 7-4. 게시물 수정 페이지 이동
 	@RequestMapping(value = "/springmodify", method = RequestMethod.GET)
 	public void springModify(@RequestParam("post_id") int post_id, Model model) throws Exception {
 	
 		SpringBoardVO vo = springService.springView(post_id);
-	model.addAttribute("springview", vo);
+		model.addAttribute("springview", vo);
 	}
 	
 	
 	@RequestMapping(value = "/springmodify", method = RequestMethod.POST)
 	public String springmodify(SpringBoardVO vo) throws Exception {
 	
-	springService.springModify(vo);
-	return "redirect:/board/springview?post_id=" + vo.getPost_id();
+		springService.springModify(vo);
+		return "redirect:/board/springview?post_id=" + vo.getPost_id();
 	}
 	
 	// 7-5. vo가 없으니 get방식 삭제
 	@RequestMapping(value = "/springdelete", method = RequestMethod.GET)
 	public String springDelete(HttpServletRequest req, @RequestParam("post_id") int post_id, @RequestParam("mypage") String mypage) throws Exception {
 	
-	String result = "";
-	
-	springService.springDelete(post_id);
-	HttpSession session = req.getSession();
-	MemberVO member = (MemberVO) session.getAttribute("member");
-	
-	int user_index = member.getUser_index();
-	String user_nickname = member.getUser_nickname();
-	
-	// mypage에서 글을 삭제하는 경우 > mypage에 남아있음
-	if( mypage.equals("right")) {
-	
-	result = "forward:/member/mypage?user_index=" + user_index + "&user_nickname=" +user_nickname;			
-	
-	// 게시판에서 글을 삭제하는 경우 > 게시판에 남아있음
-	} else {
-	
-	result = "redirect:/board/springlist";
-	}
-	return result;
-	}
+		String result = "";
+		
+		springService.springDelete(post_id);
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		
+		int user_index = member.getUser_index();
+		String user_nickname = member.getUser_nickname();
+		
+		// mypage에서 글을 삭제하는 경우 > mypage에 남아있음
+		if( mypage.equals("right")) {
+		
+		result = "forward:/member/mypage?user_index=" + user_index + "&user_nickname=" +user_nickname;			
+		
+		// 게시판에서 글을 삭제하는 경우 > 게시판에 남아있음
+		} else {
+		
+		result = "redirect:/board/springlist";
+		}
+		return result;
+		}
 	
 	// 7-6. 게시글 신고(가용성 카테고리 변경)
 	@RequestMapping(value = "/springreport", method = RequestMethod.GET)
 	public void springmemberreport(@RequestParam List<Integer> checkbox, 
 	
-	@RequestParam("reportee_index") int reportee_index, 
-	@RequestParam("reportee_index") int user_index, 
-	@RequestParam("reporter_index") int reporter_index,
-	@RequestParam("board_category_id") int board_category_id,
-	@RequestParam("post_id") int post_id,
-	
-	HttpServletResponse response) throws Exception{
-	for (Integer c : checkbox) {
-	HashMap<String, Integer> map = new HashMap<String, Integer>();
-	map.put("report_category_id", c);
-	map.put("reportee_index", reportee_index);
-	map.put("reporter_index", reporter_index);
-	map.put("board_category_id", board_category_id);
-	map.put("post_id", post_id);
-	
-	boolean reportSuccess = memberService.reportSuccess(map);	
-	
-	if(reportSuccess ) {
-		memberService.memberreport(map);						
-		springService.springcategory2(post_id);
-		memberService.memcategory2(user_index);
-		ScriptUtils.alertAndMovePage(response, "신고가 접수되었습니다. 메인화면으로 이동합니다.","http://localhost:9090/");
-	}else {
-		ScriptUtils.alertAndMovePage(response, "이미 신고된 회원입니다.","http://localhost:9090/");
+			@RequestParam("reportee_index") int reportee_index, @RequestParam("reportee_index") int user_index,
+			@RequestParam("reporter_index") int reporter_index,
+			@RequestParam("board_category_id") int board_category_id, @RequestParam("post_id") int post_id,
+
+			HttpServletResponse response) throws Exception {
+		for (Integer c : checkbox) {
+			HashMap<String, Integer> map = new HashMap<String, Integer>();
+			map.put("report_category_id", c);
+			map.put("reportee_index", reportee_index);
+			map.put("reporter_index", reporter_index);
+			map.put("board_category_id", board_category_id);
+			map.put("post_id", post_id);
+
+			boolean reportSuccess = memberService.reportSuccess(map);
+
+			if (reportSuccess) {
+				memberService.memberreport(map);
+				springService.springcategory2(post_id);
+				memberService.memcategory2(user_index);
+				ScriptUtils.alertAndMovePage(response, "신고가 접수되었습니다. 메인화면으로 이동합니다.", "http://localhost:9090/");
+			} else {
+				ScriptUtils.alertAndMovePage(response, "이미 신고된 회원입니다.", "http://localhost:9090/");
+			}
+		}
 	}
-	}
-	}	
 	
 
 	//7-7. 게시글 북마크 설정
