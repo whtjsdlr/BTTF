@@ -109,7 +109,7 @@
 	</delete>
 	
 	<delete id="delete_javascript">
-		delete from reply_javascripta where reply_id = #{reply_id}
+		delete from reply_javascript where reply_id = #{reply_id}
 	</delete>
 	
 	<delete id="delete_jsp">
