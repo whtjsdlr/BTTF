@@ -12,7 +12,7 @@ public interface ReplyService {
 
 	public ReplyVO get(Map <String, Object> reply_id_category);
 
-	public int remove(Long reply_id);
+	public int remove(Map <String, Object> reply_id_category2);
 
 	public List<ReplyVO> getList(Criteria cri, Map <String, Object> reply_id_category);
 

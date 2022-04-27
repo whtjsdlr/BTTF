@@ -60,21 +60,30 @@ public class ReplyController {
 		return new ResponseEntity<>(service.get(reply_id_category), HttpStatus.OK);
 	}
 	
-	@PostMapping(value = "/{reply_id}", produces = {MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> remove(@PathVariable("reply_id") Long reply_id){
-		return service.remove(reply_id) == 1?
+	@PostMapping(value = "/{board_category_id}/{reply_id}", produces = {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> remove(@PathVariable("reply_id") Long reply_id, @PathVariable("board_category_id") int board_category_id){
+		
+
+		Map <String, Object> reply_id_category2 = new HashMap<String, Object>();
+		
+		reply_id_category2.put("reply_id", reply_id);
+		reply_id_category2.put("board_category_id", board_category_id);
+				
+		return service.remove(reply_id_category2) == 1?
 				new ResponseEntity<>("success", HttpStatus.OK) :
 					new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 	
-	@PostMapping(value = "/{reply_id}/{reply_contents}")
-	public Map<String, Object> replyupdate(@PathVariable int reply_id, @PathVariable String reply_contents) {
+	@PostMapping(value = "/{board_category_id}/{reply_id}/{reply_contents}")
+	public Map<String, Object> replyupdate(@PathVariable int board_category_id, @PathVariable int reply_id, @PathVariable String reply_contents) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			ReplyVO replybean = new ReplyVO();
 			replybean.setReply_id(reply_id);
+			replybean.setBoard_category_id(board_category_id);
 			replybean.setReply_contents(reply_contents);
+			
 			service.replyupdate(replybean);
 			map.put("result", "success");
 		} catch (Exception e) {

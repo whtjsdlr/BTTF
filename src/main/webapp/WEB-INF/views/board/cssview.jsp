@@ -330,9 +330,9 @@
 
 	function showList(page) {
 			var postValue = '<c:out value="${cssview.post_id }"/>'
-			var board_category_idValue = '<c:out value="${cssview.board_category_id}"/>'
+			var board_category_id = '<c:out value="${cssview.board_category_id}"/>'
 				
-			replyService.getList({board_category_id : board_category_idValue, post_id : postValue, page : page || 1},function(list) {
+			replyService.getList({board_category_id : board_category_id, post_id : postValue, page : page || 1},function(list) {
 				var str = "";
 				if (list == null || list.length == 0) {
 					str +=	"<p class='text-center' style='font-size : 20px;'>댓글이 없습니다</p>"				
@@ -346,9 +346,9 @@
 					str += "<c:if test='${member.user_nickname eq cssview.user_nickname}'>";
 					str += "<div class='col-md-12' style='padding-left : 0 !important; padding-right : 0 !important; padding-bottom : 40px;'>";
 					str += "<div class='pull-right text-muted'>";
-					str += "<a href='javascript:void(0)' onclick='updateviewBtn(" + list[i].reply_id + ",\"" + list[i].reply_regdate+"\", \""+ list[i].reply_contents+"\", \""+ list[i].user_nickname +"\")' class='btn btn-info btn-sm mr-2'>수정";
+					str += "<a href='javascript:void(0)' onclick='updateviewBtn("+ list[i].board_category_id +","+ list[i].reply_id + ",\"" + list[i].reply_regdate+"\", \""+ list[i].reply_contents+"\", \""+ list[i].user_nickname +"\")' class='btn btn-info btn-sm mr-2'>수정";
 					str += "</a>";
-					str += "<a href='javascript:void(0)' onclick='fn_deleteReply("+ list[i].reply_id + ")' class='btn btn-danger btn-sm'>삭제";
+					str += "<a href='javascript:void(0)' onclick='fn_deleteReply("+ list[i].board_category_id +"," + list[i].reply_id + ")' class='btn btn-danger btn-sm'>삭제";
 					str += "</a>";
 					str += "</div>";
 					str += "</div>";
@@ -363,7 +363,7 @@
 		}; // end showlist
 		
 		
-		function updateviewBtn(reply_id, reply_regdate, reply_contents,user_nickname) {
+		function updateviewBtn(board_category_id, reply_id, reply_regdate, reply_contents,user_nickname) {
 			var updatestr = "";
 				updatestr += "<div class='left clearfix' id='reply_id" + reply_id + "'>";
 				updatestr += "<div>"+ "<div class='header'>"+ "<strong class='primary-font'>" + user_nickname + "</strong>";
@@ -372,7 +372,7 @@
 				updatestr += "<div class='col-md-12' style='padding-left : 0 !important; padding-right : 0 !important; padding-bottom : 40px;'>";
 				updatestr += "<div class='pull-right text-muted'>";
 				updatestr += '<a href="javascript:void(0)" class="btn btn-info btn-sm mr-2"';
-				updatestr += 'onclick="updateBtn('+ reply_id + ',\'' + user_nickname + '\')" >수정완료';
+				updatestr += 'onclick="updateBtn('+ board_category_id +',' + reply_id + ',\'' + user_nickname + '\')" >수정완료';
 				updatestr += "</a>";
 				updatestr += "<a href='javascript:void(0)' onclick='undo_process()' class='btn btn-danger btn-sm'>취소";
 				updatestr += "</a>";
@@ -387,11 +387,11 @@
 					$('#reply_id'+reply_id+'#reply_contents').focus();
 		        };
 		        
-		        function updateBtn(reply_id){
+		        function updateBtn(board_category_id, reply_id){
 		    		var reply_content = $("#reply_edit_content").val();
 		    		
 		    		$.ajax({
-		    			url: '/reply/'+reply_id+'/'+reply_content,
+		    			url: '/reply/'+board_category_id+'/'+reply_id+'/'+reply_content,
 		    			type : 'POST',
 		    			dataType: 'json',
 		    			success: function(result){
@@ -404,10 +404,11 @@
 		    		
 		    	};
 		    	
-		    	function fn_deleteReply(reply_id){
-		    		var paramData = {"reply_id": reply_id};
+		    	function fn_deleteReply(board_category_id, reply_id){
+		    		var paramData = {"board_category_id": board_category_id,
+		    									"reply_id": reply_id};
 		    		$.ajax({
-		    			url: '/reply/'+reply_id
+		    			url: '/reply/'+board_category_id+'/'+reply_id
 		    			, data : paramData
 		    			, type : 'POST'
 		    			, dataType : 'text'
