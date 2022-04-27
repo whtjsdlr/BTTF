@@ -99,7 +99,37 @@ public class ReplyServiceImpl implements ReplyService {
 
 	@Override
 	public void replyupdate(ReplyVO replybean){
-		mapper.replyupdate(replybean);
+		
+		int board_category_id = replybean.getBoard_category_id();
+		
+		switch (board_category_id) {
+			case 1:
+				mapper.replyupdate_html(replybean);
+				break;
+			case 2:
+				mapper.replyupdate_css(replybean);
+				break;
+			case 3:
+				mapper.replyupdate_javascript(replybean);
+				break;
+			case 4:
+				mapper.replyupdate_jsp(replybean);
+				break;
+			case 5:
+				mapper.replyupdate_java(replybean);
+				break;
+			case 6:
+				mapper.replyupdate_oracle(replybean);
+				break;
+			case 7:
+				mapper.replyupdate_spring(replybean);
+				break;
+		}
+		
+		
+		
+		
+		
 	}
 
 	@Override
@@ -108,7 +138,6 @@ public class ReplyServiceImpl implements ReplyService {
 		List<ReplyVO> result = new ArrayList<ReplyVO>();
 		
 		int board_category_id = (int )reply_id_category.get("board_category_id");
-//		int board_category_id_num = board_category_id.intValue();
 		
 		Long post_id = (Long) reply_id_category.get("post_id");
 		
@@ -140,9 +169,42 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 	
 	@Override
-	public int remove(Long reply_id) {
-		return mapper.delete(reply_id);
+	public int remove(Map <String, Object> reply_id_category2) {
+		
+		
+		int result = 0;
+		
+		int board_category_id = (int )reply_id_category2.get("board_category_id");
+		Long reply_id = (Long) reply_id_category2.get("reply_id");
+		
+		switch (board_category_id) {
+		case 1:
+			result = mapper.delete_html(reply_id);
+			break;
+		case 2:
+			result = mapper.delete_css(reply_id);
+			break;
+		case 3:
+			result = mapper.delete_javascript(reply_id);
+			break;
+		case 4:
+			result = mapper.delete_jsp(reply_id);
+			break;
+		case 5:
+			result = mapper.delete_java(reply_id);
+			break;
+		case 6:
+			result = mapper.delete_oracle(reply_id);
+			break;
+		case 7:
+			result = mapper.delete_spring(reply_id);
+			break;
+		
+		}
+
+		return result;
 	}
-
-
+	
+	
+	
 }

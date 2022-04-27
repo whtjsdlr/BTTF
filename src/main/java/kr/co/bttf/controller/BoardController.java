@@ -1,7 +1,6 @@
 package kr.co.bttf.controller;
 
 import java.io.IOException;
-import java.lang.System.Logger;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -197,36 +196,7 @@ public class BoardController {
 				}
 				
 				
-				
-				
-//				if(recCheck == 1) {
-//					//추천 취소한거 recommend_check=0, 빈하트 되야됨
-//					
-//					recommend_check = 0;
-//					post_useridx.put("recommend_check",recommend_check);
-//					cssService.updateRecCheck(post_useridx); //  recommend 테이블에 recommend_check=0 으로 업데이트
-//					cssService.updateRecCntMinus(post_useridx); // 게시글의 추천수 테이블 -1
-//					resultCode = 0;
-//					
-//				} else {
-//					// 추천을 누르는 경우 recommend_check=1, 꽉 찬 하트 되야됨
-//					
-//						if(map == null) {
-//							//처음 추천 누른것
-//							
-//							cssService.insertRecBtn(post_useridx); //recommend 테이블에 데이터 인서트
-//							
-//						} else if (recCheck == 0) {
-//							//추천이 처음은 아니고 취소했다가 다시 눌렀을때
-//							post_useridx.put("recommend_check", recommend_check);
-//							cssService.updateRecCheck(post_useridx); //recommend 테이블에 recommend_check=1 으로 업데이트
-//							
-//						}
-//						
-//						cssService.updateRecCntPlus(post_useridx); // 게시글의 추천수 테이블 +1
-//						resultCode = 1;
-//					
-//				}
+			
 				
 				
 				
@@ -488,35 +458,7 @@ public class BoardController {
 			
 			
 			
-			
-//			if(recCheck == 1) {
-//				//추천 취소한거 recommend_check=0, 빈하트 되야됨
-//				
-//				recommend_check = 0;
-//				post_useridx.put("recommend_check",recommend_check);
-//				cssService.updateRecCheck(post_useridx); //  recommend 테이블에 recommend_check=0 으로 업데이트
-//				cssService.updateRecCntMinus(post_useridx); // 게시글의 추천수 테이블 -1
-//				resultCode = 0;
-//				
-//			} else {
-//				// 추천을 누르는 경우 recommend_check=1, 꽉 찬 하트 되야됨
-//				
-//					if(map == null) {
-//						//처음 추천 누른것
-//						
-//						cssService.insertRecBtn(post_useridx); //recommend 테이블에 데이터 인서트
-//						
-//					} else if (recCheck == 0) {
-//						//추천이 처음은 아니고 취소했다가 다시 눌렀을때
-//						post_useridx.put("recommend_check", recommend_check);
-//						cssService.updateRecCheck(post_useridx); //recommend 테이블에 recommend_check=1 으로 업데이트
-//						
-//					}
-//					
-//					cssService.updateRecCntPlus(post_useridx); // 게시글의 추천수 테이블 +1
-//					resultCode = 1;
-//				
-//			}
+
 			
 			
 			
@@ -617,6 +559,35 @@ public class BoardController {
 		}
 	}
 	
+	
+//	if(recCheck == 1) {
+//		//추천 취소한거 recommend_check=0, 빈하트 되야됨
+//		
+//		recommend_check = 0;
+//		post_useridx.put("recommend_check",recommend_check);
+//		cssService.updateRecCheck(post_useridx); //  recommend 테이블에 recommend_check=0 으로 업데이트
+//		cssService.updateRecCntMinus(post_useridx); // 게시글의 추천수 테이블 -1
+//		resultCode = 0;
+//		
+//	} else {
+//		// 추천을 누르는 경우 recommend_check=1, 꽉 찬 하트 되야됨
+//		
+//			if(map == null) {
+//				//처음 추천 누른것
+//				
+//				cssService.insertRecBtn(post_useridx); //recommend 테이블에 데이터 인서트
+//				
+//			} else if (recCheck == 0) {
+//				//추천이 처음은 아니고 취소했다가 다시 눌렀을때
+//				post_useridx.put("recommend_check", recommend_check);
+//				cssService.updateRecCheck(post_useridx); //recommend 테이블에 recommend_check=1 으로 업데이트
+//				
+//			}
+//			
+//			cssService.updateRecCntPlus(post_useridx); // 게시글의 추천수 테이블 +1
+//			resultCode = 1;
+//		
+//	}
 	
 	//2-7. 게시글 북마크 설정
 	@RequestMapping (value = "/cssbookmark", method = RequestMethod.GET)

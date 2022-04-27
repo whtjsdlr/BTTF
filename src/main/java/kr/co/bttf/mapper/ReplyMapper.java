@@ -72,10 +72,39 @@ public interface ReplyMapper {
 			@Param("cri") Criteria cri, 
 			@Param("post_id") Long post_id);
 	
+
+	// 댓글 삭제
+	public int delete_html(Long reply_id);
+
+	public int delete_css(Long reply_id);
 	
-	public int delete (Long reply_id); // 댓글을 삭제한다.
+	public int delete_javascript(Long reply_id);
+	
+	public int delete_jsp(Long reply_id);
+	
+	public int delete_java(Long reply_id);
+	
+	public int delete_oracle(Long reply_id);
+	
+	public int delete_spring(Long reply_id);
 	
 	
-	public void replyupdate(ReplyVO replybean);
+	
+	// 댓글 업데이트
+	public void replyupdate_html(ReplyVO replybean);
+	
+	public void replyupdate_css(ReplyVO replybean);
+	
+	public void replyupdate_javascript(ReplyVO replybean);
+	
+	public void replyupdate_jsp(ReplyVO replybean);
+	
+	public void replyupdate_java(ReplyVO replybean);
+	
+	public void replyupdate_oracle(ReplyVO replybean);
+	
+	public void replyupdate_spring(ReplyVO replybean);
+
+	
 
 }
