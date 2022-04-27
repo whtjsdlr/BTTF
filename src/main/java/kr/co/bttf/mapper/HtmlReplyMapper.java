@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import kr.co.bttf.controller.Criteria;
 import kr.co.bttf.domain.ReplyVO;
 
-public interface OracleReplyMapper {
+public interface HtmlReplyMapper {
 	public int  insert(ReplyVO vo);// 추가된 게시글의 수가 반환
 	
 	public ReplyVO read (Long reply_id);// 댓글을 가져온다

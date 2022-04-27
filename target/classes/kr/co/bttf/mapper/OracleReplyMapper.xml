@@ -5,11 +5,10 @@
   
 <mapper namespace="kr.co.bttf.mapper.OracleReplyMapper">
 
-<!-- oracle -->
-	<insert id="insert" parameterType="kr.co.bttf.domain.OracleReplyVO">
+	<insert id="insert" parameterType="kr.co.bttf.domain.ReplyVO">
 		insert into reply_oracle (post_id, reply_contents, user_nickname) values ( #{post_id}, #{reply_contents}, #{user_nickname})
 	</insert>
-	<select id="read" resultType="kr.co.bttf.domain.OracleReplyVO">
+	<select id="read" resultType="kr.co.bttf.domain.ReplyVO">
 		select * from reply_oracle where reply_id = #{reply_id}
 	</select>
 	<delete id="delete">
@@ -18,7 +17,7 @@
 	<update id="replyupdate">
 		update reply_oracle set reply_contents = #{reply_contents}, reply_regdate_modified = sysdate() where reply_id = #{reply_id}
 	</update>
-	<select id="getListWithPaging" resultType="kr.co.bttf.domain.OracleReplyVO">
+	<select id="getListWithPaging" resultType="kr.co.bttf.domain.ReplyVO">
 		select reply_id, post_id, reply_contents, user_nickname, reply_regdate, reply_regdate_modified from reply_oracle
 			where post_id = #{post_id} order by reply_id asc
 	</select>

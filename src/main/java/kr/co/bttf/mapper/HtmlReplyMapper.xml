@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kr.co.bttf.mapper.HtmlReplyMapper">
+
+	<insert id="insert" parameterType="kr.co.bttf.domain.ReplyVO">
+		insert into reply_html (post_id, reply_contents, user_nickname) values ( #{post_id}, #{reply_contents}, #{user_nickname})
+	</insert>
+	<select id="read" resultType="kr.co.bttf.domain.ReplyVO">
+		select * from reply_html where reply_id = #{reply_id}
+	</select>
+	<delete id="delete">
+		delete from reply_html where reply_id = #{reply_id}
+	</delete>
+	<update id="replyupdate">
+		update reply_html set reply_contents = #{reply_contents}, reply_regdate_modified = sysdate() where reply_id = #{reply_id}
+	</update>
+	<select id="getListWithPaging" resultType="kr.co.bttf.domain.ReplyVO">
+		select reply_id, post_id, reply_contents, user_nickname, reply_regdate, reply_regdate_modified from reply_html
+			where post_id = #{post_id} order by reply_id asc
+	</select>
+
+</mapper>
+
+

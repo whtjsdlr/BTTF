@@ -27,7 +27,7 @@ import kr.co.bttf.domain.JsBoardVO;
 import kr.co.bttf.domain.JspBoardVO;
 import kr.co.bttf.domain.MemberVO;
 import kr.co.bttf.domain.OracleBoardVO;
-import kr.co.bttf.domain.OracleReplyVO;
+import kr.co.bttf.domain.ReplyVO;
 import kr.co.bttf.domain.SpringBoardVO;
 import kr.co.bttf.service.CssBoardService;
 import kr.co.bttf.service.HtmlBoardService;

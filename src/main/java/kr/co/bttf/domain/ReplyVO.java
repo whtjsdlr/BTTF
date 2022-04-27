@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class CssReplyVO {
+public class ReplyVO {
 	private int reply_id;
 	private int post_id;
 	private String reply_contents;

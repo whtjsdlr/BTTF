@@ -3,22 +3,22 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="kr.co.bttf.mapper.CssReplyMapper">
+<mapper namespace="kr.co.bttf.mapper.JspReplyMapper">
 
 	<insert id="insert" parameterType="kr.co.bttf.domain.ReplyVO">
-		insert into reply_css (post_id, reply_contents, user_nickname) values ( #{post_id}, #{reply_contents}, #{user_nickname})
+		insert into reply_jsp (post_id, reply_contents, user_nickname) values ( #{post_id}, #{reply_contents}, #{user_nickname})
 	</insert>
 	<select id="read" resultType="kr.co.bttf.domain.ReplyVO">
-		select * from reply_css where reply_id = #{reply_id}
+		select * from reply_jsp where reply_id = #{reply_id}
 	</select>
 	<delete id="delete">
-		delete from reply_css where reply_id = #{reply_id}
+		delete from reply_jsp where reply_id = #{reply_id}
 	</delete>
 	<update id="replyupdate">
-		update reply_css set reply_contents = #{reply_contents}, reply_regdate_modified = sysdate() where reply_id = #{reply_id}
+		update reply_jsp set reply_contents = #{reply_contents}, reply_regdate_modified = sysdate() where reply_id = #{reply_id}
 	</update>
 	<select id="getListWithPaging" resultType="kr.co.bttf.domain.ReplyVO">
-		select reply_id, post_id, reply_contents, user_nickname, reply_regdate, reply_regdate_modified from reply_css
+		select reply_id, post_id, reply_contents, user_nickname, reply_regdate, reply_regdate_modified from reply_jsp
 			where post_id = #{post_id} order by reply_id asc
 	</select>
 
