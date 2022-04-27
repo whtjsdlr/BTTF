@@ -213,7 +213,7 @@
 	
 	
 	<!-- 3-3. 게시물 조회 -->
-	<select id="jsview" parameterType="int" resultType="kr.co.bttf.domain.JsBoardVO">
+	<select id="javascriptview" parameterType="int" resultType="kr.co.bttf.domain.JsBoardVO">
 		select * from javascript
 		where post_id = #{post_id}
 	</select>
@@ -251,7 +251,7 @@
 	</insert>
 	
 	<!-- 3-9. 게시글 추천 유무 확인-->
-	<select id = "jsRecommendcheck" parameterType="map" resultType="map" >
+	<select id = "jsRecommendCheck" parameterType="map" resultType="map" >
 		select recommend_check from recommend 
 		where post_id_javascript = #{post_id} and user_index = #{user_index};
 	</select>
@@ -650,7 +650,7 @@
 	
 	<!-- 7-14 해당 게시글의 추천수 조회 -->
 	<select id = "springGetRecCnt" parameterType="map" resultType="_int">
-		select post_rec from springe where post_id = #{post_id}
+		select post_rec from spring where post_id = #{post_id}
 	</select>
 
 

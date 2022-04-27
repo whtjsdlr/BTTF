@@ -31,8 +31,8 @@ public class JsBoardServiceImpl implements JsBoardService {
 
 	// 게시글 상세
 	@Override
-	public JsBoardVO jsView(int post_id) throws Exception {
-		return dao.jsView(post_id);
+	public JsBoardVO javascriptView(int post_id) throws Exception {
+		return dao.javascriptView(post_id);
 	}
 
 	// 게시글 조회수

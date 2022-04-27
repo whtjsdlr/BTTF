@@ -616,8 +616,8 @@ public class BoardController {
 		
 
 		// 3-3. 게시물 상세보기 페이지 이동
-		@RequestMapping(value = "/jsview", method = RequestMethod.GET)
-		public void jsView(@RequestParam("post_id") int post_id, Model model, HttpServletRequest req, HttpSession session) throws Exception {
+		@RequestMapping(value = "/javascriptview", method = RequestMethod.GET)
+		public void javascriptView(@RequestParam("post_id") int post_id, Model model, HttpServletRequest req, HttpSession session) throws Exception {
 			
 			// 상세보기 시 조회수 갱신
 			int jsvcnt = 0;
@@ -667,14 +667,14 @@ public class BoardController {
 					model.addAttribute("recommend_check", 0);
 				}
 				
-				JsBoardVO vo = jsService.jsView(post_id);
-				model.addAttribute("jsview", vo);
+				JsBoardVO vo = jsService.javascriptView(post_id);
+				model.addAttribute("javascriptview", vo);
 			
 		}
 		
 		
 		// 좋아요 눌렀을 때 
-		@RequestMapping(value ="/clickRecommend/js", method = RequestMethod.POST)
+		@RequestMapping(value ="/clickRecommend/javascript", method = RequestMethod.POST)
 		@ResponseBody
 		public Map<String, Object> jsClickRecommend(@RequestParam Map<String,Object> post_useridx, HttpServletRequest req, HttpServletResponse res, HttpSession session) throws Exception{
 					
@@ -737,8 +737,8 @@ public class BoardController {
 		@RequestMapping(value = "/jsmodify", method = RequestMethod.GET)
 		public void jsModify(@RequestParam("post_id") int post_id, Model model) throws Exception {
 
-			JsBoardVO vo = jsService.jsView(post_id);
-			model.addAttribute("jsview", vo);
+			JsBoardVO vo = jsService.javascriptView(post_id);
+			model.addAttribute("javascriptview", vo);
 		}
 		
 		@RequestMapping(value = "/jsmodify", method = RequestMethod.POST)
