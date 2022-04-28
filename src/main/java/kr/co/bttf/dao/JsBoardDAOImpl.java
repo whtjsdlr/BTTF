@@ -2,6 +2,7 @@ package kr.co.bttf.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -29,8 +30,8 @@ public class JsBoardDAOImpl implements JsBoardDAO {
 	}
 	
 	@Override
-	public JsBoardVO jsView(int post_id) throws Exception {
-		return sql.selectOne(namespace + ".jsview", post_id);
+	public JsBoardVO javascriptView(int post_id) throws Exception {
+		return sql.selectOne(namespace + ".javascriptview", post_id);
 	}
 
 	@Override
@@ -65,6 +66,42 @@ public class JsBoardDAOImpl implements JsBoardDAO {
 	public void jsbookmark(HashMap<String, Integer> postid_useridx) {
 		
 		sql.insert(namespace + ".jsbookmark", postid_useridx);
+	}
+	
+	@Override
+	public Map<String, Object> jsRecommendCheck(Map<String, Object> post_useridx) {
+		return sql.selectOne(namespace + ".jsRecommendCheck", post_useridx);
+	}
+
+	@Override
+	public void jsInsertRecBtn(Map<String, Object> post_useridx) throws Exception {
+
+		sql.insert(namespace +".jsInsertRecBtn", post_useridx);
+		
+	}
+
+	@Override
+	public void jsUpdateRecCntPlus(Map<String, Object> post_useridx) throws Exception {
+
+		sql.update(namespace + ".jsUpdateRecCntPlus", post_useridx);
+	}
+
+	@Override
+	public void jsUpdateRecCheck(Map<String, Object> post_useridx) throws Exception  {
+
+		sql.update(namespace + ".jsUpdateRecCheck", post_useridx);
+	}
+
+	@Override
+	public void jsUpdateRecCntMinus(Map<String, Object> post_useridx) throws Exception  {
+
+		sql.update(namespace + ".jsUpdateRecCntMinus", post_useridx);
+	}
+
+	@Override
+	public int jsGetRecCnt(Map<String, Object> post_useridx) throws Exception {
+
+		return sql.selectOne(namespace + ".jsGetRecCnt", post_useridx);
 	}
 
 }

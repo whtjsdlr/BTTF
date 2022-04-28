@@ -41,8 +41,6 @@
     <!-- c3 chart -->
     <link href="../../../resources/vendor/c3-0.7.20/c3.css" rel="stylesheet">
     
-    <!--reply style -->
-    <link href="../../../resources/css/comment.css">
    
     <style type="text/css">
        .remove{
@@ -84,7 +82,8 @@
                         <div class="my_box" data-height="height">
                             <form method="post">
                                 <div class="col-md-6">
-									<input type="hidden" name="post_id" value="${oracleview.post_id }">
+									<input type="hidden" name="user_index" id = "user_index" value="${member.user_index }">
+									<input type="hidden" name="post_id" id = "post_id" value="${oracleview.post_id }">
                                     <p style="color: black; font-size: 2rem; font-weight:bold;">글 제목 : ${oracleview.post_subject }</p>
                                 </div>
                                 <div class="col-md-2">
@@ -99,6 +98,7 @@
                                 <div>
                                     <pre class="form-control" placeholder="내용을 입력해 주세요." style="height : 650px; resize: none; background-color: #fff;" disabled>${oracleview.post_contents }</pre>
                                 </div> 
+                                
 	                        	<div class="mb-5">
 									<c:if test="${member.user_nickname eq oracleview.user_nickname}">
 		 		                    	<a href="/board/oraclemodify?post_id=${oracleview.post_id }" class="btn btn-primary mt-4" id="list" type="submit">글수정</a>                          
@@ -109,6 +109,17 @@
 										<a href="/board/oraclebookmark?post_id=${oracleview.post_id }&user_index=${member.user_index }" class="btn btn-default mt-4">북마크</a>
 										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#memberreport" data-whatever="@getbootstrap" style="float: right;" >작성자 신고</button>
 									</c:if>
+	                 			   <div style="text-align:center;">
+			         	       			<c:choose>
+									    	<c:when test="${recommend_check eq '0' or empty recommend_check}"> <!-- recommend_check가0이면 빈하트-->
+									        	<img src="../../../resources/img/heart.png" id="btn_like" style="cursor:pointer; width: 50px;">
+									    	</c:when>
+									    	<c:otherwise> <!-- likecheck가1이면 빨간 하트-->
+									        	<img src="../../../resources/img/heart-fill.png" id="btn_like" style="cursor:pointer; width: 50px;">
+									    	</c:otherwise>
+										</c:choose>
+										<p id="post_rec" style="color: #000;">${oracleview.post_rec}</p>
+									</div>
                               	 </div>
                             </form>
 							<!--신고모달 시작 -->
@@ -185,6 +196,7 @@
 									<div class="d-flex col-md-12 p-0" style="margin-bottom : 40px;">
 		                                <form id="replyForm" name="replyForm" method="post" class="mb-4 d-flex col-md-12 p-0" target=detail onsubmit="all_reset();">
 		                                	<input type="hidden" id="user_nickname" name="user_nickname" value="${member.user_nickname}">
+		                                	<input type="hidden" id="board_category_id" name="board_category_id" value="${oracleview.board_category_id}">
 		                                	<input type="hidden" id="post_id" name="post_id" value="${oracleview.post_id}">
 		                                	<input id="reply_contents" type="text" name="reply_contents" class="form-control mr-5" placeholder="댓글을 작성하세요" value="">
 		                                </form>
@@ -274,8 +286,9 @@
             .create( document.querySelector( '#classic' ))
             .catch( error => {
                 console.error( error );
-    });
+  		  });
     </script>
+    
    	<script>
 	function all_reset(){
 		document.replyForm.reset();
@@ -292,13 +305,16 @@
 		var user_nickname = replyForm.find("input[name='user_nickname']");
 		var reply_contents = replyForm.find("input[name='reply_contents']");
 		var reply_id = replyForm.find("input[name='replyid']");
+		var board_category_id = replyForm.find("input[name='board_category_id']");
 				
 		$("#btnReply").on("click", function(e){
+			
 			var postValue = '<c:out value="${oracleview.post_id }"/>'
 			var reply = {
 					user_nickname : user_nickname.val(),					
 					reply_contents : reply_contents.val(),
-					post_id : postValue
+					post_id : postValue,
+					board_category_id : board_category_id.val()
 			};
 			replyService.add(reply, function(result){
 				showList(1);
@@ -310,7 +326,9 @@
 
 	function showList(page) {
 			var postValue = '<c:out value="${oracleview.post_id }"/>'
-			replyService.getList({post_id : postValue,page : page || 1},function(list) {
+			var board_category_id = '<c:out value="${oracleview.board_category_id}"/>'
+			
+			replyService.getList({ board_category_id : board_category_id, post_id : postValue, page : page || 1},function(list) {
 				var str = "";
 				if (list == null || list.length == 0) {
 					str +=	"<p class='text-center' style='font-size : 20px;'>댓글이 없습니다</p>"				
@@ -318,15 +336,16 @@
 				}
 				
 				for (var i = 0, len = list.length || 0; i < len; i++) {
+					
 					str += "<div class='left clearfix' id='reply_id" + list[i].reply_id + "'>";
 					str += "<div>"+ "<div class='header'>"+ "<strong class='primary-font'>" + list[i].user_nickname+ "</strong>";
 					str += "<small class='pull-right text-muted'>" + replyService.displayTime(list[i].reply_regdate) + "</small></div>";
 					str += "<c:if test='${member.user_nickname eq oracleview.user_nickname}'>";
 					str += "<div class='col-md-12' style='padding-left : 0 !important; padding-right : 0 !important; padding-bottom : 40px;'>";
 					str += "<div class='pull-right text-muted'>";
-					str += "<a href='javascript:void(0)' onclick='updateviewBtn(" + list[i].reply_id + ",\"" + list[i].reply_regdate+"\", \""+ list[i].reply_contents+"\", \""+ list[i].user_nickname +"\")' class='btn btn-info btn-sm mr-2'>수정";
+					str += "<a href='javascript:void(0)' onclick='updateviewBtn("+ list[i].board_category_id +","+ list[i].reply_id + ",\"" + list[i].reply_regdate+"\", \""+ list[i].reply_contents+"\", \""+ list[i].user_nickname +"\")' class='btn btn-info btn-sm mr-2'>수정";
 					str += "</a>";
-					str += "<a href='javascript:void(0)' onclick='fn_deleteReply("+ list[i].reply_id + ")' class='btn btn-danger btn-sm'>삭제";
+					str += "<a href='javascript:void(0)' onclick='fn_deleteReply("+ list[i].board_category_id +"," + list[i].reply_id + ")' class='btn btn-danger btn-sm'>삭제";
 					str += "</a>";
 					str += "</div>";
 					str += "</div>";
@@ -341,7 +360,7 @@
 		}; // end showlist
 		
 		
-		function updateviewBtn(reply_id, reply_regdate, reply_contents,user_nickname) {
+		function updateviewBtn(board_category_id, reply_id, reply_regdate, reply_contents,user_nickname) {
 			var updatestr = "";
 				updatestr += "<div class='left clearfix' id='reply_id" + reply_id + "'>";
 				updatestr += "<div>"+ "<div class='header'>"+ "<strong class='primary-font'>" + user_nickname + "</strong>";
@@ -350,7 +369,7 @@
 				updatestr += "<div class='col-md-12' style='padding-left : 0 !important; padding-right : 0 !important; padding-bottom : 40px;'>";
 				updatestr += "<div class='pull-right text-muted'>";
 				updatestr += '<a href="javascript:void(0)" class="btn btn-info btn-sm mr-2"';
-				updatestr += 'onclick="updateBtn('+ reply_id + ',\'' + user_nickname + '\')" >수정완료';
+				updatestr += 'onclick="updateBtn('+ board_category_id +',' + reply_id + ',\'' + user_nickname + '\')" >수정완료';
 				updatestr += "</a>";
 				updatestr += "<a href='javascript:void(0)' onclick='undo_process()' class='btn btn-danger btn-sm'>취소";
 				updatestr += "</a>";
@@ -365,11 +384,11 @@
 					$('#reply_id'+reply_id+'#reply_contents').focus();
 		        };
 		        
-		        function updateBtn(reply_id){
+		        function updateBtn(board_category_id, reply_id){
 		    		var reply_content = $("#reply_edit_content").val();
-		    		
+		    				    		
 		    		$.ajax({
-		    			url: '/reply/'+reply_id+'/'+reply_content,
+		    			url: '/reply/'+board_category_id+'/'+reply_id+'/'+reply_content,
 		    			type : 'POST',
 		    			dataType: 'json',
 		    			success: function(result){
@@ -382,10 +401,11 @@
 		    		
 		    	};
 		    	
-		    	function fn_deleteReply(reply_id){
-		    		var paramData = {"reply_id": reply_id};
+		    	function fn_deleteReply(board_category_id, reply_id){
+		    		var paramData = {"board_category_id": board_category_id,
+				    						"reply_id": reply_id};
 		    		$.ajax({
-		    			url: '/reply/'+reply_id
+		    			url: '/reply/'+board_category_id+'/'+reply_id
 		    			, data : paramData
 		    			, type : 'POST'
 		    			, dataType : 'text'

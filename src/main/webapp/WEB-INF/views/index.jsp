@@ -139,7 +139,7 @@
 	                                <p class="margin-b-5">Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
 	                                <a class="link" href="#">Read More</a>
 	                            </div>
-	                            <a href="#" class="content-wrapper-link"></a>
+	                            <a href="/board/javalist" class="content-wrapper-link"></a>
 	                        </div>
 	                    </div>
 	                </div>

@@ -77,7 +77,7 @@
                     <div class="wow fadeInLeft" data-wow-duration=".3" data-wow-delay=".3s">
                         <div class="my_box" data-height="height">
                             <!-- Start write Form -->
-							<form name = "cssmodify" action="${pageContext.request.contextPath }/board/cssedit" method="post">
+							<form name = "cssmodify" action="${pageContext.request.contextPath }/board/cssmodify" method="post">
 								<input type="hidden" name="post_id" value="${cssview.post_id }">
 								<div class="col-auto">
 									<label for="subject">제목</label>
@@ -142,7 +142,7 @@
     	// [글 수정하기] function
     	function updateReply( post_id ){
     		if (true){
-    			document.edit.action = "${pageContext.request.contextPath}/pages/cssBoardView.do?post_id=" +  post_id;
+    			document.edit.action = "${pageContext.request.contextPath}/pages/cssBoardView.js?post_id=" +  post_id;
     			document.edit.submit();
     		}
     	}
