@@ -40,6 +40,7 @@
 
     <!-- c3 chart -->
     <link href="../../../resources/vendor/c3-0.7.20/c3.css" rel="stylesheet">
+    <link href="../../../resources/vendor/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
     
     
     <style type="text/css">
@@ -93,9 +94,20 @@
                                 	<p class="margin-b-50 text-center" > <fmt:formatDate value="${cssview.post_regdate}" pattern="yyyy-MM-dd HH:mm" /></p>
                                 </div>
                                 <div>
-                                    <pre class="form-control" placeholder="내용을 입력해 주세요." style="height : 650px; resize: none; background-color: #fff;" disabled>${cssview.post_contents }</pre>
+                                    <pre class="form-control" placeholder="내용을 입력해 주세요." style="height : 650px; resize: none; background-color: #fff; border: none;" disabled>${cssview.post_contents }</pre>
                                 </div> 
-							                                
+							    <div style="text-align:center; border-bottom : 1px solid #d9d9d9;">
+		         	       			<c:choose>
+								    	<c:when test="${recommend_check eq '0' or empty recommend_check}"> <!-- recommend_check가0이면 빈하트-->
+								        	<p id="btn_like"  style="cursor:pointer; color : red; font-size: 26px; margin-bottom:0 !important;"><i id="heart_o" class="fa fa-heart-o"></i></p>
+<!-- 									        	<img src="../../../resources/img/heart.png" id="btn_like" style="cursor:pointer; width: 50px;"> -->
+								    	</c:when>
+								    	<c:otherwise> <!-- likecheck가1이면 빨간 하트-->
+								        	<p id="btn_like"  style="cursor:pointer; color: red; font-size: 26px; margin-bottom:0 !important;"><i id="heart" class="fa fa-heart"></i></p>
+								    	</c:otherwise>
+									</c:choose>
+									<p id="post_rec" style="color: #000;">${cssview.post_rec}</p>
+								</div>                            
 	                        	<div class="mb-5">
 									<c:if test="${member.user_nickname eq cssview.user_nickname}">
 		 		                    	<a href="/board/cssmodify?post_id=${cssview.post_id }" class="btn btn-primary mt-4" id="list" type="submit">글수정</a>                          
@@ -106,18 +118,6 @@
 										<a href="/board/cssbookmark?post_id=${cssview.post_id }&user_index=${member.user_index }" class="btn btn-default mt-4">북마크</a>
 										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#memberreport" data-whatever="@getbootstrap" style="float: right;" >작성자 신고</button>
 									</c:if>
-	                 			   <div style="text-align:center;">
-			         	       			<c:choose>
-									    	<c:when test="${recommend_check eq '0' or empty recommend_check}"> <!-- recommend_check가0이면 빈하트-->
-									        	<p id="btn_like" style="cursor:pointer; width: 50px;"><i class="fa-solid fa-heart"></i></p>
-<!-- 									        	<img src="../../../resources/img/heart.png" id="btn_like" style="cursor:pointer; width: 50px;"> -->
-									    	</c:when>
-									    	<c:otherwise> <!-- likecheck가1이면 빨간 하트-->
-									        	<img src="../../../resources/img/heart-fill.png" id="btn_like" style="cursor:pointer; width: 50px;">
-									    	</c:otherwise>
-										</c:choose>
-										<p id="post_rec" style="color: #000;">${cssview.post_rec}</p>
-									</div>
                               	 </div>
                             </form>
 							<!--신고모달 시작 -->
