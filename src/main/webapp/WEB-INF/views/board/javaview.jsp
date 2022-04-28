@@ -111,7 +111,7 @@
 										<a href="/board/javabookmark?post_id=${javaview.post_id }&user_index=${member.user_index }" class="btn btn-default mt-4">북마크</a>
 										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#memberreport" data-whatever="@getbootstrap" style="float: right;" >작성자 신고</button>
 									</c:if>
-	                 			   <div style="text-align:center;">
+	                 			   <div style="text-align:center; position:relative; bottom:36px;">
 			         	       			<c:choose>
 									    	<c:when test="${recommend_check eq '0' or empty recommend_check}"> <!-- recommend_check가0이면 빈하트-->
 									        	<img src="../../../resources/img/heart.png" id="btn_like" style="cursor:pointer; width: 50px;">
@@ -196,6 +196,7 @@
 	                            <div class="card-body">
 	                                <!-- Comment form-->
 									<div class="d-flex col-md-12 p-0" style="margin-bottom : 40px;">
+										<c:if test="${member != null }">
 		                                <form id="replyForm" name="replyForm" method="post" class="mb-4 d-flex col-md-12 p-0" target=detail onsubmit="all_reset();">
 		                                	<input type="hidden" id="user_nickname" name="user_nickname" value="${member.user_nickname}">
 		                                	<input type="hidden" id="board_category_id" name="board_category_id" value="${javaview.board_category_id}">
@@ -203,6 +204,7 @@
 		                                	<input id="reply_contents" type="text" name="reply_contents" class="form-control mr-5" placeholder="댓글을 작성하세요" value="">
 		                                </form>
 										<input id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;" value="댓글쓰기" type="submit">
+										</c:if>
 									</div>
 	                               	<!-- Comment with nested comments-->
 	                               	<form id="operForm" >
