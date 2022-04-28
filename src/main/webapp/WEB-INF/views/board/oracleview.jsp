@@ -41,8 +41,6 @@
     <!-- c3 chart -->
     <link href="../../../resources/vendor/c3-0.7.20/c3.css" rel="stylesheet">
     
-    <!--reply style -->
-    <link href="../../../resources/css/comment.css">
    
     <style type="text/css">
        .remove{

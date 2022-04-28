@@ -41,8 +41,6 @@
     <!-- c3 chart -->
     <link href="../../../resources/vendor/c3-0.7.20/c3.css" rel="stylesheet">
     
-	<!--reply style -->
-    <link href="../../../resources/css/comment.css">
     
     <style type="text/css">
        .remove{
@@ -111,7 +109,8 @@
 	                 			   <div style="text-align:center;">
 			         	       			<c:choose>
 									    	<c:when test="${recommend_check eq '0' or empty recommend_check}"> <!-- recommend_check가0이면 빈하트-->
-									        	<img src="../../../resources/img/heart.png" id="btn_like" style="cursor:pointer; width: 50px;">
+									        	<p id="btn_like" style="cursor:pointer; width: 50px;"><i class="fa-solid fa-heart"></i></p>
+<!-- 									        	<img src="../../../resources/img/heart.png" id="btn_like" style="cursor:pointer; width: 50px;"> -->
 									    	</c:when>
 									    	<c:otherwise> <!-- likecheck가1이면 빨간 하트-->
 									        	<img src="../../../resources/img/heart-fill.png" id="btn_like" style="cursor:pointer; width: 50px;">
@@ -199,7 +198,7 @@
 		                                	<input type="hidden" id="post_id" name="post_id" value="${cssview.post_id}">
 		                                	<input id="reply_contents" type="text" name="reply_contents" class="form-control mr-5" placeholder="댓글을 작성하세요" value="">
 		                                </form>
-										<input id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;" value="댓글쓰기" type="submit">
+										<input id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;" form="replyForm" value="댓글쓰기" type="submit">
 									</div>
 	                               	<!-- Comment with nested comments-->
 	                               	<form id="operForm" >
@@ -259,6 +258,9 @@
     <script src="../../../resources/vendor/swiper/js/swiper.jquery.min.js" type="text/javascript"></script>
     <script src="../../../resources/vendor/masonry/jquery.masonry.pkgd.min.js" type="text/javascript"></script>
     <script src="../../../resources/vendor/masonry/imagesloaded.pkgd.min.js" type="text/javascript"></script>
+	
+	<!-- REPLY AJAX -->
+	<script type="text/javascript" src="../../../resources/js/replymodule.js"></script>
 
     <!-- PAGE LEVEL SCRIPTS -->
     <script src="../../../resources/js/layout.min.js" type="text/javascript"></script>
@@ -272,9 +274,6 @@
 	<!--CKEDITOR -->
     <script src="../../../resources/vendor/ckeditor5-build-classic/translations/ko.js"></script>
 	<script src="../../../resources/vendor/ckeditor5-build-classic/ckeditor.js"></script>
-	
-	<!-- REPLY AJAX -->
-	<script type="text/javascript" src="../../../resources/js/replymodule.js"></script>
 	
 	<!-- ALERT SECTION -->
     <script src="../../../resources/js/confirm.js"></script>
