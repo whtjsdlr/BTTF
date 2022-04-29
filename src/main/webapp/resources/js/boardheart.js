@@ -67,14 +67,12 @@ var board_category_id = document.getElementById("board_category_id").value;
                 }
                 else{
                     if(data.recommend_check == 1){
-                        $("#heart_o").removeClass("fa fa-heart-o");
-                        $("#heart").addClass("fa fa-heart");
+                        $("#btn_like i").attr("class","fa fa-heart");
                         $("#post_rec").empty();
                         $("#post_rec").append(data.post_rec);
                     }
                     else if (data.recommend_check == 0){
-                        $("#heart").removeClass("fa fa-heart");
-                        $("#heart_o").addClass("fa fa-heart-o");
+                        $("#btn_like i").attr("class","fa fa-heart-o");
                         $("#post_rec").empty();
                         $("#post_rec").append(data.post_rec);
                         

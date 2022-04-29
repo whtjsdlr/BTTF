@@ -99,11 +99,15 @@
 							    <div style="text-align:center; border-bottom : 1px solid #d9d9d9;">
 		         	       			<c:choose>
 								    	<c:when test="${recommend_check eq '0' or empty recommend_check}"> <!-- recommend_check가0이면 빈하트-->
-								        	<p id="btn_like"  style="cursor:pointer; color : red; font-size: 26px; margin-bottom:0 !important;"><i id="heart_o" class="fa fa-heart-o"></i></p>
+								        	<p id="btn_like"  style="cursor:pointer; color : red; font-size: 26px; margin-bottom:0 !important;">
+								        		<i class="fa fa-heart-o"></i>
+								        	</p>
 <!-- 									        	<img src="../../../resources/img/heart.png" id="btn_like" style="cursor:pointer; width: 50px;"> -->
 								    	</c:when>
 								    	<c:otherwise> <!-- likecheck가1이면 빨간 하트-->
-								        	<p id="btn_like"  style="cursor:pointer; color: red; font-size: 26px; margin-bottom:0 !important;"><i id="heart" class="fa fa-heart"></i></p>
+								        	<p id="btn_like"  style="cursor:pointer; color: red; font-size: 26px; margin-bottom:0 !important;">
+								        		<i class="fa fa-heart"></i>
+								        	</p>
 								    	</c:otherwise>
 									</c:choose>
 									<p id="post_rec" style="color: #000;">${cssview.post_rec}</p>
