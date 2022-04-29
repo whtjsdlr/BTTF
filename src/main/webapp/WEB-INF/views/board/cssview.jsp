@@ -204,7 +204,7 @@
 		                                	<input id="reply_contents" type="text" name="reply_contents" class="form-control mr-5" placeholder="댓글을 작성하세요" value="">
 		                                </form>
 										</c:if>
-										<input id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;" form="replyForm" value="댓글쓰기" type="submit">
+										<input id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;" value="댓글쓰기" type="submit">
 									</div>
 	                               	<!-- Comment with nested comments-->
 	                               	<form id="operForm" >
