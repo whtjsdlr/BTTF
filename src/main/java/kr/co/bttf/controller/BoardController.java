@@ -649,7 +649,7 @@ public class BoardController {
 		
 
 		// 3-3. 게시물 상세보기 페이지 이동
-		@RequestMapping(value = "/javascriptview", method = RequestMethod.GET)
+		@RequestMapping(value = "/javascriptView", method = RequestMethod.GET)
 		public void javascriptView(@RequestParam("post_id") int post_id, Model model, HttpServletRequest req, HttpSession session) throws Exception {
 			
 			// 상세보기 시 조회수 갱신
@@ -701,7 +701,7 @@ public class BoardController {
 				}
 				
 				JsBoardVO vo = jsService.javascriptView(post_id);
-				model.addAttribute("javascriptview", vo);
+				model.addAttribute("javascriptView", vo);
 			
 		}
 		

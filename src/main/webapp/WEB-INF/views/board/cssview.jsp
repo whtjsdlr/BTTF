@@ -22,8 +22,8 @@
     <link href="../../../resources/vendor/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
 
     <!-- font-Glyphicon -->
-    <!-- <link rel="stylesheet" href="vendor/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/fontawesome.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+    <link href="../../../resources/vendor/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
 
     <!-- PAGE LEVEL PLUGIN STYLES -->
     <link href="../../../resources/css/animate.css" rel="stylesheet">
@@ -37,9 +37,6 @@
 
     <!-- custom -->
     <link rel="stylesheet" href="../../../resources/css/custom.css">
-
-    <!-- c3 chart -->
-    <link href="../../../resources/vendor/c3-0.7.20/c3.css" rel="stylesheet">
     
     
     <style type="text/css">
@@ -77,7 +74,7 @@
                 <div class="col-sm-12 sm-margin-b-2 bg_white_pd wow fadeInLeft" style="margin-bottom: 20px;">
                     <div class="wow fadeInLeft" data-wow-duration=".3" data-wow-delay=".3s">
                         <div class="my_box" data-height="height">
-                            <form method="post">
+                            <form id="modal_prepend" method="post">
                                 <div class="col-md-6">
 									<input type="hidden" name="user_index" id = "user_index" value="${member.user_index }">
 									<input type="hidden" name="post_id" id = "post_id" value="${cssview.post_id }">
@@ -93,9 +90,21 @@
                                 	<p class="margin-b-50 text-center" > <fmt:formatDate value="${cssview.post_regdate}" pattern="yyyy-MM-dd HH:mm" /></p>
                                 </div>
                                 <div>
-                                    <pre class="form-control" placeholder="내용을 입력해 주세요." style="height : 650px; resize: none; background-color: #fff;" disabled>${cssview.post_contents }</pre>
+                                    <pre class="form-control" placeholder="내용을 입력해 주세요." style="height : 650px; resize: none; background-color: #fff; border: none;" disabled>${cssview.post_contents }</pre>
                                 </div> 
-							                                
+							    <div style="text-align:center; border-bottom : 1px solid #d9d9d9;">
+		         	       			<c:choose>
+								    	<c:when test="${recommend_check eq '0' or empty recommend_check}"> <!-- recommend_check가0이면 빈하트-->
+								        	<p id="btn_like"  style="cursor:pointer; color : red; font-size: 26px; margin-bottom:0 !important;"><i id="heart" class="fa fa-heart-o"></i></p>
+								    	</c:when>
+								    	<c:otherwise> <!-- likecheck가1이면 빨간 하트-->
+								        	<p id="btn_like"  style="cursor:pointer; color: red; font-size: 26px; margin-bottom:0 !important;">
+								        		<i class="fa fa-heart"></i>
+								        	</p>
+								    	</c:otherwise>
+									</c:choose>
+									<p id="post_rec" style="color: #000;">${cssview.post_rec}</p>
+								</div>                            
 	                        	<div class="mb-5">
 									<c:if test="${member.user_nickname eq cssview.user_nickname}">
 		 		                    	<a href="/board/cssmodify?post_id=${cssview.post_id }" class="btn btn-primary mt-4" id="list" type="submit">글수정</a>                          
@@ -106,21 +115,9 @@
 										<a href="/board/cssbookmark?post_id=${cssview.post_id }&user_index=${member.user_index }" class="btn btn-default mt-4">북마크</a>
 										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#memberreport" data-whatever="@getbootstrap" style="float: right;" >작성자 신고</button>
 									</c:if>
-	                 			   <div style="text-align:center; position:relative; bottom:36px; ">
-			         	       			<c:choose>
-									    	<c:when test="${recommend_check eq '0' or empty recommend_check}"> <!-- recommend_check가0이면 빈하트-->
-									        	<p id="btn_like" style="cursor:pointer; width: 50px;"><i class="fa-solid fa-heart"></i></p>
-<!-- 									        	<img src="../../../resources/img/heart.png" id="btn_like" style="cursor:pointer; width: 50px;"> -->
-									    	</c:when>
-									    	<c:otherwise> <!-- likecheck가1이면 빨간 하트-->
-									        	<img src="../../../resources/img/heart-fill.png" id="btn_like" style="cursor:pointer; width: 50px;">
-									    	</c:otherwise>
-										</c:choose>
-										<p id="post_rec" style="color: #000;">${cssview.post_rec}</p>
-									</div>
-                              	 </div>
+                            </div>
                             </form>
-							<!--신고모달 시작 -->
+                            <!--신고모달 시작 -->
 							<div class="modal fade" id="memberreport" tabindex="-1" role="dialog" aria-labelledby="memberreport" aria-hidden="true">
 								<div class="modal-dialog">
 									<div class="modal-content">
@@ -185,8 +182,9 @@
 									</div>
 								</div>
 							</div>
-							<!--신고모달 끝 -->                            
-                            
+
+							<!--신고모달 끝 -->    
+   
                            	<!-- 댓글 작성 시작-->
 							<div class="card" id="result ">
 	                            <div class="card-body">
@@ -199,8 +197,9 @@
 		                                	<input type="hidden" id="post_id" name="post_id" value="${cssview.post_id}">
 		                                	<input id="reply_contents" type="text" name="reply_contents" class="form-control mr-5" placeholder="댓글을 작성하세요" value="">
 		                                </form>
+										<input id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;" value="댓글쓰기" type="submit">
 										</c:if>
-										<input id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;" form="replyForm" value="댓글쓰기" type="submit">
+										<input id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;" value="댓글쓰기" type="submit">
 									</div>
 	                               	<!-- Comment with nested comments-->
 	                               	<form id="operForm" >
@@ -223,7 +222,6 @@
 	                            </div>
 	                        </div>     
 						<!-- 댓글 작성 끝-->
-                            
                         </div>
                     </div>
                 </div>
@@ -244,6 +242,7 @@
     </footer>
     <!--========== END FOOTER ==========-->
 
+	
     <!-- Back To Top -->
     <a href="javascript:void(0);" class="js-back-to-top back-to-top">Top</a>
 
@@ -313,7 +312,6 @@
 	
 		
 		$("#btnReply").on("click", function(e){
-			
 			var postValue = '<c:out value="${cssview.post_id }"/>'
 			var reply = {
 					user_nickname : user_nickname.val(),					
@@ -362,7 +360,7 @@
 				replyUL.html(str);
 			}); //end getlsit function
 		}; // end showlist
-		
+		///
 		
 		function updateviewBtn(board_category_id, reply_id, reply_regdate, reply_contents,user_nickname) {
 			var updatestr = "";
@@ -388,6 +386,7 @@
 					$('#reply_id'+reply_id+'#reply_contents').focus();
 		        };
 		        
+		        
 		        function updateBtn(board_category_id, reply_id){
 		    		var reply_content = $("#reply_edit_content").val();
 		    		
@@ -404,6 +403,7 @@
 		    		});
 		    		
 		    	};
+		    	
 		    	
 		    	function fn_deleteReply(board_category_id, reply_id){
 		    		var paramData = {"board_category_id": board_category_id,
@@ -422,6 +422,10 @@
 		    		});
 		    	}
 </script>  
+
+ 
 </body>
+
+
 <!-- END BODY -->
 </html>

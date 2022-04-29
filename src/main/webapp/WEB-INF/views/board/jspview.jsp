@@ -22,8 +22,8 @@
     <link href="../../../resources/vendor/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
 
     <!-- font-Glyphicon -->
-    <!-- <link rel="stylesheet" href="vendor/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/fontawesome.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+    <link href="../../../resources/vendor/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
 
     <!-- PAGE LEVEL PLUGIN STYLES -->
     <link href="../../../resources/css/animate.css" rel="stylesheet">
@@ -98,9 +98,19 @@
                                 	<p class="margin-b-50 text-center" > <fmt:formatDate value="${jspview.post_regdate}" pattern="yyyy-MM-dd HH:mm" /></p>
                                 </div>
                                 <div>
-                                    <pre class="form-control" placeholder="내용을 입력해 주세요." style="height : 650px; resize: none; background-color: #fff;" disabled>${jspview.post_contents }</pre>
+                                    <pre class="form-control" placeholder="내용을 입력해 주세요." style="height : 650px; resize: none; background-color: #fff; border: none;" disabled>${jspview.post_contents }</pre>
                                 </div> 
-                                
+                                	    <div style="text-align:center; border-bottom : 1px solid #d9d9d9;">
+		         	       			<c:choose>
+								    	<c:when test="${recommend_check eq '0' or empty recommend_check}"> <!-- recommend_check가0이면 빈하트-->
+								        	<p id="btn_like"  style="cursor:pointer; color : red; font-size: 26px; margin-bottom:0 !important;"><i id="heart" class="fa fa-heart-o"></i></p>
+								    	</c:when>
+								    	<c:otherwise> <!-- likecheck가1이면 빨간 하트-->
+								        	<p id="btn_like"  style="cursor:pointer; color: red; font-size: 26px; margin-bottom:0 !important;"><i id="heart" class="fa fa-heart"></i></p>
+								    	</c:otherwise>
+									</c:choose>
+									<p id="post_rec" style="color: #000;">${jspview.post_rec}</p>
+								</div> 
 	                        	<div class="mb-5">
 									<c:if test="${member.user_nickname eq jspview.user_nickname}">
 		 		                    	<a href="/board/jspmodify?post_id=${jspview.post_id }" class="btn btn-primary mt-4" id="list" type="submit">글수정</a>                          
@@ -111,17 +121,6 @@
 										<a href="/board/jspbookmark?post_id=${jspview.post_id }&user_index=${member.user_index }" class="btn btn-default mt-4">북마크</a>
 										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#memberreport" data-whatever="@getbootstrap" style="float: right;" >작성자 신고</button>
 									</c:if>
-	                 			   <div style="text-align:center; position:relative; bottom:36px;">
-			         	       			<c:choose>
-									    	<c:when test="${recommend_check eq '0' or empty recommend_check}"> <!-- recommend_check가0이면 빈하트-->
-									        	<img src="../../../resources/img/heart.png" id="btn_like" style="cursor:pointer; width: 50px;">
-									    	</c:when>
-									    	<c:otherwise> <!-- likecheck가1이면 빨간 하트-->
-									        	<img src="../../../resources/img/heart-fill.png" id="btn_like" style="cursor:pointer; width: 50px;">
-									    	</c:otherwise>
-										</c:choose>
-										<p id="post_rec" style="color: #000;">${jspview.post_rec}</p>
-									</div>
                               	 </div>
                             </form>
 							<!--신고모달 시작 -->
@@ -190,7 +189,6 @@
 								</div>
 							</div>
 							<!--신고모달 끝 -->
-							
            					<!-- 댓글 작성 시작-->
 							<div class="card" id="result ">
 	                            <div class="card-body">
@@ -246,6 +244,8 @@
         <!-- End Copyright -->
     </footer>
     <!--========== END FOOTER ==========-->
+
+	
 
     <!-- Back To Top -->
     <a href="javascript:void(0);" class="js-back-to-top back-to-top">Top</a>
