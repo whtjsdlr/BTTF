@@ -274,10 +274,6 @@
 	<!-- Drop Down Menu -->
     <script src="../../../resources/js/action.js"></script>
 
-	
-    
-    
-    
     
 	<!--CKEDITOR -->
     <script src="../../../resources/vendor/ckeditor5-build-classic/translations/ko.js"></script>
