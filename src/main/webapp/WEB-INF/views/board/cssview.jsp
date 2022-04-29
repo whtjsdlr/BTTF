@@ -361,7 +361,7 @@
 				replyUL.html(str);
 			}); //end getlsit function
 		}; // end showlist
-		
+		///
 		
 		function updateviewBtn(board_category_id, reply_id, reply_regdate, reply_contents,user_nickname) {
 			var updatestr = "";
