@@ -45,8 +45,8 @@
        }
        
        .bg_white_pd{
-	   		background-color : white;
-	   		padding-bottom : 200px;
+            background-color : white;
+            padding-bottom : 200px;
        }
     </style>
 </head>
@@ -56,7 +56,7 @@
     <!--========== HEADER ==========-->
     <header class="header navbar-fixed-top">
         <!-- Navbar -->
-		<%@ include file="../include/header_control.jsp" %>
+      <%@ include file="../include/header_control.jsp" %>
         
         <!-- Navbar -->
     </header>
@@ -76,47 +76,86 @@
                         <div class="my_box" data-height="height">
                             <form id="modal_prepend" method="post">
                                 <div class="col-md-6">
-									<input type="hidden" name="user_index" id = "user_index" value="${member.user_index }">
-									<input type="hidden" name="post_id" id = "post_id" value="${cssview.post_id }">
+                           <input type="hidden" name="user_index" id = "user_index" value="${member.user_index }">
+                           <input type="hidden" name="post_id" id = "post_id" value="${cssview.post_id }">
                                     <p style="color: black; font-size: 2rem; font-weight:bold;">글 제목 : ${cssview.post_subject }</p>
                                 </div>
                                 <div class="col-md-2">
-                                	<p class="margin-b-50 text-center" >조회수 ${cssview.post_vcount }</p>
+                                   <p class="margin-b-50 text-center" >조회수 ${cssview.post_vcount }</p>
                                 </div>
                                 <div class="col-md-2">
-                                	<p class="margin-b-50 text-center" > 작성자 ${cssview.user_nickname }</p>
+                                   <p class="margin-b-50 text-center" > 작성자 ${cssview.user_nickname }</p>
                                 </div>
                                 <div class="col-md-2">
-                                	<p class="margin-b-50 text-center" > <fmt:formatDate value="${cssview.post_regdate}" pattern="yyyy-MM-dd HH:mm" /></p>
+                                   <p class="margin-b-50 text-center" > <fmt:formatDate value="${cssview.post_regdate}" pattern="yyyy-MM-dd HH:mm" /></p>
                                 </div>
                                 <div>
                                     <pre class="form-control" placeholder="내용을 입력해 주세요." style="height : 650px; resize: none; background-color: #fff; border: none;" disabled>${cssview.post_contents }</pre>
                                 </div> 
-							    <div style="text-align:center; border-bottom : 1px solid #d9d9d9;">
-		         	       			<c:choose>
-								    	<c:when test="${recommend_check eq '0' or empty recommend_check}"> <!-- recommend_check가0이면 빈하트-->
-								        	<p id="btn_like"  style="cursor:pointer; color : red; font-size: 26px; margin-bottom:0 !important;"><i id="heart" class="fa fa-heart-o"></i></p>
-								    	</c:when>
-								    	<c:otherwise> <!-- likecheck가1이면 빨간 하트-->
-								        	<p id="btn_like"  style="cursor:pointer; color: red; font-size: 26px; margin-bottom:0 !important;">
-								        		<i class="fa fa-heart"></i>
-								        	</p>
-								    	</c:otherwise>
-									</c:choose>
-									<p id="post_rec" style="color: #000;">${cssview.post_rec}</p>
-								</div>                            
-	                        	<div class="mb-5">
-									<c:if test="${member.user_nickname eq cssview.user_nickname}">
-		 		                    	<a href="/board/cssmodify?post_id=${cssview.post_id }" class="btn btn-primary mt-4" id="list" type="submit">글수정</a>                          
-				                		<a href="/board/cssdelete?post_id=${cssview.post_id }&mypage=" class="btn btn-danger mt-4" id="list" type="submit">글삭제</a>
-									</c:if> 
-	                        		<a href="/board/csslist" class="btn btn-default mt-4" id="edit" type="submit">글 목록</a>
-									<c:if test="${member.user_nickname != cssview.user_nickname && member != null && cssview.user_nickname != 'admin'}">
-										<a href="/board/cssbookmark?post_id=${cssview.post_id }&user_index=${member.user_index }" class="btn btn-default mt-4">북마크</a>
-										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#memberreport" data-whatever="@getbootstrap" style="float: right;" >작성자 신고</button>
-									</c:if>
-                            </div>
+                         <div style="text-align:center; border-bottom : 1px solid #d9d9d9;">
+                                  <c:choose>
+                               <c:when test="${recommend_check eq '0' or empty recommend_check}"> <!-- recommend_check가0이면 빈하트-->
+                                   <p id="btn_like"  style="cursor:pointer; color : red; font-size: 26px; margin-bottom:0 !important;"><i id="heart" class="fa fa-heart-o"></i></p>
+                               </c:when>
+                               <c:otherwise> <!-- likecheck가1이면 빨간 하트-->
+                                   <p id="btn_like"  style="cursor:pointer; color: red; font-size: 26px; margin-bottom:0 !important;">
+                                      <i class="fa fa-heart"></i>
+                                   </p>
+                               </c:otherwise>
+                           </c:choose>
+                           <p id="post_rec" style="color: #000;">${cssview.post_rec}</p>
+                        </div>                            
+                              <div class="mb-5">
+                           <c:if test="${member.user_nickname eq cssview.user_nickname}">
+                                    <a href="/board/cssmodify?post_id=${cssview.post_id }" class="btn btn-primary mt-4" id="list" type="submit">글수정</a>                          
+                                  <a href="/board/cssdelete?post_id=${cssview.post_id }&mypage=" class="btn btn-danger mt-4" id="list" type="submit">글삭제</a>
+                           </c:if> 
+                                 <a href="/board/csslist" class="btn btn-default mt-4" id="edit" type="submit">글 목록</a>
+                           <c:if test="${member.user_nickname != cssview.user_nickname && member != null && cssview.user_nickname != 'admin'}">
+                              <a href="/board/cssbookmark?post_id=${cssview.post_id }&user_index=${member.user_index }" class="btn btn-default mt-4">북마크</a>
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#memberreport" data-whatever="@getbootstrap" style="float: right;" >작성자 신고</button>
+                           </c:if>
+                               </div>
                             </form>
+
+                            
+                              <!-- 댓글 작성 시작-->
+                     <div class="card" id="result ">
+                               <div class="card-body">
+                                   <!-- Comment form-->
+                           <div class="d-flex col-md-12 p-0" style="margin-bottom : 40px;">
+                              <c:if test="${member != null }">
+                                      <form id="replyForm" name="replyForm" method="post" class="mb-4 d-flex col-md-12 p-0" target=detail onsubmit="all_reset();">
+                                         <input type="hidden" id="user_nickname" name="user_nickname" value="${member.user_nickname}">
+                                         <input type="hidden" id="board_category_id" name="board_category_id" value="${cssview.board_category_id}">
+                                         <input type="hidden" id="post_id" name="post_id" value="${cssview.post_id}">
+                                         <input type="text" id="reply_contents" name="reply_contents" class="form-control mr-5" placeholder="댓글을 작성하세요" value="">
+                                      </form>
+                              <input id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;" value="댓글쓰기" type="submit">
+                              </c:if>
+                           </div>
+                                     <!-- Comment with nested comments-->
+                                     <form id="operForm" >
+                                      <div id="getReplyList" class="chat">
+                                         <c:choose>
+                                            <c:when test="${reply != null and fn:length(reply) > 0 }">
+                                                <p>${reply.reply_id}</p>
+                                               <c:forEach items="${reply }" var="reply">
+                                                  <input type="text" value="${reply.reply_id }" name = "replyid" >
+                                                  <input type="text" value="${reply.reply_contents }" name = "replycontents">
+                                                  <input type="text" value="${reply.user_nickname }" name = "replynickname">
+                                       </c:forEach>
+                                            </c:when>
+                                            <c:otherwise>                                                                             
+                                          <c:out value="댓글이 없습니다." />
+                                            </c:otherwise>
+                                         </c:choose>
+                                      </div>
+                                   </form>
+                               </div>
+                           </div>     
+                  <!-- 댓글 작성 끝-->
+
                             <!--신고모달 시작 -->
 							<div class="modal fade" id="memberreport" tabindex="-1" role="dialog" aria-labelledby="memberreport" aria-hidden="true">
 								<div class="modal-dialog">
@@ -183,45 +222,8 @@
 								</div>
 							</div>
 
-							<!--신고모달 끝 -->    
+					 
    
-                           	<!-- 댓글 작성 시작-->
-							<div class="card" id="result ">
-	                            <div class="card-body">
-	                                <!-- Comment form-->
-									<div class="d-flex col-md-12 p-0" style="margin-bottom : 40px;">
-										<c:if test="${member != null }">
-		                                <form id="replyForm" name="replyForm" method="post" class="mb-4 d-flex col-md-12 p-0" target=detail onsubmit="all_reset();">
-		                                	<input type="hidden" id="user_nickname" name="user_nickname" value="${member.user_nickname}">
-		                                	<input type="hidden" id="board_category_id" name="board_category_id" value="${cssview.board_category_id}">
-		                                	<input type="hidden" id="post_id" name="post_id" value="${cssview.post_id}">
-		                                	<input id="reply_contents" type="text" name="reply_contents" class="form-control mr-5" placeholder="댓글을 작성하세요" value="">
-		                                </form>
-										<input id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;" value="댓글쓰기" type="submit">
-										</c:if>
-										<input id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;" value="댓글쓰기" type="submit">
-									</div>
-	                               	<!-- Comment with nested comments-->
-	                               	<form id="operForm" >
-		                                <div id="getReplyList" class="chat">
-		                                	<c:choose>
-		                                		<c:when test="${reply != null and fn:length(reply) > 0 }">
-				                                 	<p>${reply.reply_id}</p>
-				                                	<c:forEach items="${reply }" var="reply">
-				                                		<input type="text" value="${reply.reply_id }" name = "replyid" >
-				                                		<input type="text" value="${reply.reply_contents }" name = "replycontents">
-				                                		<input type="text" value="${reply.user_nickname }" name = "replynickname">
-													</c:forEach>
-		                                		</c:when>
-		                                		<c:otherwise>													                                		
-														<c:out value="댓글이 없습니다." />
-		                                		</c:otherwise>
-		                                	</c:choose>
-		                                </div>
-	                                </form>
-	                            </div>
-	                        </div>     
-						<!-- 댓글 작성 끝-->
                         </div>
                     </div>
                 </div>
@@ -229,7 +231,7 @@
             </div>
             <!--// end row -->
         </div>
-    </div>				
+    </div>            
     <!-- End join Form -->
     <!--========== END PAGE LAYOUT ==========-->
 
@@ -237,12 +239,11 @@
     <footer class="footer fixed_footer">
 
         <!-- Copyright -->
-		<%@ include file="../include/footer_control.jsp" %>
+      <%@ include file="../include/footer_control.jsp" %>
         <!-- End Copyright -->
     </footer>
     <!--========== END FOOTER ==========-->
 
-	
     <!-- Back To Top -->
     <a href="javascript:void(0);" class="js-back-to-top back-to-top">Top</a>
 
@@ -259,9 +260,9 @@
     <script src="../../../resources/vendor/swiper/js/swiper.jquery.min.js" type="text/javascript"></script>
     <script src="../../../resources/vendor/masonry/jquery.masonry.pkgd.min.js" type="text/javascript"></script>
     <script src="../../../resources/vendor/masonry/imagesloaded.pkgd.min.js" type="text/javascript"></script>
-	
-	<!-- REPLY AJAX -->
-	<script type="text/javascript" src="../../../resources/js/replymodule.js"></script>
+   
+   <!-- REPLY AJAX -->
+   <script type="text/javascript" src="../../../resources/js/replymodule.js"></script>
 
     <!-- PAGE LEVEL SCRIPTS -->
     <script src="../../../resources/js/layout.min.js" type="text/javascript"></script>
@@ -269,14 +270,14 @@
     <script src="../../../resources/js/components/swiper.min.js" type="text/javascript"></script>
     <script src="../../../resources/js/components/masonry.min.js" type="text/javascript"></script>
     
-	<!-- Drop Down Menu -->
+   <!-- Drop Down Menu -->
     <script src="../../../resources/js/action.js"></script>
     
-	<!--CKEDITOR -->
+   <!--CKEDITOR -->
     <script src="../../../resources/vendor/ckeditor5-build-classic/translations/ko.js"></script>
-	<script src="../../../resources/vendor/ckeditor5-build-classic/ckeditor.js"></script>
-	
-	<!-- ALERT SECTION -->
+   <script src="../../../resources/vendor/ckeditor5-build-classic/ckeditor.js"></script>
+   
+   <!-- ALERT SECTION -->
     <script src="../../../resources/js/confirm.js"></script>
     <script src="../../../resources/js/maxreport.js"></script>
     <script src="../../../resources/js/boardheart.js"></script>
@@ -291,136 +292,146 @@
 
     </script>
     
-   	<script>
-	function all_reset(){
-		document.replyForm.reset();
-	}
-	
-	function undo_process(){
-		showList(1);
-	}
-	
-		var postValue = '<c:out value="${cssview.post_id }"/>'
-		var replyUL = $(".chat");
-		showList(1);
-		var replyForm = $("#replyForm");
-		var user_nickname = replyForm.find("input[name='user_nickname']");
-		var reply_contents = replyForm.find("input[name='reply_contents']");
-		var reply_id = replyForm.find("input[name='replyid']");
-		var board_category_id = replyForm.find("input[name='board_category_id']");
-				
-	
-		
-		$("#btnReply").on("click", function(e){
-			var postValue = '<c:out value="${cssview.post_id }"/>'
-			var reply = {
-					user_nickname : user_nickname.val(),					
-					reply_contents : reply_contents.val(),
-					post_id : postValue,
-					board_category_id : board_category_id.val()
-			};
-			replyService.add(reply, function(result){
-				showList(1);
-				all_reset();
-			});
-		});
-		
-		
 
-	function showList(page) {
-			var postValue = '<c:out value="${cssview.post_id }"/>'
-			var board_category_id = '<c:out value="${cssview.board_category_id}"/>'
-				
-			replyService.getList({board_category_id : board_category_id, post_id : postValue, page : page || 1},function(list) {
-				var str = "";
-				if (list == null || list.length == 0) {
-					str +=	"<p class='text-center' style='font-size : 20px;'>댓글이 없습니다</p>"				
-					return replyUL.html(str); 
-				}
-				
-				for (var i = 0, len = list.length || 0; i < len; i++) {
-					str += "<div class='left clearfix' id='reply_id" + list[i].reply_id + "'>";
-					str += "<div>"+ "<div class='header'>"+ "<strong class='primary-font'>" + list[i].user_nickname+ "</strong>";
-					str += "<small class='pull-right text-muted'>" + replyService.displayTime(list[i].reply_regdate) + "</small></div>";
-					str += "<c:if test='${member.user_nickname eq cssview.user_nickname}'>";
-					str += "<div class='col-md-12' style='padding-left : 0 !important; padding-right : 0 !important; padding-bottom : 40px;'>";
-					str += "<div class='pull-right text-muted'>";
-					str += "<a href='javascript:void(0)' onclick='updateviewBtn("+ list[i].board_category_id +","+ list[i].reply_id + ",\"" + list[i].reply_regdate+"\", \""+ list[i].reply_contents+"\", \""+ list[i].user_nickname +"\")' class='btn btn-info btn-sm mr-2'>수정";
-					str += "</a>";
-					str += "<a href='javascript:void(0)' onclick='fn_deleteReply("+ list[i].board_category_id +"," + list[i].reply_id + ")' class='btn btn-danger btn-sm'>삭제";
-					str += "</a>";
-					str += "</div>";
-					str += "</div>";
-					str += "</c:if>";
-					str += "<p style='font-size : 16px;'>" + list[i].reply_contents + "</p>";
-					str += "</div>";
-					str += "<p style='border : 1px solid #d9d9d9; margin-top : 40px;'>";
-					str += "</div>";
-				}
-				replyUL.html(str);
-			}); //end getlsit function
-		}; // end showlist
-		///
-		
-		function updateviewBtn(board_category_id, reply_id, reply_regdate, reply_contents,user_nickname) {
-			var updatestr = "";
-				updatestr += "<div class='left clearfix' id='reply_id" + reply_id + "'>";
-				updatestr += "<div>"+ "<div class='header'>"+ "<strong class='primary-font'>" + user_nickname + "</strong>";
-				updatestr += "<small class='pull-right text-muted'></small></div>";
-				updatestr += "<c:if test='${member.user_nickname eq cssview.user_nickname}'>";
-				updatestr += "<div class='col-md-12' style='padding-left : 0 !important; padding-right : 0 !important; padding-bottom : 40px;'>";
-				updatestr += "<div class='pull-right text-muted'>";
-				updatestr += '<a href="javascript:void(0)" class="btn btn-info btn-sm mr-2"';
-				updatestr += 'onclick="updateBtn('+ board_category_id +',' + reply_id + ',\'' + user_nickname + '\')" >수정완료';
-				updatestr += "</a>";
-				updatestr += "<a href='javascript:void(0)' onclick='undo_process()' class='btn btn-danger btn-sm'>취소";
-				updatestr += "</a>";
-				updatestr += "</div>";
-				updatestr += "</div>";
-				updatestr += "</c:if>";
-				updatestr += "<textarea id='reply_edit_content' style='font-size : 16px; resize: none; width:100%;'>" + reply_contents + "</textarea >";
-				updatestr += "</div>";
-				updatestr += "<p style='border : 1px solid #d9d9d9; margin-top : 40px;'>";
- 				updatestr += "</div>";
-					$('#reply_id'+reply_id).replaceWith(updatestr);
-					$('#reply_id'+reply_id+'#reply_contents').focus();
-		        };
-		        
-		        
-		        function updateBtn(board_category_id, reply_id){
-		    		var reply_content = $("#reply_edit_content").val();
-		    		
-		    		$.ajax({
-		    			url: '/reply/'+board_category_id+'/'+reply_id+'/'+reply_content,
-		    			type : 'POST',
-		    			dataType: 'json',
-		    			success: function(result){
-		    			   	showList(1);
-		    			}
-		    			, error: function(error){
-		    				console.log("에러 : " + error);
-		    			}
-		    		});
-		    		
-		    	};
-		    	
-		    	
-		    	function fn_deleteReply(board_category_id, reply_id){
-		    		var paramData = {"board_category_id": board_category_id,
-		    									"reply_id": reply_id};
-		    		$.ajax({
-		    			url: '/reply/'+board_category_id+'/'+reply_id
-		    			, data : paramData
-		    			, type : 'POST'
-		    			, dataType : 'text'
-		    			, success: function(result){
-		    				alert("댓글이 삭제되었습니다.");
-		    				showList(1);
-		    			}, error: function(error){
-		    				console.log("에러 : " + error);
-		    			}
-		    		});
-		    	}
+      <script>
+   function all_reset(){
+      document.replyForm.reset();
+   }
+   
+   function undo_process(){
+      showList(1);
+   }
+   
+   var input = document.getElementById("reply_contents");
+   input.addEventListener("keypress", function(event) {
+     if (event.key === "Enter") {
+       event.preventDefault();
+       document.getElementById("btnReply").click();
+     }
+   });
+
+   
+      var postValue = '<c:out value="${cssview.post_id }"/>'
+      var replyUL = $(".chat");
+      showList(1);
+      var replyForm = $("#replyForm");
+      var user_nickname = replyForm.find("input[name='user_nickname']");
+      var reply_contents = replyForm.find("input[name='reply_contents']");
+      var reply_id = replyForm.find("input[name='replyid']");
+      var board_category_id = replyForm.find("input[name='board_category_id']");
+            
+   
+      
+      $("#btnReply").on("click", function(e){
+         
+         var postValue = '<c:out value="${cssview.post_id }"/>'
+         var reply = {
+               user_nickname : user_nickname.val(),               
+               reply_contents : reply_contents.val(),
+               post_id : postValue,
+               board_category_id : board_category_id.val()
+         };
+         replyService.add(reply, function(result){
+            showList(1);
+            all_reset();
+         });
+      });
+      
+      
+
+   function showList(page) {
+         var postValue = '<c:out value="${cssview.post_id }"/>'
+         var board_category_id = '<c:out value="${cssview.board_category_id}"/>'
+            
+         replyService.getList({board_category_id : board_category_id, post_id : postValue, page : page || 1},function(list) {
+            var str = "";
+            if (list == null || list.length == 0) {
+               str +=   "<p class='text-center' style='font-size : 20px;'>댓글이 없습니다</p>"            
+               return replyUL.html(str); 
+            }
+            
+            for (var i = 0, len = list.length || 0; i < len; i++) {
+               str += "<div class='left clearfix' id='reply_id" + list[i].reply_id + "'>";
+               str += "<div>"+ "<div class='header'>"+ "<strong class='primary-font'>" + list[i].user_nickname+ "</strong>";
+               str += "<small class='pull-right text-muted'>" + replyService.displayTime(list[i].reply_regdate) + "</small></div>";
+               str += "<c:if test='${member.user_nickname eq cssview.user_nickname}'>";
+               str += "<div class='col-md-12' style='padding-left : 0 !important; padding-right : 0 !important; padding-bottom : 40px;'>";
+               str += "<div class='pull-right text-muted'>";
+               str += "<a href='javascript:void(0)' onclick='updateviewBtn("+ list[i].board_category_id +","+ list[i].reply_id + ",\"" + list[i].reply_regdate+"\", \""+ list[i].reply_contents+"\", \""+ list[i].user_nickname +"\")' class='btn btn-info btn-sm mr-2'>수정";
+               str += "</a>";
+               str += "<a href='javascript:void(0)' onclick='fn_deleteReply("+ list[i].board_category_id +"," + list[i].reply_id + ")' class='btn btn-danger btn-sm'>삭제";
+               str += "</a>";
+               str += "</div>";
+               str += "</div>";
+               str += "</c:if>";
+               str += "<p style='font-size : 16px;'>" + list[i].reply_contents + "</p>";
+               str += "</div>";
+               str += "<p style='border : 1px solid #d9d9d9; margin-top : 40px;'>";
+               str += "</div>";
+            }
+            replyUL.html(str);
+         }); //end getlsit function
+      }; // end showlist
+      ///
+      
+      function updateviewBtn(board_category_id, reply_id, reply_regdate, reply_contents,user_nickname) {
+         var updatestr = "";
+            updatestr += "<div class='left clearfix' id='reply_id" + reply_id + "'>";
+            updatestr += "<div>"+ "<div class='header'>"+ "<strong class='primary-font'>" + user_nickname + "</strong>";
+            updatestr += "<small class='pull-right text-muted'></small></div>";
+            updatestr += "<c:if test='${member.user_nickname eq cssview.user_nickname}'>";
+            updatestr += "<div class='col-md-12' style='padding-left : 0 !important; padding-right : 0 !important; padding-bottom : 40px;'>";
+            updatestr += "<div class='pull-right text-muted'>";
+            updatestr += '<a href="javascript:void(0)" class="btn btn-info btn-sm mr-2"';
+            updatestr += 'onclick="updateBtn('+ board_category_id +',' + reply_id + ',\'' + user_nickname + '\')" >수정완료';
+            updatestr += "</a>";
+            updatestr += "<a href='javascript:void(0)' onclick='undo_process()' class='btn btn-danger btn-sm'>취소";
+            updatestr += "</a>";
+            updatestr += "</div>";
+            updatestr += "</div>";
+            updatestr += "</c:if>";
+            updatestr += "<textarea id='reply_edit_content' style='font-size : 16px; resize: none; width:100%;'>" + reply_contents + "</textarea >";
+            updatestr += "</div>";
+            updatestr += "<p style='border : 1px solid #d9d9d9; margin-top : 40px;'>";
+             updatestr += "</div>";
+               $('#reply_id'+reply_id).replaceWith(updatestr);
+               $('#reply_id'+reply_id+'#reply_contents').focus();
+              };
+              
+              function updateBtn(board_category_id, reply_id){
+                var reply_content = $("#reply_edit_content").val();
+                
+                $.ajax({
+                   url: '/reply/'+board_category_id+'/'+reply_id+'/'+reply_content,
+                   type : 'POST',
+                   dataType: 'json',
+                   success: function(result){
+                         showList(1);
+                   }
+                   , error: function(error){
+                      console.log("에러 : " + error);
+                   }
+                });
+                
+             };
+             
+             function fn_deleteReply(board_category_id, reply_id){
+                var paramData = {"board_category_id": board_category_id,
+                                     "reply_id": reply_id};
+                $.ajax({
+                   url: '/reply/'+board_category_id+'/'+reply_id
+                   , data : paramData
+                   , type : 'POST'
+                   , dataType : 'text'
+                   , success: function(result){
+                      alert("댓글이 삭제되었습니다.");
+                      showList(1);
+                   }, error: function(error){
+                      console.log("에러 : " + error);
+                   }
+                });
+             }
+
 </script>  
 
  
