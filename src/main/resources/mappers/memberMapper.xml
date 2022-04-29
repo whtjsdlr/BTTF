@@ -22,8 +22,7 @@
 	
 	<select id="signin" resultType="kr.co.bttf.domain.MemberVO">
 		SELECT * FROM USER_ALL
-		WHERE user_email = #{user_email} AND user_pw = #{user_pw} AND
-		avaliability_category_id = 1
+		WHERE user_email = #{user_email} AND user_pw = #{user_pw}
 	</select>
 
 	<select id="login" resultType="kr.co.bttf.domain.MemberVO">

@@ -88,24 +88,22 @@ public class MemberController {
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
 	public String postSignin(MemberVO vo, HttpServletResponse res, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
 		logger.info("post signin");
-		try {
 		res.setContentType("text/html;charset=utf-8");
 		HttpSession session = req.getSession();  // 현재 세션 정보를 가져옴
 		boolean loginSuccess = service.signin(req);
 		MemberVO loginInfo = service.signin(vo);  // MemverVO형 변수 login에 로그인 정보를 저장
 		
-		if(loginSuccess) {
+		if(loginSuccess == true) {
 			session.setAttribute("member", loginInfo);  // member 세션에 로그인 정보를 부여
 			ScriptUtils.alertAndMovePage(res, loginInfo.getUser_nickname()+"님 환영합니다.", "http://localhost:9090");
-		}else {
+		}else if(loginInfo == null) {
 			session.setAttribute("member", null);
-	        rttr.addFlashAttribute("msg", false);
-	        ScriptUtils.alertAndMovePage(res, "입력하신 회원정보가 틀립니다. 다시 로그인 해주세요.", "http://localhost:9090/member/signin");
-		}
-		} catch (NullPointerException e) {
+		rttr.addFlashAttribute("msg", false);
+		ScriptUtils.alertAndMovePage(res, "입력하신 회원정보가 틀립니다. 다시 로그인 해주세요.", "http://localhost:9090/member/signin");
+		}else if (loginSuccess == false){
 			ScriptUtils.alertAndMovePage(res, "신고가 접수되어 계정정지가 이루어졌습니다 홈페이지 하단 담당자에게 문의바랍니다.", "http://localhost:9090");
 		}
-		return "redirect:/";
+			return "redirect:/";
 	}
 	
 	
