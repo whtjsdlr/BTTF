@@ -142,7 +142,6 @@
 	</delete>
 
 	<!-- 2-6. 가용성 카테고리 수정 -->
-	
 	<update id="csscategory2" parameterType="_int">
 		update css set avaliability_category_id = 2 where post_id = #{post_id}
 	</update>
@@ -159,37 +158,37 @@
 		values (#{user_index} ,#{post_id} , 2) 
 	</insert>
 	
-<!-- 	2-9. 게시글 추천 유무 확인-->
+	<!-- 2-9. 게시글 추천 유무 확인-->
 	<select id = "cssRecommendCheck" parameterType="map" resultType="map" >
 		select recommend_check from recommend 
 		where post_id_css = #{post_id} and user_index = #{user_index};
 	</select>
 
-<!-- 2-10. 추천 테이블에 추천 추가 -->
+	<!-- 2-10. 추천 테이블에 추천 추가 -->
 	<insert id = "cssInsertRecBtn" parameterType="map">
 		insert into recommend 
 		(post_id_css, user_index , recommend_check) values 
 		(#{post_id}, #{user_index}, 1)
 	</insert>
 	
-<!-- 	2-11. 해당 게시글에 추천수 업데이트 -->
+	<!-- 	2-11. 해당 게시글에 추천수 업데이트 -->
 	<update id ="cssUpdateRecCntPlus" parameterType="map">
 		update css set post_rec = post_rec + 1 where post_id = #{post_id}
 	</update>
 	
 	
-<!-- 	2-12. 추천 테이블 recommend_check 업데이트 -->
+	<!-- 	2-12. 추천 테이블 recommend_check 업데이트 -->
 	<update id="cssUpdateRecCheck" parameterType="map">
 		update recommend set recommend_check = #{recommend_check} 
 		where post_id_css = #{post_id} and user_index = #{user_index}
 	</update>
 	
-<!-- 	2-13. 해당 게시글에 추천수 업데이트 -->
+	<!-- 	2-13. 해당 게시글에 추천수 업데이트 -->
 	<update id ="cssUpdateRecCntMinus" parameterType="map">
 		update css set post_rec = post_rec -1 where post_id = #{post_id}
 	</update>
 	
-<!-- 	2.14 해당 게시글의 추천수 조회 -->
+	<!-- 	2.14 해당 게시글의 추천수 조회 -->
 	<select id = "cssGetRecCnt" parameterType="map" resultType="_int">
 		select post_rec from css where post_id = #{post_id}
 	</select>
@@ -213,7 +212,7 @@
 	
 	
 	<!-- 3-3. 게시물 조회 -->
-	<select id="javascriptview" parameterType="int" resultType="kr.co.bttf.domain.JsBoardVO">
+	<select id="javascriptView" parameterType="int" resultType="kr.co.bttf.domain.JsBoardVO">
 		select * from javascript
 		where post_id = #{post_id}
 	</select>
@@ -237,6 +236,10 @@
 		where post_id = #{post_id}
 	</delete>
 	
+	<!-- 3-6. 가용성 카테고리 수정 -->
+	<update id="jscategory2" parameterType="_int">
+		update javascript set avaliability_category_id = 2 where post_id = #{post_id}
+	</update>
 	
 	<!-- 3-7. 게시글 북마크 유무 확인-->
 	<select id ="jsbookmarklist" parameterType = "hashmap" resultType="_int">
@@ -328,7 +331,10 @@
 		where post_id = #{post_id}
 	</delete>
 	
-	
+	<!-- 4-6. 가용성 카테고리 수정 -->
+	<update id="jspcategory2" parameterType="_int">
+		update jsp set avaliability_category_id = 2 where post_id = #{post_id}
+	</update>
 	
 	<!-- 4-7. 게시글 북마크 유무 확인-->
 	<select id ="jspbookmarklist" parameterType = "hashmap" resultType="_int">
@@ -421,6 +427,11 @@
 		where post_id = #{post_id}
 	</delete>
 	
+	<!-- 5-6. 가용성 카테고리 수정 -->
+	<update id="javacategory2" parameterType="_int">
+		update java set avaliability_category_id = 2 where post_id = #{post_id}
+	</update>
+	
 	<!-- 5-7. 게시글 북마크 유무 확인-->
 	<select id ="javabookmarklist" parameterType = "hashmap" resultType="_int">
 		select count(*) from post_bookmark 
@@ -511,7 +522,11 @@
 		delete from oracle
 		where post_id = #{post_id}
 	</delete>
-
+	
+	<!-- 6-6. 가용성 카테고리 수정 -->
+	<update id="oraclecategory2" parameterType="_int">
+		update oracle set avaliability_category_id = 2 where post_id = #{post_id}
+	</update>
 
 	<!-- 6-7. 게시글 북마크 유무 확인-->
 	<select id ="oraclebookmarklist" parameterType = "hashmap" resultType="_int">
@@ -563,7 +578,7 @@
 
 <!-- 
 ========================================
-			06. SPRING
+			07. SPRING
 ========================================
  -->
 	<!-- 7-1. 게시물 목록 -->
@@ -605,6 +620,11 @@
 		delete from spring
 		where post_id = #{post_id}
 	</delete>
+
+	<!-- 7-6. 가용성 카테고리 수정 -->
+	<update id="springcategory2" parameterType="_int">
+		update spring set avaliability_category_id = 2 where post_id = #{post_id}
+	</update>
 
 	<!-- 7-7. 게시글 북마크 유무 확인-->
 	<select id ="springbookmarklist" parameterType = "hashmap" resultType="_int">

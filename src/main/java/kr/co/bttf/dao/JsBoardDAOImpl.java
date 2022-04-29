@@ -31,7 +31,7 @@ public class JsBoardDAOImpl implements JsBoardDAO {
 	
 	@Override
 	public JsBoardVO javascriptView(int post_id) throws Exception {
-		return sql.selectOne(namespace + ".javascriptview", post_id);
+		return sql.selectOne(namespace + ".javascriptView", post_id);
 	}
 
 	@Override
