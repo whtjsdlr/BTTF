@@ -99,11 +99,15 @@
 							    <div style="text-align:center; border-bottom : 1px solid #d9d9d9;">
 		         	       			<c:choose>
 								    	<c:when test="${recommend_check eq '0' or empty recommend_check}"> <!-- recommend_check가0이면 빈하트-->
-								        	<p id="btn_like"  style="cursor:pointer; color : red; font-size: 26px; margin-bottom:0 !important;"><i id="heart_o" class="fa fa-heart-o"></i></p>
+								        	<p id="btn_like"  style="cursor:pointer; color : red; font-size: 26px; margin-bottom:0 !important;">
+								        		<i class="fa fa-heart-o"></i>
+								        	</p>
 <!-- 									        	<img src="../../../resources/img/heart.png" id="btn_like" style="cursor:pointer; width: 50px;"> -->
 								    	</c:when>
 								    	<c:otherwise> <!-- likecheck가1이면 빨간 하트-->
-								        	<p id="btn_like"  style="cursor:pointer; color: red; font-size: 26px; margin-bottom:0 !important;"><i id="heart" class="fa fa-heart"></i></p>
+								        	<p id="btn_like"  style="cursor:pointer; color: red; font-size: 26px; margin-bottom:0 !important;">
+								        		<i class="fa fa-heart"></i>
+								        	</p>
 								    	</c:otherwise>
 									</c:choose>
 									<p id="post_rec" style="color: #000;">${cssview.post_rec}</p>
@@ -120,73 +124,6 @@
 									</c:if>
                             </div>
                             </form>
-							<!--신고모달 시작 -->
-							<div class="modal fade" id="memberreport" tabindex="-1" role="dialog" aria-labelledby="memberreport" aria-hidden="true">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<form name="Check" action="/board/oraclereport" id="reportForm" method ="get" >
-											<input type="text" style="display:none;" name="reportee_index" id="reportee_index" value="${cssview.user_index }">
-											<input type="text" style="display:none;" name="reporter_index" id="reporter_index" value="${member.user_index }">
-											<input type="text" style="display:none;" name="board_category_id" id="board_category_id" value="${cssview.board_category_id }">
-											<input type="text" style="display:none;" name="post_id" id="post_id" value="${cssview.post_id }">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-													<h4 class="modal-title" id="reportModalLabel">회원 신고</h4>
-											</div>
-											<div class="modal-body">
-												<div class="form-group">
-													<div class="form-check form-check-inline">
-													  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="1" id="report1" onclick=CountChecked(this) value="1">
-													  <label class="form-check-label" for="report1">욕설 등 부적절한 게시글, 댓글 또는 채팅</label>
-													</div>
-													<div class="form-check form-check-inline">
-													  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="2" id="report2" onclick=CountChecked(this) value="2">
-													  <label class="form-check-label" for="report2">갈등 조장, 불쾌감 조성 및 허위사실 유포성 게시글, 댓글 또는 채팅</label>
-													</div>
-													<div class="form-check form-check-inline">
-													  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="3" id="report3" onclick=CountChecked(this) value="3" >
-													  <label class="form-check-label" for="report3">악성코드/스파이웨어 유포성 게시글, 댓글 또는 채팅</label>
-													</div>
-													<div class="form-check form-check-inline">
-													  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="4" id="report4" onclick=CountChecked(this) value="4" >
-													  <label class="form-check-label" for="report4">도배성 게시글, 댓글 또는 채팅</label>
-													</div>	
-													<div class="form-check form-check-inline">
-													  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="5" id="report5" onclick=CountChecked(this) value="5" >
-													  <label class="form-check-label" for="report5">부적절한 홍보 게시글, 댓글 또는 채팅</label>
-													</div>	
-													<div class="form-check form-check-inline">
-													  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="6" id="report6" onclick=CountChecked(this) value="6" >
-													  <label class="form-check-label" for="report6">명예훼손/사생활 침해 및 저작권 침해 게시글, 댓글 또는 채팅</label>
-													</div>	
-													<div class="form-check form-check-inline">
-													  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="7" id="report7" onclick=CountChecked(this) value="7" >
-													  <label class="form-check-label" for="report7">음란성 또는 청소년에게 부적합한 게시글, 댓글 또는 채팅</label>
-													</div>	
-													<div class="form-check form-check-inline">
-													  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="8" id="report8" onclick=CountChecked(this) value="8" >
-													  <label class="form-check-label" for="report8">운영자 사칭 게시글, 댓글 또는 채팅</label>
-													</div>	
-													<div class="form-check form-check-inline">
-													  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="9" id="report9" onclick=CountChecked(this) value="9" >
-													  <label class="form-check-label" for="report9">개인정보 유포 게시글, 댓글 또는 채팅</label>
-													</div>	
-													<div class="form-check form-check-inline">
-													  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="10" id="report10" onclick=CountChecked(this) value="10" >
-													  <label class="form-check-label" for="report10">금전거래 유도 및 도박 조장 게시글, 댓글 또는 채팅</label>
-													</div>	
-												</div>
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-default" data-dismiss="modal">신고 취소</button>
-												<input type="submit" class="btn btn-danger" id="report" value="신고하기">
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-							<!--신고모달 끝 -->                            
-                            
                            	<!-- 댓글 작성 시작-->
 							<div class="card" id="result ">
 	                            <div class="card-body">
@@ -200,7 +137,7 @@
 		                                	<input id="reply_contents" type="text" name="reply_contents" class="form-control mr-5" placeholder="댓글을 작성하세요" value="">
 		                                </form>
 										</c:if>
-										<input id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;" form="replyForm" value="댓글쓰기" type="submit">
+										<input id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;" value="댓글쓰기" type="submit">
 									</div>
 	                               	<!-- Comment with nested comments-->
 	                               	<form id="operForm" >
@@ -243,7 +180,75 @@
         <!-- End Copyright -->
     </footer>
     <!--========== END FOOTER ==========-->
-
+    
+    <!--신고모달 시작 -->
+							
+	<div class="modal fade" id="memberreport" tabindex="-1" role="dialog" aria-labelledby="memberreport" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form name="Check" action="/board/oraclereport" id="reportForm" method ="get" >
+					<input type="text" style="display:none;" name="reportee_index" id="reportee_index" value="${cssview.user_index }">
+					<input type="text" style="display:none;" name="reporter_index" id="reporter_index" value="${member.user_index }">
+					<input type="text" style="display:none;" name="board_category_id" id="board_category_id" value="${cssview.board_category_id }">
+					<input type="text" style="display:none;" name="post_id" id="post_id" value="${cssview.post_id }">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="reportModalLabel">회원 신고</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<div class="form-check form-check-inline">
+							  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="1" id="report1" onclick=CountChecked(this) value="1">
+							  <label class="form-check-label" for="report1">욕설 등 부적절한 게시글, 댓글 또는 채팅</label>
+							</div>
+							<div class="form-check form-check-inline">
+							  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="2" id="report2" onclick=CountChecked(this) value="2">
+							  <label class="form-check-label" for="report2">갈등 조장, 불쾌감 조성 및 허위사실 유포성 게시글, 댓글 또는 채팅</label>
+							</div>
+							<div class="form-check form-check-inline">
+							  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="3" id="report3" onclick=CountChecked(this) value="3" >
+							  <label class="form-check-label" for="report3">악성코드/스파이웨어 유포성 게시글, 댓글 또는 채팅</label>
+							</div>
+							<div class="form-check form-check-inline">
+							  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="4" id="report4" onclick=CountChecked(this) value="4" >
+							  <label class="form-check-label" for="report4">도배성 게시글, 댓글 또는 채팅</label>
+							</div>	
+							<div class="form-check form-check-inline">
+							  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="5" id="report5" onclick=CountChecked(this) value="5" >
+							  <label class="form-check-label" for="report5">부적절한 홍보 게시글, 댓글 또는 채팅</label>
+							</div>	
+							<div class="form-check form-check-inline">
+							  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="6" id="report6" onclick=CountChecked(this) value="6" >
+							  <label class="form-check-label" for="report6">명예훼손/사생활 침해 및 저작권 침해 게시글, 댓글 또는 채팅</label>
+							</div>	
+							<div class="form-check form-check-inline">
+							  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="7" id="report7" onclick=CountChecked(this) value="7" >
+							  <label class="form-check-label" for="report7">음란성 또는 청소년에게 부적합한 게시글, 댓글 또는 채팅</label>
+							</div>	
+							<div class="form-check form-check-inline">
+							  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="8" id="report8" onclick=CountChecked(this) value="8" >
+							  <label class="form-check-label" for="report8">운영자 사칭 게시글, 댓글 또는 채팅</label>
+							</div>	
+							<div class="form-check form-check-inline">
+							  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="9" id="report9" onclick=CountChecked(this) value="9" >
+							  <label class="form-check-label" for="report9">개인정보 유포 게시글, 댓글 또는 채팅</label>
+							</div>	
+							<div class="form-check form-check-inline">
+							  <input class="form-check-input reportVal" name="checkbox" type="checkbox" data-report="10" id="report10" onclick=CountChecked(this) value="10" >
+							  <label class="form-check-label" for="report10">금전거래 유도 및 도박 조장 게시글, 댓글 또는 채팅</label>
+							</div>	
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">신고 취소</button>
+						<input type="submit" class="btn btn-danger" id="report" value="신고하기">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!--신고모달 끝 -->    
+	
     <!-- Back To Top -->
     <a href="javascript:void(0);" class="js-back-to-top back-to-top">Top</a>
 
@@ -362,7 +367,7 @@
 				replyUL.html(str);
 			}); //end getlsit function
 		}; // end showlist
-		
+		///
 		
 		function updateviewBtn(board_category_id, reply_id, reply_regdate, reply_contents,user_nickname) {
 			var updatestr = "";
