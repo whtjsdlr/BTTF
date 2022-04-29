@@ -15,7 +15,7 @@ public interface JsBoardDAO {
 	public void jsWrite(JsBoardVO vo) throws Exception;
 	
 	// 게시글 상세
-	public JsBoardVO javascriptView(int post_id) throws Exception;
+	public JsBoardVO javascriptView (int post_id) throws Exception;
 	
 	// 게시글 조회수
 	public int jsvcnt(int post_id) throws Exception;

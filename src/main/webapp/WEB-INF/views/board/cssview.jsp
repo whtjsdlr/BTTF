@@ -22,8 +22,8 @@
     <link href="../../../resources/vendor/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
 
     <!-- font-Glyphicon -->
-    <!-- <link rel="stylesheet" href="vendor/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/fontawesome.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+    <link href="../../../resources/vendor/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
 
     <!-- PAGE LEVEL PLUGIN STYLES -->
     <link href="../../../resources/css/animate.css" rel="stylesheet">
@@ -37,10 +37,6 @@
 
     <!-- custom -->
     <link rel="stylesheet" href="../../../resources/css/custom.css">
-
-    <!-- c3 chart -->
-    <link href="../../../resources/vendor/c3-0.7.20/c3.css" rel="stylesheet">
-    <link href="../../../resources/vendor/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
     
     
     <style type="text/css">
@@ -99,10 +95,7 @@
 							    <div style="text-align:center; border-bottom : 1px solid #d9d9d9;">
 		         	       			<c:choose>
 								    	<c:when test="${recommend_check eq '0' or empty recommend_check}"> <!-- recommend_check가0이면 빈하트-->
-								        	<p id="btn_like"  style="cursor:pointer; color : red; font-size: 26px; margin-bottom:0 !important;">
-								        		<i class="fa fa-heart-o"></i>
-								        	</p>
-<!-- 									        	<img src="../../../resources/img/heart.png" id="btn_like" style="cursor:pointer; width: 50px;"> -->
+								        	<p id="btn_like"  style="cursor:pointer; color : red; font-size: 26px; margin-bottom:0 !important;"><i id="heart" class="fa fa-heart-o"></i></p>
 								    	</c:when>
 								    	<c:otherwise> <!-- likecheck가1이면 빨간 하트-->
 								        	<p id="btn_like"  style="cursor:pointer; color: red; font-size: 26px; margin-bottom:0 !important;">
@@ -124,6 +117,7 @@
 									</c:if>
                             </div>
                             </form>
+                            
                            	<!-- 댓글 작성 시작-->
 							<div class="card" id="result ">
 	                            <div class="card-body">
@@ -136,8 +130,8 @@
 		                                	<input type="hidden" id="post_id" name="post_id" value="${cssview.post_id}">
 		                                	<input id="reply_contents" type="text" name="reply_contents" class="form-control mr-5" placeholder="댓글을 작성하세요" value="">
 		                                </form>
-										</c:if>
 										<input id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;" value="댓글쓰기" type="submit">
+										</c:if>
 									</div>
 	                               	<!-- Comment with nested comments-->
 	                               	<form id="operForm" >
@@ -160,7 +154,6 @@
 	                            </div>
 	                        </div>     
 						<!-- 댓글 작성 끝-->
-                            
                         </div>
                     </div>
                 </div>
@@ -186,7 +179,7 @@
 	<div class="modal fade" id="memberreport" tabindex="-1" role="dialog" aria-labelledby="memberreport" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form name="Check" action="/board/oraclereport" id="reportForm" method ="get" >
+				<form name="Check" action="/board/cssreport" id="reportForm" method ="get" >
 					<input type="text" style="display:none;" name="reportee_index" id="reportee_index" value="${cssview.user_index }">
 					<input type="text" style="display:none;" name="reporter_index" id="reporter_index" value="${member.user_index }">
 					<input type="text" style="display:none;" name="board_category_id" id="board_category_id" value="${cssview.board_category_id }">
