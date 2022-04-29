@@ -301,6 +301,15 @@
 		showList(1);
 	}
 	
+	var input = document.getElementById("reply_contents");
+	input.addEventListener("keypress", function(event) {
+	  if (event.key === "Enter") {
+	    event.preventDefault();
+	    document.getElementById("btnReply").click();
+	  }
+	});
+
+	
 		var postValue = '<c:out value="${javaview.post_id }"/>'
 		var replyUL = $(".chat");
 		showList(1);

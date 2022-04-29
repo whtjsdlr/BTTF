@@ -115,7 +115,7 @@
 										<a href="/board/cssbookmark?post_id=${cssview.post_id }&user_index=${member.user_index }" class="btn btn-default mt-4">북마크</a>
 										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#memberreport" data-whatever="@getbootstrap" style="float: right;" >작성자 신고</button>
 									</c:if>
-                            </div>
+                            	</div>
                             </form>
                             
                            	<!-- 댓글 작성 시작-->
@@ -128,7 +128,7 @@
 		                                	<input type="hidden" id="user_nickname" name="user_nickname" value="${member.user_nickname}">
 		                                	<input type="hidden" id="board_category_id" name="board_category_id" value="${cssview.board_category_id}">
 		                                	<input type="hidden" id="post_id" name="post_id" value="${cssview.post_id}">
-		                                	<input id="reply_contents" type="text" name="reply_contents" class="form-control mr-5" placeholder="댓글을 작성하세요" value="">
+		                                	<input type="text" id="reply_contents" name="reply_contents" class="form-control mr-5" placeholder="댓글을 작성하세요" value="">
 		                                </form>
 										<input id="btnReply" class="btn btn-primary" style="height:44px; line-height:32px;" value="댓글쓰기" type="submit">
 										</c:if>
@@ -298,6 +298,15 @@
 	function undo_process(){
 		showList(1);
 	}
+	
+	var input = document.getElementById("reply_contents");
+	input.addEventListener("keypress", function(event) {
+	  if (event.key === "Enter") {
+	    event.preventDefault();
+	    document.getElementById("btnReply").click();
+	  }
+	});
+
 	
 		var postValue = '<c:out value="${cssview.post_id }"/>'
 		var replyUL = $(".chat");
