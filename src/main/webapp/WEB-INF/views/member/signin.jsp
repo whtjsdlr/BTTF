@@ -34,7 +34,6 @@
 <!-- custom -->
 <link rel="stylesheet" href="../../../resources/css/custom.css">
 
-
 <style>
 html {
 	height: 100%;

@@ -36,56 +36,53 @@
 <link rel="stylesheet" href="../../../resources/css/custom.css">
 
 <style>
+html {
+   height: 100%;
+}
 
-    html {
-       height: 100%;
-    }
-    
-    body {
-        width:100%;
-        height:100%;
-        margin: 0;
-         padding-top: 200px;
-         padding-bottom: 40px;
-         font-family: "Nanum Gothic", arial, helvetica, sans-serif;
-         background-repeat: no-repeat;
-    }
-    
-     .card {
-         margin: 0 auto; /* Added */
-         float: none; /* Added */
-       
-    }
- 
-     #btn-Yes{
-         background-color: #17bed2;
-         border: none;
-     }
-    
-    .form-signin .form-control {
-         position: relative;
-         height: auto;
-         -webkit-box-sizing: border-box;
-         -moz-box-sizing: border-box;
-             box-sizing: border-box;
-         padding: 10px;
-         font-size: 16px;
-    }
-     .card-title{
-         margin-left: 30px;
-         margin-bottom: 30px;
-     }
-     .links{
-         text-align: center;
-         margin-bottom: 10px;
-     }
- 
-     a{ 
-        color: #17bed2; text-decoration: none; 
-     }
-     .text2{
-        color : blue;
-     }
+body {
+    width:100%;
+    height:100%;
+    margin: 0;
+     padding-top: 200px;
+     padding-bottom: 40px;
+     font-family: "Nanum Gothic", arial, helvetica, sans-serif;
+     background-repeat: no-repeat;
+}
+
+ .card {
+     margin: 0 auto; /* Added */
+     float: none; /* Added */
+   
+}
+
+ #btn-Yes{
+     background-color: #17bed2;
+     border: none;
+ }
+
+.form-signin .form-control {
+     position: relative;
+     height: auto;
+     -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+         box-sizing: border-box;
+     padding: 10px;
+     font-size: 16px;
+}
+ .card-title{
+     margin: 30px;
+ }
+ .links{
+     text-align: center;
+     margin-bottom: 10px;
+ }
+
+ a{ 
+    color: #17bed2; text-decoration: none; 
+ }
+ .text2{
+    color : blue;
 </style>
 </head>
 <!-- END HEAD -->
