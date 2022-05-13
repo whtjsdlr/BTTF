@@ -19,5 +19,4 @@ public interface ReplyService {
 	public int remove(Map <String, Object> reply_id_category2);
 
 
-
 }

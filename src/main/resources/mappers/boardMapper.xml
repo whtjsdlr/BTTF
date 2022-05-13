@@ -212,7 +212,7 @@
 	
 	
 	<!-- 3-3. 게시물 조회 -->
-	<select id="javascriptView" parameterType="int" resultType="kr.co.bttf.domain.JsBoardVO">
+	<select id="javascriptview" parameterType="int" resultType="kr.co.bttf.domain.JsBoardVO">
 		select * from javascript
 		where post_id = #{post_id}
 	</select>
