@@ -6,13 +6,11 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.bttf.controller.Criteria;
 import kr.co.bttf.domain.ReplyVO;
 import kr.co.bttf.mapper.ReplyMapper;
-import lombok.Setter;
 
 @Service
 public class ReplyServiceImpl implements ReplyService {

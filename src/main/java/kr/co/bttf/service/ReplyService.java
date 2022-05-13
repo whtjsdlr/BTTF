@@ -12,10 +12,12 @@ public interface ReplyService {
 
 	public ReplyVO get(Map <String, Object> reply_id_category);
 
+	public void replyupdate(ReplyVO replybean);
+	
+	public List<ReplyVO> getList(Criteria cri, Map <String, Object> reply_id_category);
+	
 	public int remove(Map <String, Object> reply_id_category2);
 
-	public List<ReplyVO> getList(Criteria cri, Map <String, Object> reply_id_category);
 
-	public void replyupdate(ReplyVO replybean);
 
 }
