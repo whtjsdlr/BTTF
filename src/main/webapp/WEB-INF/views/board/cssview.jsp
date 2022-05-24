@@ -144,10 +144,10 @@
                                                   <input type="text" value="${reply.reply_id }" name = "replyid" >
                                                   <input type="text" value="${reply.reply_contents }" name = "replycontents">
                                                   <input type="text" value="${reply.user_nickname }" name = "replynickname">
-                                       </c:forEach>
+                                       			</c:forEach>
                                             </c:when>
                                             <c:otherwise>                                                                             
-                                          <c:out value="댓글이 없습니다." />
+                                          		<p class='text-center' style='font-size : 20px;'>댓글이 없습니다</p>
                                             </c:otherwise>
                                          </c:choose>
                                       </div>
@@ -289,11 +289,6 @@
                 console.error( error );
             } );
         
-
-    </script>
-    
-
-      <script>
    function all_reset(){
       document.replyForm.reset();
    }
