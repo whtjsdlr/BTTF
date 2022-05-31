@@ -71,8 +71,9 @@
 				관리자 - 전체 게시글 JAVA
 			</h1>
 			<div class="content-lg container">
-				<h2>
-                	<i class="fas fa-window-close title_subject_icon"></i>신고된게시글
+				<h2 class="d-flex" >
+                	<i class="fas fa-list title_subject_icon" style="margin-right: 10px;"></i>
+                	<p class="h1_style">전체게시글</p>
                 </h2>
 				<div class="content-lg container">
 					<div class="row row-space-1 margin-b-2 col-md-12 col-sm-12" style="display: flex;">
@@ -172,7 +173,7 @@
 				<!-- Java table -->
 				<div class="mt-10">
 					<h2>
-						<i class="fas fa-list title_subject_icon"></i>Java
+						<i class="fas fa-list title_subject_icon" style="margin-right : 10px;"></i>JAVA
 					</h2>
 					<div class="table-responsive">
 						<table id="foo-table" class="table table-striped">

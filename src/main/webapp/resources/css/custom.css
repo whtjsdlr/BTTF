@@ -793,6 +793,16 @@
 }
 
 /* end align section */
+.h1_style{
+	font-size: 36px;
+	font-weight: 700;
+	font-family: Hind, sans-serif;
+    color: #515769;
+    line-height: 1.4;
+    margin: 0 0 15px;
+}
+
+
 
 /* 0. general end */
 

@@ -174,7 +174,7 @@
 				<div class="mt-10">
 					<h2>
 						<i class="fas fa-list title_subject_icon"></i>
-						Oracle
+						ORACLE
 					</h2>
 					<div class="table-responsive">
 						<table id="foo-table" class="table table-striped">

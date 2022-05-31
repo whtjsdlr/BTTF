@@ -72,6 +72,10 @@
 				관리자 - 전체 게시글 HTML
 			</h1>
 			<div class="content-lg container">
+				<h2 class="d-flex" >
+                	<i class="fas fa-list title_subject_icon" style="margin-right: 10px;"></i>
+                	<p class="h1_style">전체게시글</p>
+                </h2>
 				<div class="content-lg container">
 					<div class="row row-space-1 margin-b-2 col-md-12 col-sm-12" style="display: flex;">
 						<div class="col-sm-4 sm-margin-b-2">
@@ -168,9 +172,9 @@
 					</div>	
 				</div>
 				<!-- HTML5 table -->
-				<div>
+				<div class="mt-10">
 					<h2>
-						<i class="fas fa-list title_subject_icon"></i>HTML5
+						<i class="fas fa-list title_subject_icon" style="margin-right : 10px;"></i>HTML5
 					</h2>
 					<div class="table-responsive">
 						<table class="table table-striped">
