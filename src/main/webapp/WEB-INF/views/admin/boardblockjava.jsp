@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib  prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 
 <html lang="ko" class="no-js">
@@ -194,7 +196,7 @@
 													<a href="/board/javaview?post_id=${java.post_id} }">${java.post_subject }</a>
 												</td>
 												<td>${java.user_nickname }</td>
-												<td>${java.post_regdate }</td>
+												<td><fmt:formatDate pattern="yyyy-MM-dd" value="${java.post_regdate }"/></td>
 											</tr>
 										</c:forEach>
 									</c:when>

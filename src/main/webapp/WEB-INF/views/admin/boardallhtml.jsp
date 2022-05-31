@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib  prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 
 <html lang="ko" class="no-js">
@@ -38,6 +39,12 @@
 
 	<!-- c3 chart -->
 	<link href="../../../resources/vendor/c3-0.7.20/c3.css" rel="stylesheet">
+	
+	<!-- datatable  -->
+	<link href="../../../resources/vendor/DataTables/datatables.css" >
+	
+   
+	<script type="text/javascript" src="../../../resources/js/board.js"></script>
 </head>
 <!-- END HEAD -->
 
@@ -187,7 +194,10 @@
 					                            </td>
 					                            <td>${board.user_nickname }</td>
 					                            <td>${board.post_vcount }</td>
-					                            <td>${board.post_regdate }</td>
+					                            <td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.post_regdate }"/></td>
+					                            
+					                            
+					                            
 					                        </tr>
 			                        	</c:forEach>
 			                        </c:when>
