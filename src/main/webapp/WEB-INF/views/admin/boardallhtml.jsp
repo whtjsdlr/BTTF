@@ -44,7 +44,6 @@
 	<link href="../../../resources/vendor/DataTables/datatables.css" >
 	
    
-	<script type="text/javascript" src="../../../resources/js/board.js"></script>
 </head>
 <!-- END HEAD -->
 
@@ -177,7 +176,7 @@
 						<i class="fas fa-list title_subject_icon" style="margin-right : 10px;"></i>HTML5
 					</h2>
 					<div class="table-responsive">
-						<table class="table table-striped">
+						<table id="foo-table" class="table table-striped">
 							<thead>
 								<tr>
 									<th>게시글</th>
@@ -262,7 +261,19 @@
 	<script src="../../../resources/vendor/c3-0.7.20/c3.js"></script>
 	<script src="../../../resources/vendor/c3-0.7.20/docs/js/d3-5.8.2.min.js" charset="utf-8"></script>
 
-
+	<!-- datatables -->
+	<script type="text/javascript" src="../../../resources/vendor/DataTables/datatables.js"></script>
+	<script type="text/javascript" src="../../../resources/vendor/DataTables/DataTables-1.11.5/js/dataTables.bootstrap.js"></script>
+ 	<script type="text/javascript"> 
+ 	$(document).ready(function() {
+ 	    $('#foo-table').DataTable( {
+ 	    	bInfo : false,
+ 	       	bSortable : false,
+ 	       	bPaginate : true,
+ 	        displayLength : 10
+ 	    } );
+ 	} );	
+ </script> 
 </body>
 <!-- END BODY -->
 

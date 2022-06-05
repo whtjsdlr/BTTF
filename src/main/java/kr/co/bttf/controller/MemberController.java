@@ -168,9 +168,9 @@ public class MemberController {
 		
 		logger.info("mypage");
 		
-		HttpSession sessionout = req.getSession();  // 현재 세션 정보를 가져옴
+		HttpSession sessionNow = req.getSession();  // 현재 세션 정보를 가져옴
 		
-		MemberVO member = (MemberVO) sessionout.getAttribute("member");
+		MemberVO member = (MemberVO) sessionNow.getAttribute("member");
 		String user_nickname = member.getUser_nickname();
 		
 		//작성한 글 수
