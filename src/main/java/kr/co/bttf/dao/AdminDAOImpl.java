@@ -32,9 +32,15 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public List<MemberVO> memberblock() throws Exception {
-		return sql.selectList(namespace + ".memberblock");
+	public List<MemberVO> reportedmember() throws Exception {
+		return sql.selectList(namespace + ".reportedmember");
 
+	}
+	
+	@Override
+	public List<MemberVO> blockedmember() throws Exception {
+		return sql.selectList(namespace + ".blockedmember");
+		
 	}
 
 	@Override

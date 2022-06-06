@@ -101,14 +101,18 @@
 							<a class="nav-item-child nav-item-hover dropdown-toggle drop2 " data-toggle="dropdown" href="#">Admin</a>
 	                        <ul class="manager_dropdown">
 	                            <li>
-	                                <!-- <a class="nav-item-child-sub" href=""></a> -->
 	                                <a class="nav-item-child-sub_man" href="/admin/memberall">
 	                                    	회원관리 - 전체회원
 	                                </a>
 	                            </li>
 	                            <li>
-	                                <a class="nav-item-child-sub_man" href="/admin/memberblock">
+	                                <a class="nav-item-child-sub_man" href="/admin/reportedmember">
 	                                   		 회원관리 - 신고된 회원
+	                                </a>
+	                            </li>
+	                            <li>
+	                                <a class="nav-item-child-sub_man" href="/admin/blockedmember">
+	                                   		 회원관리 - 차단된 회원
 	                                </a>
 	                            </li>
 	                            <li>

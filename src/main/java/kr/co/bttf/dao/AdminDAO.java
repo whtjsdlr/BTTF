@@ -18,7 +18,10 @@ public interface AdminDAO {
 	public List<MemberVO> memberall() throws Exception;
 
 	// 신고된 회원 목록
-	public List<MemberVO> memberblock() throws Exception;
+	public List<MemberVO> reportedmember() throws Exception;
+	
+	// 차단된 회원 목록
+	public List<MemberVO> blockedmember() throws Exception;
 
 	// 공지사항 목록
 	public List<AnnVO> announcements() throws Exception;

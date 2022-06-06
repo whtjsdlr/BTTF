@@ -76,12 +76,12 @@
             <div class="content-lg container" style="margin-top : 50px;" >
                 <h1 class="pt-4">
                     <i class="fas fa-user-circle title_subject_icon"></i>
-                    	관리자 - 신고된 회원
+                    	관리자 - 차단된 회원
                 </h1>
                 <!--blockedmember layout -->
                 <div class="content-lg container">
                     <h2>
-                        <i class="fas fa-user-alt-slash title_subject_icon"></i>차단된 회원
+                        <i class="fas fa-window-close title_subject_icon"></i>차단된 회원
                     </h2>
                     <div class="table-responsive">
                         <table id="foo-table" class="table table-striped">
@@ -95,27 +95,26 @@
                             </thead>
                             <tbody>
                                <c:choose>
-                                <c:when test="${memberblock != null and fn:length(memberblock) > 0 }">
-                                    <c:forEach var="userBlockedList" items="${memberblock}">
+                                <c:when test="${blockedmember != null and fn:length(blockedmember) > 0 }">
+                                    <c:forEach var="userReportedList" items="${blockedmember}">
                                         <tr>
                                             <td>
                                                 <p>
-                                                    ${userBlockedList.user_name }
+                                                    ${userReportedList.user_name }
                                                 </p>
                                             </td>
                                             <td>
                                                 <p>
-                                                    ${userBlockedList.user_phone }
+                                                    ${userReportedList.user_phone }
                                                 </p>
                                             </td>
                                             <td>
                                                 <p>
-                                                	<fmt:formatDate value="${userBlockedList.user_regdate }" pattern="yyyy-MM-dd" />
+                                                	<fmt:formatDate value="${userReportedList.user_regdate }" pattern="yyyy-MM-dd" />
                                                 </p>
                                             </td>
                                             <td class="text-left">
-                                            	<a href="/admin/memberundo?user_index=${userBlockedList.user_index }" class="btn btn-warning ml-3" id="boardreport" type="submit"">신고해제</a>
-                                            	<a href="/admin/memberexpell?user_index=${userBlockedList.user_index }" class="btn btn-warning " id="boardreport" type="submit" >회원퇴출</a>
+                                            	<a href="/admin/memberundo?user_index=${userReportedList.user_index }" class="btn btn-warning ml-3" id="boardreport" type="submit"">차단해제</a>
                                             </td>
                                         </tr>
                                     </c:forEach>
