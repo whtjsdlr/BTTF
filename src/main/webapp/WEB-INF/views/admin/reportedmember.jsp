@@ -114,7 +114,7 @@
                                                 </p>
                                             </td>
                                             <td class="text-left">
-                                            	<a href="/admin/memberundo?user_index=${userReportedList.user_index }" class="btn btn-warning ml-3" id="boardreport" type="submit"">신고해제</a>
+                                            	<a href="/admin/memberundo?user_index=${userReportedList.user_index }" class="btn btn-warning" id="boardreport" type="submit"">신고해제</a>
                                             	<a href="/admin/memberexpell?user_index=${userReportedList.user_index }" class="btn btn-danger" id="boardreport" type="submit" >회원차단</a>
                                             </td>
                                         </tr>

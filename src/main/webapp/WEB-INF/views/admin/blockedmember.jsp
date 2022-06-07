@@ -114,7 +114,7 @@
                                                 </p>
                                             </td>
                                             <td class="text-left">
-                                            	<a href="/admin/memberundo?user_index=${userReportedList.user_index }" class="btn btn-warning ml-3" id="boardreport" type="submit"">차단해제</a>
+                                            	<a href="/admin/memberundo?user_index=${userReportedList.user_index }" class="btn btn-warning" id="boardreport" type="submit"">차단해제</a>
                                             </td>
                                         </tr>
                                     </c:forEach>
