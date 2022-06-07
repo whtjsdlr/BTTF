@@ -199,7 +199,7 @@
 												<td>${oracle.user_nickname}</td>
 												<td><fmt:formatDate pattern="yyyy-MM-dd" value="${oracle.post_regdate }"/></td>
 												<td>
-													 <a href="/board/oracledelete?post_id=${oracle.post_id}&mypage=admin" class="btn btn-danger">게시물 삭제</a>
+													 <a href="/board/oracledelete?post_id=${oracle.post_id}&mypage=admin" class="btn btn-danger">삭제</a>
 												</td>
 											</tr>
 										</c:forEach>

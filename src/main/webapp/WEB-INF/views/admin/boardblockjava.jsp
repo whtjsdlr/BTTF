@@ -199,7 +199,7 @@
 												<td>${java.user_nickname }</td>
 												<td><fmt:formatDate pattern="yyyy-MM-dd" value="${java.post_regdate }"/></td>
 												<td>
-													 <a href="/board/javadelete?post_id=${java.post_id}&mypage=admin" class="btn btn-danger">게시물 삭제</a>
+													 <a href="/board/javadelete?post_id=${java.post_id}&mypage=admin" class="btn btn-danger">삭제</a>
 												</td>
 											</tr>
 										</c:forEach>

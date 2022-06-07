@@ -199,7 +199,7 @@
 												<td>${js.user_nickname }</td>
 												<td><fmt:formatDate pattern="yyyy-MM-dd" value="${js.post_regdate }"/></td>
 												<td>
-													 <a href="/board/javascriptdelete?post_id=${js.post_id}&mypage=admin" class="btn btn-danger">게시물 삭제</a>
+													 <a href="/board/javascriptdelete?post_id=${js.post_id}&mypage=admin" class="btn btn-danger">삭제</a>
 												</td>
 											</tr>
 										</c:forEach>
