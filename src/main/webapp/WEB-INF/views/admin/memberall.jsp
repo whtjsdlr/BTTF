@@ -39,16 +39,8 @@
 	<link rel="stylesheet" href="../../../resources/css/custom.css">
 
 	<!-- datatable -->
-	<script type="text/javascript" src="../../../resources/js/board.js"></script>
-		<script type="text/javascript">
-		jQuery(function($){
-		   $("#foo-table").DataTable({
-		      "bInfo": false,
-		      "bSort" : false,
-		      "bPaginate" : true
-		   });
-		});	
-		</script>
+	<link href="../../../resources/vendor/DataTables/datatables.css" >
+
 	</head>
 <!-- END HEAD -->
 
@@ -193,8 +185,19 @@
 	<script src="../../../resources/vendor/c3-0.7.20/c3.js"></script>
 	<script src="../../../resources/vendor/c3-0.7.20/docs/js/d3-5.8.2.min.js" charset="utf-8"></script>
 
-
-
+	<!-- datatables -->
+	<script type="text/javascript" src="../../../resources/vendor/DataTables/datatables.js"></script>
+	<script type="text/javascript" src="../../../resources/vendor/DataTables/DataTables-1.11.5/js/dataTables.bootstrap.js"></script>
+ 	<script type="text/javascript"> 
+ 	$(document).ready(function() {
+ 	    $('#foo-table').DataTable( {
+ 	    	bInfo : false,
+ 	       	bSortable : false,
+ 	       	bPaginate : true,
+ 	        displayLength : 10
+ 	    } );
+ 	} );	
+ 	 </script> 
 </body>
 <!-- END BODY -->
 
