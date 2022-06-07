@@ -66,7 +66,7 @@
 	                <table id="foo-table" class="table table-striped" data-page-length='40' data-order='[[ 1, "desc" ]]'>
 	                    <thead>
 	                    	<tr>
-		                        <th style="width: 10%;">번호</th>
+		                        <th style="width: 20%;">번호</th>
 		                        <th style="width: 50%;">제목</th>
 		                        <th style="width: 10%;">작성자</th>
 		                        <th style="width: 10%;">조회수</th>
