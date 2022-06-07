@@ -69,7 +69,7 @@
             <h2>CSS QnA</h2>
             <form>
 	            <div class="table-responsive" >
-	                <table id="foo-table" class="table table-striped" data-order='[[ 1, "desc" ]]' >
+	                <table id="foo-table" class="table table-striped" data-order='[[ 0, "desc" ]]' >
 	                     <thead>
 	                    	<tr>
 		                        <th style="width: 10%;">번호</th>

@@ -66,7 +66,7 @@
 	                <table id="foo-table" class="table table-striped" data-order='[[ 0, "desc" ]]'>
 	                    <thead>
 	                    	<tr>
-		                        <th style="width: 20%;">번호</th>
+		                        <th style="width: 10%;">번호</th>
 		                        <th style="width: 50%;">제목</th>
 		                        <th style="width: 10%;">작성자</th>
 		                        <th style="width: 10%;">조회수</th>
@@ -97,6 +97,7 @@
 	                    </tbody>
 	                </table>
 	            </div>
+	           </form>
             <!-- End notice -->
 			<c:if test="${member != null }">
            		<a href="/board/jswrite"class="btn btn-primary" type="submit">글쓰기</a>
