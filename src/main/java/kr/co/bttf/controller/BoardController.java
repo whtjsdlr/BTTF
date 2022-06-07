@@ -247,8 +247,14 @@ public class BoardController {
 			
 			ScriptUtils.alertAndMovePage(response, "게시글이 삭제되었습니다.","http://localhost:9090/member/mypage?user_index=" + user_index + "&user_nickname=" +user_nickname);
 		
+		// 관리자 페이지에서 삭제하는 경우
+		} else if ( mypage.equals("admin")) {
+			
+			ScriptUtils.alertAndMovePage(response, "게시글이 삭제되었습니다.","http://localhost:9090/admin/boardblockhtml");
+			
+		}
 		// 게시판에서 글을 삭제하는 경우 > 게시판에 남아있음
-		} else {
+		else {
 			
 			ScriptUtils.alertAndMovePage(response, "게시글이 삭제되었습니다.","http://localhost:9090/board/htmllist/");
 		}
@@ -504,8 +510,14 @@ public class BoardController {
 			
 			ScriptUtils.alertAndMovePage(response, "게시글이 삭제되었습니다.","http://localhost:9090/member/mypage?user_index=" + user_index + "&user_nickname=" +user_nickname);
 		
+		// 관리자 페이지에서 삭제하는 경우
+		} else if ( mypage.equals("admin")) {
+			
+			ScriptUtils.alertAndMovePage(response, "게시글이 삭제되었습니다.","http://localhost:9090/admin/boardblockcss");
+			
+		}
 		// 게시판에서 글을 삭제하는 경우 > 게시판에 남아있음
-		} else {
+		else {
 			
 			ScriptUtils.alertAndMovePage(response, "게시글이 삭제되었습니다.","http://localhost:9090/board/csslist/");
 		}
@@ -759,8 +771,14 @@ public class BoardController {
 			
 			ScriptUtils.alertAndMovePage(response, "게시글이 삭제되었습니다.","http://localhost:9090/member/mypage?user_index=" + user_index + "&user_nickname=" +user_nickname);
 		
+		// 관리자 페이지에서 삭제하는 경우
+		} else if ( mypage.equals("admin")) {
+			
+			ScriptUtils.alertAndMovePage(response, "게시글이 삭제되었습니다.","http://localhost:9090/admin/boardblockjs");
+			
+		}
 		// 게시판에서 글을 삭제하는 경우 > 게시판에 남아있음
-		} else {
+		else {
 			
 			ScriptUtils.alertAndMovePage(response, "게시글이 삭제되었습니다.","http://localhost:9090/board/jslist/");
 		}
@@ -1011,8 +1029,14 @@ public class BoardController {
 			
 			ScriptUtils.alertAndMovePage(response, "게시글이 삭제되었습니다.","http://localhost:9090/member/mypage?user_index=" + user_index + "&user_nickname=" +user_nickname);
 		
+		// 관리자 페이지에서 삭제하는 경우
+		} else if ( mypage.equals("admin")) {
+			
+			ScriptUtils.alertAndMovePage(response, "게시글이 삭제되었습니다.","http://localhost:9090/admin/boardblockjsp");
+			
+		}
 		// 게시판에서 글을 삭제하는 경우 > 게시판에 남아있음
-		} else {
+		else {
 			
 			ScriptUtils.alertAndMovePage(response, "게시글이 삭제되었습니다.","http://localhost:9090/board/jsplist/");
 		}
@@ -1262,8 +1286,14 @@ public class BoardController {
 			
 			ScriptUtils.alertAndMovePage(response, "게시글이 삭제되었습니다.","http://localhost:9090/member/mypage?user_index=" + user_index + "&user_nickname=" +user_nickname);
 		
+		// 관리자 페이지에서 삭제하는 경우
+		} else if ( mypage.equals("admin")) {
+			
+			ScriptUtils.alertAndMovePage(response, "게시글이 삭제되었습니다.","http://localhost:9090/admin/boardblockjava");
+			
+		}
 		// 게시판에서 글을 삭제하는 경우 > 게시판에 남아있음
-		} else {
+		else {
 			
 			ScriptUtils.alertAndMovePage(response, "게시글이 삭제되었습니다.","http://localhost:9090/board/javalist/");
 		}
@@ -1516,8 +1546,14 @@ public class BoardController {
 			
 			ScriptUtils.alertAndMovePage(response, "게시글이 삭제되었습니다.","http://localhost:9090/member/mypage?user_index=" + user_index + "&user_nickname=" +user_nickname);
 		
+		// 관리자 페이지에서 삭제하는 경우
+		} else if ( mypage.equals("admin")) {
+			
+			ScriptUtils.alertAndMovePage(response, "게시글이 삭제되었습니다.","http://localhost:9090/admin/boardblockoracle");
+			
+		}
 		// 게시판에서 글을 삭제하는 경우 > 게시판에 남아있음
-		} else {
+		else {
 			
 			ScriptUtils.alertAndMovePage(response, "게시글이 삭제되었습니다.","http://localhost:9090/board/oraclelist/");
 		}
@@ -1771,8 +1807,14 @@ public class BoardController {
 			
 			ScriptUtils.alertAndMovePage(response, "게시글이 삭제되었습니다.","http://localhost:9090/member/mypage?user_index=" + user_index + "&user_nickname=" +user_nickname);
 		
+		// 관리자 페이지에서 삭제하는 경우
+		} else if ( mypage.equals("admin")) {
+			
+			ScriptUtils.alertAndMovePage(response, "게시글이 삭제되었습니다.","http://localhost:9090/admin/boardblockspring");
+			
+		}
 		// 게시판에서 글을 삭제하는 경우 > 게시판에 남아있음
-		} else {
+		else {
 			
 			ScriptUtils.alertAndMovePage(response, "게시글이 삭제되었습니다.","http://localhost:9090/board/springlist/");
 		}

@@ -184,6 +184,7 @@
 									<th>제목</th>
 									<th>작성자</th>
 									<th>작성일자</th>
+									<th>게시물 관리</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -197,6 +198,9 @@
 												</td>
 												<td>${oracle.user_nickname}</td>
 												<td><fmt:formatDate pattern="yyyy-MM-dd" value="${oracle.post_regdate }"/></td>
+												<td>
+													 <a href="/board/oracledelete?post_id=${oracle.post_id}&mypage=admin" class="btn btn-danger">게시물 삭제</a>
+												</td>
 											</tr>
 										</c:forEach>
 									</c:when>

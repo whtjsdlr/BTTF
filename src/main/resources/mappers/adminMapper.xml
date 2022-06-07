@@ -150,6 +150,8 @@
 		select * from spring where avaliability_category_id =2 
 	</select>
 	
+	
+	
 
 </mapper>
 
