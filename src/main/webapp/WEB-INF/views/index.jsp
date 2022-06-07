@@ -89,8 +89,8 @@
                             </div>
                             <div class="service-info">
                                 <h3>HTML5</h3>
-                                <p class="margin-b-5">Lorem ipsum dolor amet consectetur ut consequat siad esqudiatdolor</p>
-                                <a class="link" href="/board/htmllist">Read More</a>
+                                <p class="margin-b-5"> </p>
+                                <a class="link" href="/board/htmllist">게시판 이동</a>
                             </div>
                             <a href="/board/htmllist" class="content-wrapper-link"></a>
                         </div>
@@ -104,8 +104,8 @@
                             </div>
                             <div class="service-info">
                                 <h3>CSS3</h3>
-                                <p class="margin-b-5">Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
-                                <a class="link" href="/board/csslist">Read More</a>
+                                <p class="margin-b-5"> </p>
+                                <a class="link" href="/board/csslist">게시판 이동</a>
                             </div>
                             <a href="/board/csslist" class="content-wrapper-link"></a>
                         </div>
@@ -119,8 +119,8 @@
                             </div>
                             <div class="service-info">
                                 <h3>JAVASCRIPT</h3>
-                                <p class="margin-b-5">Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
-                                <a class="link" href="/board/jslist">Read More</a>
+                                <p class="margin-b-5"> </p>
+                                <a class="link" href="/board/jslist">게시판 이동</a>
                             </div>
                             <a href="/board/jslist" class="content-wrapper-link"></a>
                         </div>
@@ -136,8 +136,8 @@
 	                            </div>
 	                            <div class="service-info">
 	                                <h3>JAVA</h3>
-	                                <p class="margin-b-5">Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
-	                                <a class="link" href="#">Read More</a>
+	                                <p class="margin-b-5"> </p>
+	                                <a class="link" href="#">게시판 이동</a>
 	                            </div>
 	                            <a href="/board/javalist" class="content-wrapper-link"></a>
 	                        </div>
@@ -151,8 +151,8 @@
 	                            </div>
 	                            <div class="service-info">
 	                                <h3>JSP</h3>
-	                                <p class="margin-b-5">Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
-	                                <a class="link" href="/board/jsplist">Read More</a>
+	                                <p class="margin-b-5"> </p>
+	                                <a class="link" href="/board/jsplist">게시판 이동</a>
 	                            </div>
 	                            <a href="/board/jsplist" class="content-wrapper-link"></a>
 	                        </div>
@@ -166,8 +166,8 @@
 	                            </div>
 	                            <div class="service-info">
 	                                <h3>ORACLE</h3>
-	                                <p class="margin-b-5">Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
-	                                <a class="link" href="/board/oraclelist">Read More</a>
+	                                <p class="margin-b-5"> </p>
+	                                <a class="link" href="/board/oraclelist">게시판 이동</a>
 	                            </div>
 	                            <a href="/board/oraclelist" class="content-wrapper-link"></a>
 	                        </div>
@@ -181,8 +181,8 @@
 	                            </div>
 	                            <div class="service-info">
 	                                <h3>SPRING</h3>
-	                                <p class="margin-b-5">Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
-	                                <a class="link" href="/board/springlist">Read More</a>
+	                                <p class="margin-b-5"> </p>
+	                                <a class="link" href="/board/springlist">게시판 이동</a>
 	                            </div>
 	                            <a href="/board/springlist" class="content-wrapper-link"></a>
 	                        </div>
@@ -212,8 +212,7 @@
                     </div>
                 </div>
                 <h4><a>박지율</a> <span class="text-uppercase margin-l-20">리더</span></h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed tempor incdidunt ut laboret dolor magna ut
-                    consequat siad esqudiat dolor</p>
+                <p>안녕하세요</p>
             </div>
             <!-- End Latest Products -->
 
@@ -225,8 +224,7 @@
                     </div>
                 </div>
                 <h4><a>이초록</a> <span class="text-uppercase margin-l-20">부 리더</span></h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed tempor incdidunt ut laboret dolor magna ut
-                    consequat siad esqudiat dolor</p>
+                <p>안녕하세요</p>
             </div>
             <!-- End Latest Products -->
 
@@ -238,8 +236,7 @@
                     </div>
                 </div>
                 <h4><a>조선익</a> <span class="text-uppercase margin-l-20">크루원</span></h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed tempor incdidunt ut laboret dolor magna ut
-                    consequat siad esqudiat dolor</p>
+                <p>안녕하세요</p>
             </div>
             <!-- End Latest Products -->
         </div>
@@ -253,8 +250,7 @@
                     </div>
                 </div>
                 <h4><a>주수진</a> <span class="text-uppercase margin-l-20">크루원</span></h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed tempor incdidunt ut laboret dolor magna ut
-                    consequat siad esqudiat dolor</p>
+                <p>안녕하세요</p>
             </div>
             <!-- End Latest Products -->
 
@@ -266,8 +262,7 @@
                     </div>
                 </div>
                 <h4><a>정진형</a> <span class="text-uppercase margin-l-20">크루원</span></h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed tempor incdidunt ut laboret dolor magna ut
-                    consequat siad esqudiat dolor</p>
+                <p>안녕하세요</p>
             </div>
             <!-- End Latest Products -->
             <div class="col-sm-4 sm-margin-b-50 mt-4">
@@ -277,8 +272,7 @@
                     </div>
                 </div>
                 <h4><a>김선경</a> <span class="text-uppercase margin-l-20">크루원</span></h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed tempor incdidunt ut laboret dolor magna ut
-                    consequat siad esqudiat dolor</p>
+                <p>안녕하세요</p>
             </div>
             <!-- End Latest Products -->
             <!-- Latest Products -->
@@ -289,8 +283,7 @@
                     </div>
                 </div>
                 <h4><a>이다인</a> <span class="text-uppercase margin-l-20">크루원</span></h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed tempor incdidunt ut laboret dolor magna ut
-                    consequat siad esqudiat dolor</p>
+                <p>안녕하세요</p>
             </div>
             <!-- End Latest Products -->
         </div>

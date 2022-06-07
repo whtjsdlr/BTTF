@@ -20,10 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 import kr.co.bttf.domain.BoardVO;
-import kr.co.bttf.domain.CssBoardVO;
 import kr.co.bttf.domain.MemberVO;
 import kr.co.bttf.service.MemberService;
 
@@ -102,7 +100,7 @@ public class MemberController {
 		rttr.addFlashAttribute("msg", false);
 		ScriptUtils.alertAndMovePage(res, "입력하신 회원정보가 틀립니다. 다시 로그인 해주세요.", "http://localhost:9090/member/signin");
 		}else if (loginSuccess == false){
-			ScriptUtils.alertAndMovePage(res, "신고가 접수되어 계정정지가 이루어졌습니다 홈페이지 하단 담당자에게 문의바랍니다.", "http://localhost:9090");
+			ScriptUtils.alertAndMovePage(res, "신고가 접수되어 계정정지가 이루어졌습니다. 홈페이지 하단 담당자에게 문의바랍니다.", "http://localhost:9090");
 		}
 			return "redirect:/";
 	}
