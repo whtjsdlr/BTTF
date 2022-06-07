@@ -74,12 +74,13 @@
                         <i class="fas fa-user-alt-slash title_subject_icon"></i>신고된 회원
                     </h2>
                     <div class="table-responsive">
-                        <table id="foo-table" class="table table-striped">
+                        <table id="foo-table" class="table table-striped" data-order='[[ 4, "desc" ]]'>
                             <thead>
                                 <tr>
-                                    <th style="width: 30%;">회원이름</th>
+                                    <th style="width: 20%;">회원이름</th>
                                     <th style="width: 20%;">휴대폰번호</th>
-                                    <th style="width: 30%;">가입일자</th>
+                                    <th style="width: 20%;">가입일자</th>
+                                    <th style="width: 20%;">신고일자</th>
                                     <th style="width: 20%;">계정관리</th>
                                 </tr>
                             </thead>
@@ -101,6 +102,11 @@
                                             <td>
                                                 <p>
                                                 	<fmt:formatDate value="${userReportedList.user_regdate }" pattern="yyyy-MM-dd" />
+                                                </p>
+                                            </td>
+                                            <td>
+                                            	<p>
+                                                	<fmt:formatDate value="${userReportedList.report_regdate }" pattern="yyyy-MM-dd" />
                                                 </p>
                                             </td>
                                             <td class="text-left">

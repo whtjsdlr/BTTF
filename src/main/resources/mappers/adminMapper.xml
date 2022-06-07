@@ -14,12 +14,16 @@
 	
 	<!-- 신고된 회원만 -->
 	<select id="reportedmember" resultType="kr.co.bttf.domain.MemberVO">
-		select * from user_all where avaliability_category_id= 2
+		select *
+		from user_all u 
+		inner join report_user r
+		on u.user_index = r.reportee_index 
+		order by r.report_regdate desc
 	</select>
 	
 	<!-- 차단된 회원만 -->
 	<select id="blockedmember" resultType="kr.co.bttf.domain.MemberVO">
-		select * from user_all where avaliability_category_id= 3
+		select * from user_all where avaliability_category_id= 3 order by user_regdate desc
 	</select>
 	
 	<!-- 공지사항 -->

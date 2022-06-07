@@ -19,5 +19,6 @@ public class MemberVO {
 	private Date user_regdate;
 	private String authority_name;
 	private int authority_code;
+	private Date report_regdate;
 	
 }
