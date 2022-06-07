@@ -13,14 +13,16 @@
 	</select>
 	
 	<!-- 신고된 회원만 -->
-	<select id="memberblock" resultType="kr.co.bttf.domain.MemberVO">
+	<select id="reportedmember" resultType="kr.co.bttf.domain.MemberVO">
 		select * from user_all where avaliability_category_id= 2
 	</select>
 	
+	<!-- 차단된 회원만 -->
+	<select id="blockedmember" resultType="kr.co.bttf.domain.MemberVO">
+		select * from user_all where avaliability_category_id= 3
+	</select>
 	
-	
-	
-									<!-- 공지사항 -->
+	<!-- 공지사항 -->
 	<select id="announcements" resultType="kr.co.bttf.domain.AnnVO">
 		select * from announcements where avaliability_category_id= 1
 	</select>

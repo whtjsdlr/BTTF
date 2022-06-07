@@ -28,8 +28,13 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<MemberVO> memberblock() throws Exception {
-		return dao.memberblock();
+	public List<MemberVO> reportedmember() throws Exception {
+		return dao.reportedmember();
+	}
+	
+	@Override
+	public List<MemberVO> blockedmember() throws Exception {
+		return dao.blockedmember();
 	}
 
 	@Override

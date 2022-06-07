@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+
 import kr.co.bttf.domain.BoardVO;
 import kr.co.bttf.domain.CssBoardVO;
 import kr.co.bttf.domain.MemberVO;
@@ -33,7 +35,6 @@ public class MemberController {
 	
 	@Inject
 	MemberService service;
-	
 	
 	// 이메일 중복체크
 	@ResponseBody
