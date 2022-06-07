@@ -40,6 +40,8 @@
     
     <!-- datatable  -->
 	<link href="../../../resources/vendor/DataTables/datatables.css" >
+	
+	<script type="text/javascript" src="../../../resources/js/board.js"></script>
   
 </head>
 <!-- END HEAD -->
@@ -63,7 +65,7 @@
             <h2>HTML QnA</h2>
             <form>
 	            <div class="table-responsive">
-	                <table id="foo-table" class="table table-striped" data-page-length='40' data-order='[[ 1, "desc" ]]'>
+	                <table id="foo-table" class="table table-striped" data-order='[[ 0, "desc" ]]'>
 	                    <thead>
 	                    	<tr>
 		                        <th style="width: 10%;">번호</th>
@@ -98,12 +100,12 @@
 	                </table>
 	            </div>
 			</form>
-            <!-- End notice -->
 			<c:if test="${member != null }">
            		<a href="/board/htmlwrite"class="btn btn-primary" type="submit">글쓰기</a>
             </c:if>
  		</div>
 	 </div>
+     <!-- End notice -->
  
  
     <!--========== END PAGE LAYOUT ==========-->
@@ -145,12 +147,10 @@
     <!-- datatables -->
 	<script type="text/javascript" src="../../../../resources/vendor/DataTables/datatables.js"></script>
 	<script type="text/javascript" src="../../../../resources/vendor/DataTables/DataTables-1.11.5/js/dataTables.bootstrap.js"></script>
-	
  	<script type="text/javascript"> 
 	 	$(document).ready(function() {
 	 	    $('#foo-table').DataTable( {
 	 	    	bInfo : false,
-	 	       	bSortable : false,
 	 	       	bPaginate : true,
 	 	        displayLength : 10
 	 	    } );
