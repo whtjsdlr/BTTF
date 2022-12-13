@@ -1,5 +1,7 @@
 package kr.co.bttf.domain;
 
+import java.util.Date;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,5 +19,5 @@ public class ReportVO {
  	private int board_category_id;
 
  	private int post_id;
-	
+ 
 }

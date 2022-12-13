@@ -74,7 +74,7 @@
                         <i class="fas fa-window-close title_subject_icon"></i>차단된 회원
                     </h2>
                     <div class="table-responsive">
-                        <table id="foo-table" class="table table-striped">
+                        <table id="foo-table" class="table table-striped" data-order='[[ 2, "desc" ]]'>
                             <thead>
                                 <tr>
                                     <th style="width: 30%;">회원이름</th>

@@ -63,7 +63,7 @@
             <h2>JAVASCRIPT QnA</h2>
             <form>
 	            <div class="table-responsive">
-	                <table id="foo-table" class="table table-striped" data-page-length='40' data-order='[[ 1, "desc" ]]'>
+	                <table id="foo-table" class="table table-striped" data-order='[[ 0, "desc" ]]'>
 	                    <thead>
 	                    	<tr>
 		                        <th style="width: 10%;">번호</th>
@@ -97,6 +97,7 @@
 	                    </tbody>
 	                </table>
 	            </div>
+	           </form>
             <!-- End notice -->
 			<c:if test="${member != null }">
            		<a href="/board/jswrite"class="btn btn-primary" type="submit">글쓰기</a>

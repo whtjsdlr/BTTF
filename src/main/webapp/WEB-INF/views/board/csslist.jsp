@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="ko" class="no-js bg_color">
 
@@ -14,7 +15,6 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
-<!-- 	<meta http-equiv=refresh content=1; url="admin.jsp"> -->
 
     <!-- GLOBAL MANDATORY STYLES -->
     <link href="http://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet" type="text/css">
@@ -68,8 +68,8 @@
             <!-- notice -->
             <h2>CSS QnA</h2>
             <form>
-	            <div class="table-responsive">
-	                <table id="foo-table" class="table table-striped" data-order='[[ 1, "desc" ]]'>
+	            <div class="table-responsive" >
+	                <table id="foo-table" class="table table-striped" data-order='[[ 0, "desc" ]]' >
 	                     <thead>
 	                    	<tr>
 		                        <th style="width: 10%;">번호</th>
@@ -103,43 +103,10 @@
 	                    </tbody>
 	                </table>
 	            </div>
-	            <!-- End notice -->
-
-	            <c:if test="${member != null }">
-	           	 <a href="/board/csswrite"class="btn btn-primary" type="submit">글쓰기</a>
-	            </c:if>
             </form>
-            <!-- board pagination -->
-<!-- 				<nav aria-label="Page navigation" class="text-center"> -->
-<%-- 				<input type="hidden" name="post_id" value="${board.post_id }"> --%>
-<!-- 					<ul class="pagination"> -->
-<%-- 						<c:if test="${nowPage > 1 }"> --%>
-<!-- 							<li class="page-item">							 -->
-<%-- 								<a class="page-link" href="${pageContext.request.contextPath }/pages/csslist.do?page=${nowPage - 1 }">&lt;</a> --%>
-<!-- 							</li> -->
-<%-- 						</c:if> --%>
-<%-- 						<c:forEach var="i" begin="${startPage}" end="${endPage }"> --%>
-<%-- 							<c:choose> --%>
-<%-- 								<c:when test="${i == nowPage }"> --%>
-<!-- 									<li class="page-item"> -->
-<%-- 										<a class="page-link">${i }	</a>						 --%>
-<!-- 									</li> -->
-<%-- 								</c:when> --%>
-<%-- 								<c:otherwise> --%>
-<!-- 									<li class="page-item">									 -->
-<%-- 										<a class="page-link" href="${pageContext.request.contextPath }/pages/csslist.do?page=${i }">${i }</a> --%>
-<!-- 									</li> -->
-<%-- 								</c:otherwise> --%>
-<%-- 							</c:choose> --%>
-<%-- 						</c:forEach>	 --%>
-<%-- 						<c:if test="${nowPage<totalPage }"> --%>
-<!-- 							<li class="page-item"> -->
-<%-- 								<a class="page-link" href="${pageContext.request.contextPath }/pages/csslist.do?page=${nowPage + 1 }">&gt;</a> --%>
-<!-- 							</li> -->
-<%-- 						</c:if>						 --%>
-<!-- 					</ul> -->
-<!-- 				</nav> -->
-								<!-- end of board pagination -->	
+            <c:if test="${member != null }">
+           	 <a href="/board/csswrite"class="btn btn-primary" type="submit">글쓰기</a>
+            </c:if>
         </div>
     </div>
     <!-- End notice -->
@@ -189,7 +156,7 @@
  	    	bInfo : false,
  	       	bSortable : false,
  	       	bPaginate : true,
- 	        displayLength : 10
+ 	        displayLength : 10,
  	    } );
  	} );	
  </script>  

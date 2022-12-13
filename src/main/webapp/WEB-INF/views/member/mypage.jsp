@@ -142,7 +142,7 @@
                 	북마크
             </h2>
             <div class="table-responsive">
-                <table id="foo-table" class="table table-striped" data-order='[[ 1, "desc" ]]'>
+                <table id="foo-table" class="table table-striped" data-order='[[ 4, "desc" ]]'>
                     <thead>
 	                    <tr>
 							<th>게시판</th>
@@ -188,7 +188,7 @@
                 	내가 작성한 글
             </h2>
             <div class="table-responsive">
-                <table id="foo-table1" class="table table-striped" >
+                <table id="foo-table1" class="table table-striped" data-order='[[ 4, "desc" ]]'>
                     <thead>
 	                    <tr>
 							<th>게시판</th>
@@ -271,22 +271,15 @@
      <!-- datatables -->
     <script type="text/javascript" src="../../../resources/vendor/DataTables/datatables.js"></script>
 	<script type="text/javascript" src="../../../resources/vendor/DataTables/DataTables-1.11.5/js/dataTables.bootstrap.js"></script>
-
+	<script type="text/javascript" src="../../../resources/js/foo.js"></script>
 	<script>
-//  	$(document).ready(function() {
- 	    $('#foo-table').DataTable( {
+ 	$(document).ready(function() {
+ 	    $('#foo-table1').DataTable( {
  	    	bInfo : false,
-	    	bSortable : true,
  	       	bPaginate : true,
+	       	bSortable : true,
  	        displayLength : 10
  	    } );
- 	    
- 	   $('#foo-table1').DataTable( {
-	    	bInfo : false,
-	    	bSortable : true,
-	       	bPaginate : true,
-	        displayLength : 10
-	    } );
  	} );	
 	</script>
 </body>
